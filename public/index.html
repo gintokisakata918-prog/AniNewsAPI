@@ -86,6 +86,8 @@
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.7);
             z-index: 200;
+            max-height: 400px;
+            overflow-y: auto;
         }
 
         .search-item {
@@ -94,8 +96,9 @@
             cursor: pointer; align-items: center;
         }
 
+        .search-item:last-child { border-bottom: none; }
         .search-item:hover { background: var(--bg-card); }
-        .search-thumb { width: 35px; height: 50px; border-radius: 4px; object-fit: cover; }
+        .search-thumb { width: 35px; height: 50px; border-radius: 4px; object-fit: cover; flex-shrink: 0; }
         .search-name { font-size: 13px; font-weight: 700; color: var(--text-main); }
         .search-meta { font-size: 11px; color: var(--text-sub); }
 
@@ -158,26 +161,11 @@
                 <div class="logo-box">NQ</div>
                 <div class="logo-text">NetQubo</div>
             </div>
-            
+
             <!-- Real-time Dropdown Search -->
             <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search Anime, Manga..." onkeyup="handleSearch()">
-                <div class="search-dropdown" id="searchDropdown">
-                    <div class="search-item" onclick="openDetails('Chainsaw Man', 'Tatsuki Fujimoto', 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg', 'Action, Supernatural', 'Denji is a young man trapped in poverty, working off his deceased father\'s debt.')">
-                        <img src="https://cdn.myanimelist.net/images/anime/1806/126216.jpg" class="search-thumb">
-                        <div>
-                            <div class="search-name">Chainsaw Man</div>
-                            <div class="search-meta">TV • Score: 8.7</div>
-                        </div>
-                    </div>
-                    <div class="search-item" onclick="openDetails('Bleach: TYBW', 'Tite Kubo', 'https://cdn.myanimelist.net/images/anime/1908/120036.jpg', 'Action, Adventure', 'The peace is suddenly broken when warning sirens chime through the Soul Society.')">
-                        <img src="https://cdn.myanimelist.net/images/anime/1908/120036.jpg" class="search-thumb">
-                        <div>
-                            <div class="search-name">Bleach: TYBW</div>
-                            <div class="search-meta">TV • Score: 9.1</div>
-                        </div>
-                    </div>
-                </div>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search Anime, Manga..." oninput="handleSearch()">
+                <div class="search-dropdown" id="searchDropdown"></div>
             </div>
         </div>
     </header>
@@ -223,14 +211,75 @@
     </div>
 
     <script>
+        let searchTimeout;
+
         function handleSearch() {
-            let input = document.getElementById('searchInput').value;
+            clearTimeout(searchTimeout);
+            let input = document.getElementById('searchInput').value.trim();
             let dropdown = document.getElementById('searchDropdown');
-            if(input.length > 0) {
-                dropdown.style.display = 'block';
-            } else {
+
+            if (input.length === 0) {
                 dropdown.style.display = 'none';
+                dropdown.innerHTML = '';
+                return;
             }
+
+            // Debounce so we don't spam the API on every keystroke
+            searchTimeout = setTimeout(() => fetchResults(input), 400);
+        }
+
+        async function fetchResults(query) {
+            let dropdown = document.getElementById('searchDropdown');
+            dropdown.innerHTML = '<div class="search-item"><div class="search-name">Searching...</div></div>';
+            dropdown.style.display = 'block';
+
+            try {
+                const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=6`);
+                const data = await res.json();
+
+                if (!data.data || data.data.length === 0) {
+                    dropdown.innerHTML = '<div class="search-item"><div class="search-name">No results found</div></div>';
+                    return;
+                }
+
+                dropdown.innerHTML = data.data.map(anime => {
+                    const title = escapeForAttr(anime.title || 'Unknown');
+                    const author = escapeForAttr(anime.studios?.[0]?.name || 'Unknown Studio');
+                    const img = anime.images?.jpg?.image_url || '';
+                    const genres = escapeForAttr((anime.genres || []).map(g => g.name).join(', '));
+                    const desc = escapeForAttr((anime.synopsis || 'No description available.').replace(/\n/g, ' '));
+                    const score = anime.score || 'N/A';
+                    const type = anime.type || 'TV';
+
+                    return `
+                        <div class="search-item" onclick="openDetails('${title}', '${author}', '${img}', '${genres}', '${desc}')">
+                            <img src="${img}" class="search-thumb">
+                            <div>
+                                <div class="search-name">${escapeHtml(anime.title || 'Unknown')}</div>
+                                <div class="search-meta">${type} • Score: ${score}</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (err) {
+                dropdown.innerHTML = '<div class="search-item"><div class="search-name">Error loading results</div></div>';
+                console.error(err);
+            }
+        }
+
+        // Escapes text for safe use inside single-quoted onclick="..." attributes
+        function escapeForAttr(str) {
+            return String(str)
+                .replace(/\\/g, '\\\\')
+                .replace(/'/g, "\\'")
+                .replace(/"/g, '&quot;');
+        }
+
+        // Escapes text for safe use as HTML content
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
         }
 
         function openDetails(title, author, img, genres, desc) {
@@ -245,6 +294,14 @@
         function closeDetails() {
             document.getElementById('infoModal').style.display = 'none';
         }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const container = document.querySelector('.search-container');
+            if (!container.contains(e.target)) {
+                document.getElementById('searchDropdown').style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
