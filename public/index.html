@@ -7,6 +7,7 @@
 <title>NetQubo | Anime Stats</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -15,26 +16,29 @@
 
 body{
   font-family:Arial,Helvetica,sans-serif;
-  background:#f8fafc;
+  background:#f7f9fc;
   color:#111827;
 }
 
 /* HEADER */
 
 header{
-  height:64px;
-  background:white;
+  height:68px;
+  background:#fff;
   border-bottom:1px solid #e5e7eb;
+
   display:flex;
   align-items:center;
-  padding:0 20px;
+
+  padding:0 22px;
+
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:100;
 }
 
 .logo{
-  font-size:25px;
+  font-size:27px;
   font-weight:800;
 }
 
@@ -42,36 +46,45 @@ header{
   color:#2189df;
 }
 
+
 /* MAIN */
 
 .container{
   max-width:1100px;
   margin:auto;
-  padding:25px 16px 60px;
+  padding:28px 16px 60px;
 }
 
 .page-title{
   text-align:center;
-  font-size:38px;
-  margin:20px 0 28px;
+  font-size:40px;
+  margin:18px 0 28px;
 }
+
 
 /* SEARCH */
 
 .search-box{
   display:flex;
   gap:10px;
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
 
 .search-box input{
   flex:1;
+
   height:58px;
+
   border:2px solid #d1d5db;
-  border-radius:15px;
+  border-radius:16px;
+
   padding:0 18px;
+
   font-size:18px;
+
   outline:none;
+
+  background:#fff;
 }
 
 .search-box input:focus{
@@ -79,29 +92,69 @@ header{
 }
 
 .search-box button{
-  width:65px;
+  width:64px;
+
   border:0;
   border-radius:15px;
+
   background:#2189df;
+
   color:white;
-  font-size:24px;
+
+  font-size:28px;
+
+  cursor:pointer;
 }
+
+
+/* STATUS */
+
+.status{
+  text-align:center;
+
+  padding:12px;
+
+  color:#6b7280;
+
+  display:none;
+}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+
+  padding:14px;
+
+  border-radius:12px;
+
+  margin-bottom:18px;
+
+  display:none;
+}
+
 
 /* SEARCH RESULTS */
 
 .results{
   display:grid;
   gap:10px;
+
   margin-bottom:25px;
 }
 
 .result{
   display:flex;
+
   gap:14px;
+
   padding:12px;
-  background:white;
+
+  background:#fff;
+
   border:1px solid #e5e7eb;
-  border-radius:12px;
+
+  border-radius:13px;
+
   cursor:pointer;
 }
 
@@ -110,15 +163,17 @@ header{
 }
 
 .result img{
-  width:55px;
-  height:75px;
+  width:60px;
+  height:80px;
+
   object-fit:cover;
-  border-radius:7px;
+
+  border-radius:8px;
 }
 
 .result h3{
   font-size:16px;
-  margin:5px 0;
+  margin:4px 0 7px;
 }
 
 .result p{
@@ -126,23 +181,106 @@ header{
   font-size:13px;
 }
 
-/* ANIME CARD */
+
+/* EXPLORE */
+
+.explore-title{
+  font-size:28px;
+  margin:25px 0 15px;
+}
+
+
+/* TOP GRID */
+
+.top-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:14px;
+
+  margin-bottom:30px;
+}
+
+.top-card{
+  background:white;
+
+  border:1px solid #e5e7eb;
+
+  border-radius:15px;
+
+  overflow:hidden;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.top-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.top-card img{
+  width:100%;
+
+  aspect-ratio:2/3;
+
+  object-fit:cover;
+}
+
+.top-info{
+  padding:11px;
+}
+
+.top-info h3{
+  font-size:15px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+}
+
+.top-info p{
+  margin-top:7px;
+
+  color:#f59e0b;
+
+  font-weight:bold;
+}
+
+
+/* ANIME */
+
+.anime-section{
+  display:none;
+}
 
 .anime-card{
-  background:white;
+  background:#fff;
+
   border:1px solid #e5e7eb;
+
   border-radius:18px;
+
   padding:20px;
+
   display:flex;
-  gap:25px;
-  align-items:flex-start;
+
+  gap:24px;
+
   box-shadow:0 3px 15px rgba(0,0,0,.04);
 }
 
 .poster{
   width:190px;
   height:270px;
+
   object-fit:cover;
+
   border-radius:12px;
 }
 
@@ -151,98 +289,129 @@ header{
 }
 
 .rating{
-  font-size:24px;
+  font-size:25px;
+
   font-weight:bold;
 }
 
-.rating span{
+.rating-star{
   color:#f59e0b;
 }
 
 .votes{
   color:#6b7280;
-  margin-left:7px;
+
   font-size:14px;
+
+  margin-left:6px;
 }
 
 .info h2{
   font-size:28px;
+
   margin:15px 0 7px;
 }
 
 .japanese{
   color:#6b7280;
+
   line-height:1.5;
 }
 
 .stats{
   display:flex;
-  gap:35px;
-  margin-top:22px;
+
+  gap:30px;
+
+  margin-top:23px;
+
   flex-wrap:wrap;
 }
 
 .stat b{
   display:block;
-  font-size:22px;
+
+  font-size:21px;
 }
 
 .stat span{
   color:#6b7280;
-  font-size:14px;
+
+  font-size:13px;
 }
+
 
 /* TABS */
 
 .tabs{
   margin-top:20px;
+
   display:flex;
+
   gap:8px;
+
   flex-wrap:wrap;
 }
 
 .tab{
   background:white;
+
   border:1px solid #d1d5db;
-  padding:12px 20px;
+
+  padding:11px 20px;
+
   border-radius:12px;
-  font-size:16px;
+
+  font-size:15px;
+
   cursor:pointer;
 }
 
 .tab.active{
-  background:#fff;
-  border-color:#2189df;
   color:#2189df;
+
+  border-color:#2189df;
+
   font-weight:bold;
 }
+
 
 /* EPISODES */
 
 .episodes{
-  margin-top:20px;
+  margin-top:18px;
+
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+
+  grid-template-columns:
+    repeat(5,1fr);
+
   gap:10px;
 }
 
 .ep{
   border-radius:13px;
+
   padding:13px;
-  min-height:90px;
+
+  min-height:88px;
+
   border:0;
+
   text-align:left;
-  cursor:pointer;
 }
 
 .ep-number{
   font-size:14px;
+
   opacity:.75;
 }
 
 .ep-score{
-  font-size:28px;
+  font-size:27px;
+
   font-weight:bold;
+
   margin-top:7px;
 }
 
@@ -258,7 +427,7 @@ header{
 
 .average{
   background:#facc15;
-  color:#111827;
+  color:#111;
 }
 
 .low{
@@ -271,40 +440,56 @@ header{
   color:#6b7280;
 }
 
+
 /* GRAPH */
 
 .graph-box{
   background:white;
+
   border:1px solid #e5e7eb;
+
   border-radius:15px;
+
   padding:15px;
-  margin-top:20px;
-  overflow:hidden;
+
+  margin-top:18px;
+
+  display:none;
 }
 
 canvas{
   width:100%;
-  height:350px;
+  height:330px;
 }
+
 
 /* TABLE */
 
 .table-wrap{
-  margin-top:20px;
+  margin-top:18px;
+
   background:white;
+
   border:1px solid #e5e7eb;
+
   border-radius:15px;
+
   overflow:auto;
+
+  display:none;
 }
 
 table{
   width:100%;
+
   border-collapse:collapse;
 }
 
 th,td{
   padding:14px;
+
   text-align:left;
+
   border-bottom:1px solid #eee;
 }
 
@@ -312,31 +497,18 @@ th{
   background:#f8fafc;
 }
 
-.score{
-  font-weight:bold;
-}
-
-/* LOADING */
-
-.loading{
-  text-align:center;
-  padding:30px;
-  color:#6b7280;
-}
-
-.error{
-  background:#fee2e2;
-  color:#991b1b;
-  padding:15px;
-  border-radius:10px;
-}
 
 /* MOBILE */
 
-@media(max-width:650px){
+@media(max-width:700px){
 
   .page-title{
-    font-size:30px;
+    font-size:31px;
+  }
+
+  .top-grid{
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
   .anime-card{
@@ -344,8 +516,8 @@ th{
   }
 
   .poster{
-    width:150px;
-    height:215px;
+    width:145px;
+    height:210px;
   }
 
   .info h2{
@@ -353,30 +525,35 @@ th{
   }
 
   .episodes{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .stats{
-    gap:20px;
-  }
-
-  .search-box input{
-    font-size:16px;
+    grid-template-columns:
+      repeat(2,1fr);
   }
 
 }
+
 </style>
 </head>
 
+
 <body>
 
+
 <header>
-  <div class="logo">Net<span>Qubo</span></div>
+
+  <div class="logo">
+    Net<span>Qubo</span>
+  </div>
+
 </header>
+
 
 <main class="container">
 
-<h1 class="page-title">Anime Statistics</h1>
+
+<h1 class="page-title">
+  Anime Statistics
+</h1>
+
 
 <!-- SEARCH -->
 
@@ -389,465 +566,829 @@ th{
     autocomplete="off"
   >
 
-  <button onclick="searchAnime()">⌕</button>
+  <button onclick="searchAnime()">
+    ⌕
+  </button>
 
 </div>
 
-<div id="results" class="results"></div>
 
-<div id="loading" class="loading" style="display:none">
+<div id="status" class="status">
   Loading...
 </div>
 
-<div id="error"></div>
 
-<!-- ANIME INFO -->
+<div id="error" class="error"></div>
 
-<div id="animeSection" style="display:none">
 
-  <div class="anime-card">
+<!-- SEARCH RESULTS -->
 
-    <img
-      id="poster"
-      class="poster"
-      alt="Anime poster"
-    >
+<div
+  id="results"
+  class="results">
+</div>
 
-    <div class="info">
 
-      <div class="rating">
-        <span>★</span>
-        <b id="rating">-</b>
-        <span id="votes" class="votes"></span>
-      </div>
+<!-- EXPLORE -->
 
-      <h2 id="title"></h2>
+<section id="exploreSection">
 
-      <p id="japanese" class="japanese"></p>
-
-      <div class="stats">
-
-        <div class="stat">
-          <b id="episodes">-</b>
-          <span>Episodes</span>
-        </div>
-
-        <div class="stat">
-          <b id="rank">-</b>
-          <span>MAL Rank</span>
-        </div>
-
-        <div class="stat">
-          <b id="members">-</b>
-          <span>Members</span>
-        </div>
-
-        <div class="stat">
-          <b id="status">-</b>
-          <span>Status</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- TABS -->
-
-  <div class="tabs">
-
-    <button
-      class="tab active"
-      onclick="showView('cards',this)">
-      Cards
-    </button>
-
-    <button
-      class="tab"
-      onclick="showView('graph',this)">
-      Graph
-    </button>
-
-    <button
-      class="tab"
-      onclick="showView('table',this)">
-      Table
-    </button>
-
-  </div>
-
-  <!-- CARDS -->
-
-  <div id="cardsView">
-
-    <div class="episodes" id="episodesGrid"></div>
-
-  </div>
-
-  <!-- GRAPH -->
+  <h2 class="explore-title">
+    Explore
+  </h2>
 
   <div
-    id="graphView"
-    class="graph-box"
-    style="display:none">
-
-    <canvas id="chart"></canvas>
-
+    id="topGrid"
+    class="top-grid">
   </div>
 
-  <!-- TABLE -->
+</section>
 
-  <div
-    id="tableView"
-    class="table-wrap"
-    style="display:none">
 
-    <table>
+<!-- ANIME -->
 
-      <thead>
-        <tr>
-          <th>Episode</th>
-          <th>Title</th>
-          <th>Score</th>
-        </tr>
-      </thead>
+<section
+  id="animeSection"
+  class="anime-section">
 
-      <tbody id="episodeTable"></tbody>
 
-    </table>
+<div class="anime-card">
 
-  </div>
+
+<img
+  id="poster"
+  class="poster"
+  alt="Anime poster"
+>
+
+
+<div class="info">
+
+
+<div class="rating">
+
+<span class="rating-star">
+★
+</span>
+
+<span id="rating">
+-
+</span>
+
+<span
+  id="votes"
+  class="votes">
+</span>
 
 </div>
+
+
+<h2 id="title">
+</h2>
+
+
+<p
+  id="japanese"
+  class="japanese">
+</p>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<b id="episodes">
+-
+</b>
+
+<span>
+Episodes
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="rank">
+-
+</b>
+
+<span>
+MAL Rank
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="members">
+-
+</b>
+
+<span>
+Members
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="status">
+-
+</b>
+
+<span>
+Status
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- TABS -->
+
+<div class="tabs">
+
+
+<button
+  class="tab active"
+  onclick="showView('cards',this)">
+  Cards
+</button>
+
+
+<button
+  class="tab"
+  onclick="showView('graph',this)">
+  Graph
+</button>
+
+
+<button
+  class="tab"
+  onclick="showView('table',this)">
+  Table
+</button>
+
+
+</div>
+
+
+<!-- CARDS -->
+
+<div
+  id="cardsView"
+  class="episodes">
+</div>
+
+
+<!-- GRAPH -->
+
+<div
+  id="graphView"
+  class="graph-box">
+
+<canvas id="chart">
+</canvas>
+
+</div>
+
+
+<!-- TABLE -->
+
+<div
+  id="tableView"
+  class="table-wrap">
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Episode
+</th>
+
+<th>
+Title
+</th>
+
+<th>
+Score
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+  id="episodeTable">
+</tbody>
+
+
+</table>
+
+</div>
+
+
+</section>
+
 
 </main>
 
 
 <script>
 
-/* =========================================
+
+/* ======================================
    API
-========================================= */
+====================================== */
 
 const API =
   "https://api.jikan.moe/v4";
 
 
-let currentAnime = null;
-let episodeData = [];
+/* ======================================
+   HELPERS
+====================================== */
+
+const sleep =
+  ms =>
+    new Promise(
+      resolve =>
+        setTimeout(resolve,ms)
+    );
 
 
-/* =========================================
-   SEARCH
-========================================= */
+function showStatus(text){
 
-async function searchAnime(){
+  const el =
+    document.getElementById("status");
 
-  const input =
-    document.getElementById("searchInput");
+  el.textContent =
+    text;
 
-  const query =
-    input.value.trim();
+  el.style.display =
+    text ? "block" : "none";
 
-  if(!query) return;
+}
 
-  const results =
-    document.getElementById("results");
 
-  const loading =
-    document.getElementById("loading");
+function showError(text){
 
-  const error =
+  const el =
     document.getElementById("error");
 
-  results.innerHTML = "";
+  el.textContent =
+    text;
 
-  error.innerHTML = "";
+  el.style.display =
+    text ? "block" : "none";
 
-  loading.style.display = "block";
+}
 
-  try{
 
-    const response =
-      await fetch(
-        API +
-        "/anime?q=" +
-        encodeURIComponent(query) +
-        "&limit=8"
-      );
+function formatNumber(num){
 
-    if(!response.ok)
-      throw new Error();
+  if(!num)
+    return "0";
 
-    const data =
-      await response.json();
-
-    loading.style.display = "none";
-
-    if(!data.data.length){
-
-      results.innerHTML =
-        "<div class='loading'>Anime not found.</div>";
-
-      return;
+  return new Intl.NumberFormat(
+    "en-US",
+    {
+      notation:"compact",
+      maximumFractionDigits:1
     }
-
-    data.data.forEach(anime => {
-
-      const item =
-        document.createElement("div");
-
-      item.className = "result";
-
-      item.innerHTML = `
-
-        <img
-          src="${anime.images.jpg.image_url}"
-          alt=""
-        >
-
-        <div>
-
-          <h3>
-            ${anime.title}
-          </h3>
-
-          <p>
-            ⭐ ${anime.score || "N/A"}
-            •
-            ${anime.type || "Unknown"}
-            •
-            ${anime.year || ""}
-          </p>
-
-        </div>
-
-      `;
-
-      item.onclick = () =>
-        loadAnime(anime.mal_id);
-
-      results.appendChild(item);
-
-    });
-
-  }catch(e){
-
-    loading.style.display = "none";
-
-    error.innerHTML =
-      "<div class='error'>Search failed. Please try again.</div>";
-
-  }
+  ).format(num);
 
 }
 
 
-/* =========================================
-   LOAD ANIME
-========================================= */
+/* ======================================
+   SAFE FETCH
+====================================== */
 
-async function loadAnime(id){
+async function apiFetch(url){
 
-  const loading =
-    document.getElementById("loading");
+  let lastError = null;
 
-  const error =
-    document.getElementById("error");
-
-  const section =
-    document.getElementById("animeSection");
-
-  loading.style.display = "block";
-
-  error.innerHTML = "";
-
-  section.style.display = "none";
-
-  try{
-
-    const response =
-      await fetch(
-        API + "/anime/" + id + "/full"
-      );
-
-    if(!response.ok)
-      throw new Error();
-
-    const result =
-      await response.json();
-
-    currentAnime =
-      result.data;
-
-    document.getElementById("poster").src =
-      currentAnime.images.jpg.large_image_url ||
-      currentAnime.images.jpg.image_url;
-
-    document.getElementById("title").textContent =
-      currentAnime.title;
-
-    document.getElementById("japanese").textContent =
-      currentAnime.title_japanese || "";
-
-    document.getElementById("rating").textContent =
-      currentAnime.score || "N/A";
-
-    document.getElementById("votes").textContent =
-      currentAnime.scored_by
-      ? "(" + formatNumber(currentAnime.scored_by) + " votes)"
-      : "";
-
-    document.getElementById("episodes").textContent =
-      currentAnime.episodes || "—";
-
-    document.getElementById("rank").textContent =
-      currentAnime.rank
-      ? "#" + currentAnime.rank
-      : "—";
-
-    document.getElementById("members").textContent =
-      formatNumber(currentAnime.members || 0);
-
-    document.getElementById("status").textContent =
-      currentAnime.status || "—";
-
-    section.style.display = "block";
-
-    document.getElementById("results").innerHTML = "";
-
-    loading.style.display = "none";
-
-    await loadEpisodes(id);
-
-  }catch(e){
-
-    loading.style.display = "none";
-
-    error.innerHTML =
-      "<div class='error'>Unable to load anime information.</div>";
-
-  }
-
-}
-
-
-/* =========================================
-   LOAD EPISODES
-========================================= */
-
-async function loadEpisodes(id){
-
-  episodeData = [];
-
-  let page = 1;
-  let hasNext = true;
-
-  /*
-   * Jikan sends episodes in pages.
-   * We keep requesting until all available
-   * episode pages are collected.
-   */
-
-  while(hasNext){
+  for(let attempt=0;attempt<3;attempt++){
 
     try{
 
       const response =
-        await fetch(
-          API +
-          "/anime/" +
-          id +
-          "/episodes?page=" +
-          page
+        await fetch(url);
+
+      if(response.status === 429){
+
+        await sleep(
+          1200 * (attempt + 1)
         );
 
-      if(!response.ok)
-        break;
+        continue;
+      }
 
-      const result =
-        await response.json();
+      if(!response.ok){
 
-      if(!result.data)
-        break;
-
-      episodeData =
-        episodeData.concat(result.data);
-
-      hasNext =
-        result.pagination &&
-        result.pagination.has_next_page;
-
-      page++;
-
-      /*
-       * Small delay helps avoid API rate limits.
-       */
-
-      if(hasNext){
-
-        await new Promise(
-          resolve =>
-            setTimeout(resolve,350)
+        throw new Error(
+          "HTTP " + response.status
         );
 
       }
 
-    }catch(e){
+      return await response.json();
 
-      break;
+    }catch(error){
+
+      lastError = error;
+
+      await sleep(
+        700 * (attempt + 1)
+      );
 
     }
 
   }
 
-  renderEpisodes();
+  throw lastError ||
+    new Error("API request failed");
 
 }
 
 
-/* =========================================
-   RENDER EPISODES
-========================================= */
+/* ======================================
+   SEARCH
+====================================== */
 
-function renderEpisodes(){
+async function searchAnime(){
 
-  const grid =
-    document.getElementById("episodesGrid");
+  const query =
+    document
+      .getElementById("searchInput")
+      .value
+      .trim();
 
-  const table =
-    document.getElementById("episodeTable");
 
-  grid.innerHTML = "";
+  if(!query){
 
-  table.innerHTML = "";
-
-  if(!episodeData.length){
-
-    grid.innerHTML =
-      "<div class='loading'>Episode ratings unavailable.</div>";
+    showError(
+      "Please enter an anime name."
+    );
 
     return;
 
   }
 
-  episodeData.forEach(ep => {
+
+  showError("");
+
+  showStatus(
+    "Searching MyAnimeList..."
+  );
+
+
+  const results =
+    document.getElementById("results");
+
+  results.innerHTML = "";
+
+
+  try{
+
+    const data =
+      await apiFetch(
+
+        API +
+        "/anime?q=" +
+        encodeURIComponent(query) +
+        "&limit=10"
+
+      );
+
+
+    showStatus("");
+
+
+    if(
+      !data.data ||
+      !data.data.length
+    ){
+
+      results.innerHTML =
+        "<div class='status' style='display:block'>Anime not found.</div>";
+
+      return;
+
+    }
+
+
+    data.data.forEach(
+      anime =>
+        addSearchResult(
+          anime
+        )
+    );
+
+
+  }catch(error){
+
+    showStatus("");
+
+    showError(
+      "Search failed. Jikan API may be temporarily rate-limited. Please try again in a few seconds."
+    );
+
+  }
+
+}
+
+
+/* ======================================
+   SEARCH RESULT CARD
+====================================== */
+
+function addSearchResult(anime){
+
+  const results =
+    document.getElementById("results");
+
+
+  const item =
+    document.createElement("div");
+
+
+  item.className =
+    "result";
+
+
+  const image =
+    anime.images?.jpg?.image_url ||
+    "";
+
+
+  item.innerHTML = `
+
+    <img
+      src="${image}"
+      alt=""
+    >
+
+    <div>
+
+      <h3>
+        ${escapeHTML(anime.title)}
+      </h3>
+
+      <p>
+        ★ ${anime.score || "N/A"}
+        •
+        ${anime.type || "Unknown"}
+        •
+        ${anime.year || ""}
+      </p>
+
+    </div>
+
+  `;
+
+
+  item.onclick =
+    () =>
+      loadAnime(
+        anime.mal_id
+      );
+
+
+  results.appendChild(item);
+
+}
+
+
+/* ======================================
+   LOAD ANIME
+====================================== */
+
+async function loadAnime(id){
+
+  showError("");
+
+  showStatus(
+    "Loading anime information..."
+  );
+
+
+  const section =
+    document.getElementById(
+      "animeSection"
+    );
+
+
+  section.style.display =
+    "none";
+
+
+  try{
+
+    const result =
+      await apiFetch(
+        API +
+        "/anime/" +
+        id
+      );
+
+
+    const anime =
+      result.data;
+
+
+    document.getElementById(
+      "poster"
+    ).src =
+      anime.images?.jpg?.large_image_url ||
+      anime.images?.jpg?.image_url ||
+      "";
+
+
+    document.getElementById(
+      "title"
+    ).textContent =
+      anime.title || "Unknown";
+
+
+    document.getElementById(
+      "japanese"
+    ).textContent =
+      anime.title_japanese || "";
+
+
+    document.getElementById(
+      "rating"
+    ).textContent =
+      anime.score || "N/A";
+
+
+    document.getElementById(
+      "votes"
+    ).textContent =
+      anime.scored_by
+      ? "(" +
+        formatNumber(
+          anime.scored_by
+        ) +
+        " votes)"
+      : "";
+
+
+    document.getElementById(
+      "episodes"
+    ).textContent =
+      anime.episodes || "—";
+
+
+    document.getElementById(
+      "rank"
+    ).textContent =
+      anime.rank
+      ? "#" + anime.rank
+      : "—";
+
+
+    document.getElementById(
+      "members"
+    ).textContent =
+      formatNumber(
+        anime.members
+      );
+
+
+    document.getElementById(
+      "status"
+    ).textContent =
+      anime.status || "—";
+
+
+    section.style.display =
+      "block";
+
+
+    document
+      .getElementById("results")
+      .innerHTML = "";
+
+
+    document
+      .getElementById("exploreSection")
+      .style.display = "none";
+
+
+    showStatus(
+      "Loading episode ratings..."
+    );
+
+
+    /*
+     * Small delay to avoid
+     * hitting Jikan too quickly.
+     */
+
+    await sleep(500);
+
+
+    await loadEpisodes(id);
+
+
+    showStatus("");
+
+
+    section.scrollIntoView({
+      behavior:"smooth"
+    });
+
+
+  }catch(error){
+
+    showStatus("");
+
+    showError(
+      "Unable to load this anime. Please try again."
+    );
+
+  }
+
+}
+
+
+/* ======================================
+   EPISODES
+====================================== */
+
+async function loadEpisodes(id){
+
+  let allEpisodes = [];
+
+  let page = 1;
+
+
+  /*
+   * Fetch first page.
+   * Jikan paginates episode lists.
+   */
+
+  try{
+
+    const first =
+      await apiFetch(
+
+        API +
+        "/anime/" +
+        id +
+        "/episodes?page=1"
+
+      );
+
+
+    allEpisodes =
+      first.data || [];
+
+
+    /*
+     * For anime with >100 episodes,
+     * load another page.
+     */
+
+    if(
+      first.pagination &&
+      first.pagination.has_next_page
+    ){
+
+      await sleep(500);
+
+
+      const second =
+        await apiFetch(
+
+          API +
+          "/anime/" +
+          id +
+          "/episodes?page=2"
+
+        );
+
+
+      allEpisodes =
+        allEpisodes.concat(
+          second.data || []
+        );
+
+    }
+
+
+  }catch(error){
+
+    console.log(
+      "Episode API error:",
+      error
+    );
+
+  }
+
+
+  renderEpisodes(
+    allEpisodes
+  );
+
+}
+
+
+/* ======================================
+   RENDER EPISODES
+====================================== */
+
+function renderEpisodes(episodes){
+
+  const cards =
+    document.getElementById(
+      "cardsView"
+    );
+
+
+  const table =
+    document.getElementById(
+      "episodeTable"
+    );
+
+
+  cards.innerHTML = "";
+
+  table.innerHTML = "";
+
+
+  if(!episodes.length){
+
+    cards.innerHTML = `
+
+      <div
+        class="status"
+        style="display:block;grid-column:1/-1">
+
+        Episode ratings are not available
+        for this anime.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  episodes.forEach(ep => {
 
     const score =
       ep.score;
 
+
+    /*
+     * Episode number
+     */
+
+    const number =
+      ep.mal_id ||
+      ep.mal_id === 0
+      ? ep.mal_id
+      : ep.episode;
+
+
+    /* CARD */
+
     const card =
       document.createElement("div");
+
 
     card.className =
       "ep " +
       getScoreClass(score);
 
+
     card.innerHTML = `
 
       <div class="ep-number">
-        E${ep.mal_id}
+        E${number}
       </div>
 
       <div class="ep-score">
@@ -856,38 +1397,51 @@ function renderEpisodes(){
 
     `;
 
-    grid.appendChild(card);
 
+    cards.appendChild(card);
+
+
+    /* TABLE */
 
     const row =
       document.createElement("tr");
 
+
     row.innerHTML = `
 
-      <td>E${ep.mal_id}</td>
-
       <td>
-        ${ep.title || "Episode " + ep.mal_id}
+        E${number}
       </td>
 
-      <td class="score">
+      <td>
+        ${escapeHTML(
+          ep.title ||
+          "Episode " + number
+        )}
+      </td>
+
+      <td>
         ${score || "N/A"}
       </td>
 
     `;
 
+
     table.appendChild(row);
 
   });
 
-  drawGraph();
+
+  drawGraph(
+    episodes
+  );
 
 }
 
 
-/* =========================================
-   SCORE COLORS
-========================================= */
+/* ======================================
+   SCORE COLOR
+====================================== */
 
 function getScoreClass(score){
 
@@ -908,34 +1462,47 @@ function getScoreClass(score){
 }
 
 
-/* =========================================
+/* ======================================
    GRAPH
-========================================= */
+====================================== */
 
-function drawGraph(){
+function drawGraph(episodes){
 
   const canvas =
-    document.getElementById("chart");
+    document.getElementById(
+      "chart"
+    );
+
 
   const ctx =
     canvas.getContext("2d");
 
+
   const width =
-    canvas.clientWidth;
+    canvas.clientWidth || 600;
+
 
   const height =
-    canvas.clientHeight;
+    canvas.clientHeight || 330;
+
 
   const ratio =
     window.devicePixelRatio || 1;
 
+
   canvas.width =
     width * ratio;
+
 
   canvas.height =
     height * ratio;
 
-  ctx.scale(ratio,ratio);
+
+  ctx.scale(
+    ratio,
+    ratio
+  );
+
 
   ctx.clearRect(
     0,
@@ -944,16 +1511,22 @@ function drawGraph(){
     height
   );
 
+
   const valid =
-    episodeData.filter(
-      ep => typeof ep.score === "number"
+    episodes.filter(
+      ep =>
+        typeof ep.score ===
+        "number"
     );
+
 
   if(!valid.length){
 
-    ctx.fillStyle = "#6b7280";
+    ctx.fillStyle =
+      "#6b7280";
 
-    ctx.font = "16px Arial";
+    ctx.font =
+      "16px Arial";
 
     ctx.fillText(
       "Episode scores unavailable",
@@ -965,26 +1538,38 @@ function drawGraph(){
 
   }
 
+
   const padding = 40;
 
   const chartWidth =
-    width - padding * 2;
+    width -
+    padding * 2;
 
   const chartHeight =
-    height - padding * 2;
+    height -
+    padding * 2;
+
 
   /* GRID */
 
-  ctx.strokeStyle = "#e5e7eb";
+  ctx.strokeStyle =
+    "#e5e7eb";
 
   ctx.lineWidth = 1;
 
-  for(let i=0;i<=5;i++){
+
+  for(
+    let i=0;
+    i<=5;
+    i++
+  ){
 
     const y =
       padding +
       chartHeight -
-      (i/5)*chartHeight;
+      (i/5) *
+      chartHeight;
+
 
     ctx.beginPath();
 
@@ -1000,106 +1585,141 @@ function drawGraph(){
 
     ctx.stroke();
 
-    ctx.fillStyle = "#6b7280";
 
-    ctx.font = "11px Arial";
+    ctx.fillStyle =
+      "#6b7280";
+
+    ctx.font =
+      "11px Arial";
+
 
     ctx.fillText(
-      (5+i).toString(),
+      String(5+i),
       10,
       y+4
     );
 
   }
 
+
   /* LINE */
 
   ctx.beginPath();
 
-  valid.forEach((ep,index)=>{
 
-    const x =
-      padding +
-      (index /
-      Math.max(valid.length-1,1))
-      * chartWidth;
+  valid.forEach(
+    (ep,index) => {
 
-    const y =
-      padding +
-      chartHeight -
-      ((ep.score-5)/5)
-      * chartHeight;
+      const x =
+        padding +
+        (index /
+        Math.max(
+          valid.length-1,
+          1
+        )) *
+        chartWidth;
 
-    if(index === 0)
-      ctx.moveTo(x,y);
-    else
-      ctx.lineTo(x,y);
 
-  });
+      const y =
+        padding +
+        chartHeight -
+        ((ep.score-5)/5) *
+        chartHeight;
 
-  ctx.strokeStyle = "#2189df";
+
+      if(index === 0)
+        ctx.moveTo(x,y);
+      else
+        ctx.lineTo(x,y);
+
+    }
+  );
+
+
+  ctx.strokeStyle =
+    "#2189df";
 
   ctx.lineWidth = 3;
 
   ctx.stroke();
 
+
   /* POINTS */
 
-  valid.forEach((ep,index)=>{
+  valid.forEach(
+    (ep,index) => {
 
-    const x =
-      padding +
-      (index /
-      Math.max(valid.length-1,1))
-      * chartWidth;
+      const x =
+        padding +
+        (index /
+        Math.max(
+          valid.length-1,
+          1
+        )) *
+        chartWidth;
 
-    const y =
-      padding +
-      chartHeight -
-      ((ep.score-5)/5)
-      * chartHeight;
 
-    ctx.beginPath();
+      const y =
+        padding +
+        chartHeight -
+        ((ep.score-5)/5) *
+        chartHeight;
 
-    ctx.arc(
-      x,
-      y,
-      4,
-      0,
-      Math.PI*2
-    );
 
-    ctx.fillStyle =
-      "#2189df";
+      ctx.beginPath();
 
-    ctx.fill();
 
-  });
+      ctx.arc(
+        x,
+        y,
+        4,
+        0,
+        Math.PI*2
+      );
+
+
+      ctx.fillStyle =
+        "#2189df";
+
+      ctx.fill();
+
+    }
+  );
 
 }
 
 
-/* =========================================
-   VIEWS
-========================================= */
+/* ======================================
+   VIEW SWITCH
+====================================== */
 
-function showView(view,button){
+function showView(
+  view,
+  button
+){
 
   document
     .querySelectorAll(".tab")
     .forEach(
       b =>
-        b.classList.remove("active")
+        b.classList.remove(
+          "active"
+        )
     );
 
-  button.classList.add("active");
+
+  button.classList.add(
+    "active"
+  );
+
 
   document.getElementById(
     "cardsView"
   ).style.display =
     view === "cards"
-    ? "block"
+    ? "grid"
     : "none";
+
 
   document.getElementById(
     "graphView"
@@ -1108,6 +1728,7 @@ function showView(view,button){
     ? "block"
     : "none";
 
+
   document.getElementById(
     "tableView"
   ).style.display =
@@ -1115,71 +1736,85 @@ function showView(view,button){
     ? "block"
     : "none";
 
-  if(view === "graph")
-    drawGraph();
+
+  if(view === "graph"){
+
+    /*
+     * Redraw after becoming visible.
+     */
+
+    const canvas =
+      document.getElementById(
+        "chart"
+      );
+
+    if(canvas)
+      window.dispatchEvent(
+        new Event("resize")
+      );
+
+  }
 
 }
 
 
-/* =========================================
-   NUMBER FORMAT
-========================================= */
+/* ======================================
+   ESCAPE HTML
+====================================== */
 
-function formatNumber(number){
+function escapeHTML(value){
 
-  if(!number)
-    return "0";
-
-  return new Intl.NumberFormat(
-    "en-US",
-    {
-      notation:"compact",
-      maximumFractionDigits:1
-    }
-  ).format(number);
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
-/* =========================================
-   ENTER KEY SEARCH
-========================================= */
+/* ======================================
+   ENTER SEARCH
+====================================== */
 
 document
   .getElementById("searchInput")
   .addEventListener(
     "keydown",
-    function(e){
+    event => {
 
-      if(e.key === "Enter")
+      if(
+        event.key === "Enter"
+      ){
+
         searchAnime();
+
+      }
 
     }
   );
 
 
-/* =========================================
-   RESIZE GRAPH
-========================================= */
+/* ======================================
+   INITIAL TOP ANIME
+====================================== */
 
-window.addEventListener(
-  "resize",
-  function(){
+async function loadTopAnime(){
 
-    if(
-      document.getElementById(
-        "graphView"
-      ).style.display !== "none"
-    ){
+  showStatus(
+    "Loading popular anime..."
+  );
 
-      drawGraph();
 
-    }
+  try{
 
-  }
-);
+    const result =
+      await apiFetch(
+        API +
+        "/top/anime?limit=8"
+      );
 
-</script>
 
-</body>
-</html>
+    const grid =
+      document.getElementB
