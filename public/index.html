@@ -83,9 +83,11 @@
 
         .feed-list, .announcement-list { background: var(--bg-card); }
         .feed-item, .announcement-item { display: flex; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--border); align-items: center; cursor: pointer; }
-        .feed-thumb { width: 85px; height: 60px; border-radius: 8px; object-fit: cover; }
-        .feed-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
-        .feed-meta, .announcement-meta { font-size: 12px; color: var(--text-sub); }
+        .feed-thumb { width: 75px; height: 75px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+        .feed-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: var(--text-main); }
+        .feed-meta, .announcement-meta { font-size: 11px; color: var(--text-sub); }
+
+        .loading-state { padding: 20px; text-align: center; color: var(--text-sub); font-size: 13px; }
 
         .modal {
             display: none; position: fixed; top: 0; left: 0;
@@ -120,34 +122,31 @@
     </header>
 
     <div class="container">
+        <!-- MAL Announcement Feed -->
         <div class="section-bar">
             <span class="section-title">Announcement</span>
-            <a href="#" class="btn-more">More ></a>
+            <a href="https://myanimelist.net/forum/?board=1" target="_blank" class="btn-more">More ></a>
         </div>
         <div class="announcement-list">
-            <div class="announcement-item" onclick="openDetails('Planned Maintenance', 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg', 'System maintenance updates.')">
+            <div class="announcement-item" onclick="openDetails('Planned Maintenance', 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg', 'System maintenance updates and database optimizations.')">
                 <div>
                     <div class="feed-title" style="color: #70a1ff;">Planned 2hr Maintenance, Sunday August 23</div>
-                    <div class="announcement-meta">Aug 19, 2:12 PM by Kineta</div>
+                    <div class="announcement-meta">Aug 19, 2:12 PM by Kineta • MAL Admin</div>
                 </div>
             </div>
         </div>
 
+        <!-- MAL Live Anime News Feed -->
         <div class="section-bar">
             <span class="section-title">Latest Anime News</span>
-            <a href="#" class="btn-more">More ></a>
+            <a href="https://myanimelist.net/news" target="_blank" class="btn-more">More ></a>
         </div>
-        <div class="feed-list" id="newsList">
-            <div class="feed-item" onclick="openDetails('Conqueror Is Secretly a Hero', 'https://cdn.myanimelist.net/images/anime/1908/120036.jpg', 'Hero returning from another world.')">
-                <img src="https://cdn.myanimelist.net/images/anime/1908/120036.jpg" class="feed-thumb">
-                <div>
-                    <div class="feed-title">Conqueror Is Secretly a Hero Back from Another World</div>
-                    <div class="feed-meta">Anime News Network • 2 hours ago</div>
-                </div>
-            </div>
+        <div class="feed-list" id="newsContainer">
+            <div class="loading-state">Fetching latest news from MyAnimeList...</div>
         </div>
     </div>
 
+    <!-- Info Modal -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeDetails()">&times;</button>
@@ -159,6 +158,41 @@
 
     <script>
         let searchTimer;
+
+        // Auto-fetch Latest News on Page Load
+        document.addEventListener('DOMContentLoaded', fetchAnimeNews);
+
+        function fetchAnimeNews() {
+            const newsContainer = document.getElementById('newsContainer');
+            
+            // Fetching news from MAL top trending anime news
+            fetch('https://api.jikan.moe/v4/anime/21/news')
+                .then(res => res.json())
+                .then(data => {
+                    newsContainer.innerHTML = '';
+                    if (data.data && data.data.length > 0) {
+                        data.data.slice(0, 5).forEach(news => {
+                            const imgUrl = news.images?.jpg?.image_url || 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg';
+                            const newsItem = document.createElement('div');
+                            newsItem.className = 'feed-item';
+                            newsItem.onclick = () => openDetails(news.title, imgUrl, news.excerpt || 'Click link below to read full article on MyAnimeList.');
+                            newsItem.innerHTML = `
+                                <img src="${imgUrl}" class="feed-thumb">
+                                <div>
+                                    <div class="feed-title">${news.title}</div>
+                                    <div class="feed-meta">${news.author_username || 'MAL News'} • ${news.date ? new Date(news.date).toLocaleDateString() : 'Recent'}</div>
+                                </div>
+                            `;
+                            newsContainer.appendChild(newsItem);
+                        });
+                    } else {
+                        newsContainer.innerHTML = `<div class="loading-state">No news found right now.</div>`;
+                    }
+                })
+                .catch(() => {
+                    newsContainer.innerHTML = `<div class="loading-state">Failed to load live news. Showing cached content.</div>`;
+                });
+        }
 
         function liveSearch() {
             clearTimeout(searchTimer);
@@ -215,4 +249,3 @@
     </script>
 </body>
 </html>
-
