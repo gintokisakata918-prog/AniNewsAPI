@@ -1,1028 +1,1185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>NetQubo | Watch Anime</title>
-
-  <meta
-    name="description"
-    content="Watch anime on NetQubo"
-  >
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: #080b12;
-      color: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    /* HEADER */
-
-    header {
-      height: 64px;
-      background: #0d111a;
-      border-bottom: 1px solid #202633;
-
-      display: flex;
-      align-items: center;
-
-      padding: 0 20px;
-
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      color: #ffffff;
-      text-decoration: none;
-
-      font-size: 24px;
-      font-weight: 800;
-    }
-
-    .logo span {
-      color: #4da3ff;
-    }
-
-    /* MAIN */
-
-    .container {
-      width: min(1200px, 94%);
-      margin: 24px auto 50px;
-    }
-
-    .watch-title {
-      margin-bottom: 15px;
-    }
-
-    .watch-title h1 {
-      font-size: 24px;
-      margin-bottom: 7px;
-    }
-
-    .watch-title p {
-      color: #8993a5;
-      font-size: 14px;
-    }
-
-    /* PLAYER */
-
-    .player-wrap {
-      background: #000000;
-
-      border: 1px solid #202633;
-      border-radius: 10px;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 10px 40px rgba(0,0,0,.35);
-    }
-
-    .player-wrap iframe {
-      display: block;
-
-      width: 100%;
-      height: 650px;
-
-      border: 0;
-
-      background: #000000;
-    }
-
-    .player-message {
-      padding: 10px 14px;
-
-      background: #10151f;
-
-      color: #8f9aac;
-
-      font-size: 13px;
-    }
-
-    /* SECTION */
-
-    .section {
-      background: #0d121b;
-
-      border: 1px solid #202633;
-      border-radius: 10px;
-
-      margin-top: 16px;
-
-      padding: 16px;
-    }
-
-    .section-title {
-      font-size: 14px;
-
-      color: #aeb8c9;
-
-      margin-bottom: 12px;
-
-      font-weight: 700;
-    }
-
-    /* BUTTONS */
-
-    .buttons {
-      display: flex;
-
-      gap: 8px;
-
-      flex-wrap: wrap;
-    }
-
-    button {
-      border: 0;
-
-      cursor: pointer;
-
-      color: #ffffff;
-
-      background: #1a2230;
-
-      border: 1px solid #2a3445;
-
-      padding: 9px 14px;
-
-      border-radius: 7px;
-
-      font-size: 13px;
-
-      transition: .2s;
-    }
-
-    button:hover {
-      background: #263247;
-    }
-
-    button.active {
-      background: #1976d2;
-
-      border-color: #1976d2;
-    }
-
-    /* ANIME INFO */
-
-    .anime-info {
-      display: flex;
-
-      gap: 15px;
-
-      align-items: center;
-    }
-
-    .poster {
-      width: 75px;
-      height: 105px;
-
-      object-fit: cover;
-
-      border-radius: 7px;
-
-      background: #161d28;
-    }
-
-    .anime-info h2 {
-      font-size: 18px;
-
-      margin-bottom: 7px;
-    }
-
-    .anime-info p {
-      color: #8f9aac;
-
-      font-size: 13px;
-
-      line-height: 1.5;
-    }
-
-    /* EPISODES */
-
-    .episode-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(8, 1fr);
-
-      gap: 8px;
-    }
-
-    .episode {
-      text-align: center;
-
-      padding: 10px 5px;
-    }
-
-    .episode.current {
-      background: #1976d2;
-
-      border-color: #1976d2;
-    }
-
-    /* NAVIGATION */
-
-    .episode-nav {
-      display: flex;
-
-      justify-content: space-between;
-
-      gap: 10px;
-
-      margin-top: 16px;
-    }
-
-    .nav-btn {
-      flex: 1;
-
-      text-align: center;
-
-      padding: 12px;
-    }
-
-    /* FOOTER */
-
-    footer {
-      text-align: center;
-
-      color: #667083;
-
-      font-size: 12px;
-
-      padding: 30px 10px;
-
-      border-top: 1px solid #202633;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 700px) {
-
-      header {
-        height: 58px;
-
-        padding: 0 14px;
-      }
-
-      .logo {
-        font-size: 21px;
-      }
-
-      .container {
-        width: 96%;
-
-        margin-top: 15px;
-      }
-
-      .watch-title h1 {
-        font-size: 19px;
-      }
-
-      .player-wrap iframe {
-        height: 250px;
-      }
-
-      .episode-grid {
-        grid-template-columns:
-          repeat(5, 1fr);
-      }
-
-      .anime-info {
-        align-items: flex-start;
-      }
-
-      .poster {
-        width: 62px;
-        height: 88px;
-      }
-
-      .episode-nav {
-        flex-direction: column;
-      }
-    }
-
-    @media (max-width: 400px) {
-
-      .episode-grid {
-        grid-template-columns:
-          repeat(4, 1fr);
-      }
-
-      .player-wrap iframe {
-        height: 220px;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NetQubo | Anime Stats</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f8fafc;
+  color:#111827;
+}
+
+/* HEADER */
+
+header{
+  height:64px;
+  background:white;
+  border-bottom:1px solid #e5e7eb;
+  display:flex;
+  align-items:center;
+  padding:0 20px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#2189df;
+}
+
+/* MAIN */
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:25px 16px 60px;
+}
+
+.page-title{
+  text-align:center;
+  font-size:38px;
+  margin:20px 0 28px;
+}
+
+/* SEARCH */
+
+.search-box{
+  display:flex;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.search-box input{
+  flex:1;
+  height:58px;
+  border:2px solid #d1d5db;
+  border-radius:15px;
+  padding:0 18px;
+  font-size:18px;
+  outline:none;
+}
+
+.search-box input:focus{
+  border-color:#2189df;
+}
+
+.search-box button{
+  width:65px;
+  border:0;
+  border-radius:15px;
+  background:#2189df;
+  color:white;
+  font-size:24px;
+}
+
+/* SEARCH RESULTS */
+
+.results{
+  display:grid;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.result{
+  display:flex;
+  gap:14px;
+  padding:12px;
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.result:hover{
+  border-color:#2189df;
+}
+
+.result img{
+  width:55px;
+  height:75px;
+  object-fit:cover;
+  border-radius:7px;
+}
+
+.result h3{
+  font-size:16px;
+  margin:5px 0;
+}
+
+.result p{
+  color:#6b7280;
+  font-size:13px;
+}
+
+/* ANIME CARD */
+
+.anime-card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:18px;
+  padding:20px;
+  display:flex;
+  gap:25px;
+  align-items:flex-start;
+  box-shadow:0 3px 15px rgba(0,0,0,.04);
+}
+
+.poster{
+  width:190px;
+  height:270px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.info{
+  flex:1;
+}
+
+.rating{
+  font-size:24px;
+  font-weight:bold;
+}
+
+.rating span{
+  color:#f59e0b;
+}
+
+.votes{
+  color:#6b7280;
+  margin-left:7px;
+  font-size:14px;
+}
+
+.info h2{
+  font-size:28px;
+  margin:15px 0 7px;
+}
+
+.japanese{
+  color:#6b7280;
+  line-height:1.5;
+}
+
+.stats{
+  display:flex;
+  gap:35px;
+  margin-top:22px;
+  flex-wrap:wrap;
+}
+
+.stat b{
+  display:block;
+  font-size:22px;
+}
+
+.stat span{
+  color:#6b7280;
+  font-size:14px;
+}
+
+/* TABS */
+
+.tabs{
+  margin-top:20px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.tab{
+  background:white;
+  border:1px solid #d1d5db;
+  padding:12px 20px;
+  border-radius:12px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:#fff;
+  border-color:#2189df;
+  color:#2189df;
+  font-weight:bold;
+}
+
+/* EPISODES */
+
+.episodes{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.ep{
+  border-radius:13px;
+  padding:13px;
+  min-height:90px;
+  border:0;
+  text-align:left;
+  cursor:pointer;
+}
+
+.ep-number{
+  font-size:14px;
+  opacity:.75;
+}
+
+.ep-score{
+  font-size:28px;
+  font-weight:bold;
+  margin-top:7px;
+}
+
+.great{
+  background:#16804b;
+  color:white;
+}
+
+.good{
+  background:#20c568;
+  color:white;
+}
+
+.average{
+  background:#facc15;
+  color:#111827;
+}
+
+.low{
+  background:#ef4444;
+  color:white;
+}
+
+.no-score{
+  background:#e5e7eb;
+  color:#6b7280;
+}
+
+/* GRAPH */
+
+.graph-box{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  padding:15px;
+  margin-top:20px;
+  overflow:hidden;
+}
+
+canvas{
+  width:100%;
+  height:350px;
+}
+
+/* TABLE */
+
+.table-wrap{
+  margin-top:20px;
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th,td{
+  padding:14px;
+  text-align:left;
+  border-bottom:1px solid #eee;
+}
+
+th{
+  background:#f8fafc;
+}
+
+.score{
+  font-weight:bold;
+}
+
+/* LOADING */
+
+.loading{
+  text-align:center;
+  padding:30px;
+  color:#6b7280;
+}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+  padding:15px;
+  border-radius:10px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  .page-title{
+    font-size:30px;
+  }
+
+  .anime-card{
+    flex-direction:column;
+  }
+
+  .poster{
+    width:150px;
+    height:215px;
+  }
+
+  .info h2{
+    font-size:23px;
+  }
+
+  .episodes{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats{
+    gap:20px;
+  }
+
+  .search-box input{
+    font-size:16px;
+  }
+
+}
+</style>
 </head>
 
 <body>
 
+<header>
+  <div class="logo">Net<span>Qubo</span></div>
+</header>
 
-  <!-- HEADER -->
+<main class="container">
 
-  <header>
+<h1 class="page-title">Anime Statistics</h1>
 
-    <a href="#" class="logo">
-      Net<span>Qubo</span>
-    </a>
+<!-- SEARCH -->
 
-  </header>
+<div class="search-box">
 
+  <input
+    id="searchInput"
+    type="text"
+    placeholder="Search anime on MAL..."
+    autocomplete="off"
+  >
 
-  <!-- MAIN -->
+  <button onclick="searchAnime()">⌕</button>
 
-  <main class="container">
+</div>
 
+<div id="results" class="results"></div>
 
-    <!-- TITLE -->
+<div id="loading" class="loading" style="display:none">
+  Loading...
+</div>
 
-    <div class="watch-title">
+<div id="error"></div>
 
-      <h1 id="pageTitle">
-        Arifureta: From Commonplace to World's Strongest
-      </h1>
+<!-- ANIME INFO -->
 
-      <p id="episodeLabel">
-        Season 3 • Episode 2
-      </p>
+<div id="animeSection" style="display:none">
 
-    </div>
+  <div class="anime-card">
 
+    <img
+      id="poster"
+      class="poster"
+      alt="Anime poster"
+    >
 
-    <!-- PLAYER -->
+    <div class="info">
 
-    <div class="player-wrap">
-
-      <iframe
-        id="animePlayer"
-
-        src="https://watchanimeworld.one/episode/arifureta-from-commonplace-to-worlds-strongest-3x2/"
-
-        title="Anime Player"
-
-        scrolling="no"
-
-        allow="autoplay; fullscreen; picture-in-picture"
-
-        allowfullscreen>
-      </iframe>
-
-      <div
-        class="player-message"
-        id="playerMessage">
-
-        Arifureta — Season 3 Episode 2
-
+      <div class="rating">
+        <span>★</span>
+        <b id="rating">-</b>
+        <span id="votes" class="votes"></span>
       </div>
 
-    </div>
+      <h2 id="title"></h2>
 
+      <p id="japanese" class="japanese"></p>
 
-    <!-- SERVERS -->
+      <div class="stats">
 
-    <div class="section">
+        <div class="stat">
+          <b id="episodes">-</b>
+          <span>Episodes</span>
+        </div>
 
-      <div class="section-title">
-        Streaming Servers
-      </div>
+        <div class="stat">
+          <b id="rank">-</b>
+          <span>MAL Rank</span>
+        </div>
 
-      <div class="buttons">
+        <div class="stat">
+          <b id="members">-</b>
+          <span>Members</span>
+        </div>
 
-        <button
-          class="server active"
-          onclick="changeServer('server1', this)">
-
-          Server 1
-
-        </button>
-
-        <button
-          class="server"
-          onclick="changeServer('server2', this)">
-
-          Server 2
-
-        </button>
-
-        <button
-          class="server"
-          onclick="changeServer('server3', this)">
-
-          Server 3
-
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- ANIME INFO -->
-
-    <div class="section">
-
-      <div class="anime-info">
-
-
-        <img
-          class="poster"
-
-          src="https://via.placeholder.com/300x450/151b26/ffffff?text=Arifureta"
-
-          alt="Arifureta poster"
-        >
-
-
-        <div>
-
-          <h2>
-            Arifureta: From Commonplace to World's Strongest
-          </h2>
-
-          <p>
-
-            You are watching Season 3, Episode 2.
-            Select another episode below to continue watching.
-
-          </p>
-
+        <div class="stat">
+          <b id="status">-</b>
+          <span>Status</span>
         </div>
 
       </div>
 
     </div>
 
+  </div>
 
-    <!-- SEASON -->
+  <!-- TABS -->
 
-    <div class="section">
+  <div class="tabs">
 
-      <div class="section-title">
-        Season
-      </div>
+    <button
+      class="tab active"
+      onclick="showView('cards',this)">
+      Cards
+    </button>
 
-      <div class="buttons">
+    <button
+      class="tab"
+      onclick="showView('graph',this)">
+      Graph
+    </button>
 
-        <button
-          class="season"
-          onclick="selectSeason(1, this)">
+    <button
+      class="tab"
+      onclick="showView('table',this)">
+      Table
+    </button>
 
-          Season 1
+  </div>
 
-        </button>
+  <!-- CARDS -->
 
-        <button
-          class="season"
-          onclick="selectSeason(2, this)">
+  <div id="cardsView">
 
-          Season 2
+    <div class="episodes" id="episodesGrid"></div>
 
-        </button>
+  </div>
 
-        <button
-          class="season active"
-          onclick="selectSeason(3, this)">
+  <!-- GRAPH -->
 
-          Season 3
+  <div
+    id="graphView"
+    class="graph-box"
+    style="display:none">
 
-        </button>
+    <canvas id="chart"></canvas>
 
-      </div>
+  </div>
 
-    </div>
+  <!-- TABLE -->
 
+  <div
+    id="tableView"
+    class="table-wrap"
+    style="display:none">
 
-    <!-- EPISODES -->
+    <table>
 
-    <div class="section">
+      <thead>
+        <tr>
+          <th>Episode</th>
+          <th>Title</th>
+          <th>Score</th>
+        </tr>
+      </thead>
 
-      <div class="section-title">
-        Episodes
-      </div>
+      <tbody id="episodeTable"></tbody>
 
+    </table>
 
-      <div
-        class="episode-grid"
-        id="episodeGrid">
-      </div>
+  </div>
 
+</div>
 
-      <div class="episode-nav">
+</main>
 
-        <button
-          class="nav-btn"
-          onclick="previousEpisode()">
 
-          ← Previous Episode
+<script>
 
-        </button>
+/* =========================================
+   API
+========================================= */
 
+const API =
+  "https://api.jikan.moe/v4";
 
-        <button
-          class="nav-btn"
-          onclick="nextEpisode()">
 
-          Next Episode →
+let currentAnime = null;
+let episodeData = [];
 
-        </button>
 
-      </div>
+/* =========================================
+   SEARCH
+========================================= */
 
-    </div>
+async function searchAnime(){
 
+  const input =
+    document.getElementById("searchInput");
 
-  </main>
+  const query =
+    input.value.trim();
 
+  if(!query) return;
 
-  <!-- FOOTER -->
+  const results =
+    document.getElementById("results");
 
-  <footer>
+  const loading =
+    document.getElementById("loading");
 
-    © 2026 NetQubo
+  const error =
+    document.getElementById("error");
 
-  </footer>
+  results.innerHTML = "";
 
+  error.innerHTML = "";
 
-  <script>
+  loading.style.display = "block";
 
+  try{
 
-    /*
-     * ==================================================
-     * CURRENT SETTINGS
-     * ==================================================
-     */
-
-    let currentSeason = 3;
-
-    let currentEpisode = 2;
-
-    let currentServer = "server1";
-
-
-    /*
-     * ==================================================
-     * EPISODE COUNT
-     * ==================================================
-     */
-
-    const SEASON_EPISODES = {
-
-      1: 13,
-
-      2: 12,
-
-      3: 16
-
-    };
-
-
-    /*
-     * ==================================================
-     * EPISODE URLS
-     * ==================================================
-     *
-     * IMPORTANT:
-     *
-     * These are page URLs, not direct video files.
-     *
-     * Replace them only with pages/sources you are
-     * authorized to embed.
-     *
-     */
-
-
-    const EPISODE_URLS = {
-
-      3: {
-
-        1:
-        "https://watchanimeworld.one/episode/arifureta-from-commonplace-to-worlds-strongest-3x1/",
-
-        2:
-        "https://watchanimeworld.one/episode/arifureta-from-commonplace-to-worlds-strongest-3x2/",
-
-        3: "",
-
-        4: "",
-
-        5: "",
-
-        6: "",
-
-        7: "",
-
-        8: "",
-
-        9: "",
-
-        10: "",
-
-        11: "",
-
-        12: "",
-
-        13: "",
-
-        14: "",
-
-        15: "",
-
-        16: ""
-
-      }
-
-    };
-
-
-    /*
-     * ==================================================
-     * SERVER URLS
-     * ==================================================
-     *
-     * Put authorized embed/page URLs here if you have
-     * them.
-     *
-     */
-
-
-    const SERVER_URLS = {
-
-      server1: "",
-
-      server2: "",
-
-      server3: ""
-
-    };
-
-
-    /*
-     * ==================================================
-     * CREATE EPISODES
-     * ==================================================
-     */
-
-    function createEpisodes() {
-
-
-      const grid =
-        document.getElementById("episodeGrid");
-
-
-      grid.innerHTML = "";
-
-
-      const total =
-        SEASON_EPISODES[currentSeason] || 0;
-
-
-      for (
-        let i = 1;
-        i <= total;
-        i++
-      ) {
-
-
-        const button =
-          document.createElement("button");
-
-
-        button.className =
-          "episode";
-
-
-        button.textContent =
-          String(i).padStart(2, "0");
-
-
-        if (
-          i === currentEpisode
-        ) {
-
-          button.classList.add(
-            "current"
-          );
-
-        }
-
-
-        button.onclick =
-          function () {
-
-            selectEpisode(i);
-
-          };
-
-
-        grid.appendChild(button);
-
-      }
-
-    }
-
-
-    /*
-     * ==================================================
-     * SELECT EPISODE
-     * ==================================================
-     */
-
-    function selectEpisode(number) {
-
-
-      currentEpisode =
-        number;
-
-
-      updateEpisodeLabel();
-
-
-      createEpisodes();
-
-
-      loadEpisode();
-
-
-      window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-      });
-
-    }
-
-
-    /*
-     * ==================================================
-     * LOAD EPISODE
-     * ==================================================
-     */
-
-    function loadEpisode() {
-
-
-      const iframe =
-        document.getElementById(
-          "animePlayer"
-        );
-
-
-      const message =
-        document.getElementById(
-          "playerMessage"
-        );
-
-
-      let url = "";
-
-
-      /*
-       * If a server URL is selected,
-       * use it first.
-       */
-
-
-      if (
-        SERVER_URLS[currentServer]
-      ) {
-
-        url =
-          SERVER_URLS[currentServer];
-
-      }
-
-
-      /*
-       * Otherwise use the episode page.
-       */
-
-
-      else if (
-        EPISODE_URLS[currentSeason] &&
-        EPISODE_URLS[currentSeason][currentEpisode]
-      ) {
-
-        url =
-          EPISODE_URLS[currentSeason][currentEpisode];
-
-      }
-
-
-      /*
-       * Load URL
-       */
-
-
-      if (url) {
-
-
-        iframe.src =
-          url;
-
-
-        message.textContent =
-          "Season " +
-          currentSeason +
-          " • Episode " +
-          currentEpisode;
-
-
-      }
-
-      else {
-
-
-        iframe.src =
-          "about:blank";
-
-
-        message.textContent =
-          "This episode does not have a configured source yet.";
-
-      }
-
-    }
-
-
-    /*
-     * ==================================================
-     * SERVER SWITCH
-     * ==================================================
-     */
-
-    function changeServer(
-      server,
-      button
-    ) {
-
-
-      currentServer =
-        server;
-
-
-      document
-        .querySelectorAll(".server")
-        .forEach(
-          btn =>
-            btn.classList.remove(
-              "active"
-            )
-        );
-
-
-      button.classList.add(
-        "active"
+    const response =
+      await fetch(
+        API +
+        "/anime?q=" +
+        encodeURIComponent(query) +
+        "&limit=8"
       );
 
+    if(!response.ok)
+      throw new Error();
 
-      loadEpisode();
+    const data =
+      await response.json();
 
+    loading.style.display = "none";
+
+    if(!data.data.length){
+
+      results.innerHTML =
+        "<div class='loading'>Anime not found.</div>";
+
+      return;
     }
 
+    data.data.forEach(anime => {
 
-    /*
-     * ==================================================
-     * SEASON SWITCH
-     * ==================================================
-     */
+      const item =
+        document.createElement("div");
 
-    function selectSeason(
-      season,
-      button
-    ) {
+      item.className = "result";
+
+      item.innerHTML = `
+
+        <img
+          src="${anime.images.jpg.image_url}"
+          alt=""
+        >
+
+        <div>
+
+          <h3>
+            ${anime.title}
+          </h3>
+
+          <p>
+            ⭐ ${anime.score || "N/A"}
+            •
+            ${anime.type || "Unknown"}
+            •
+            ${anime.year || ""}
+          </p>
+
+        </div>
+
+      `;
+
+      item.onclick = () =>
+        loadAnime(anime.mal_id);
+
+      results.appendChild(item);
+
+    });
+
+  }catch(e){
+
+    loading.style.display = "none";
+
+    error.innerHTML =
+      "<div class='error'>Search failed. Please try again.</div>";
+
+  }
+
+}
 
 
-      currentSeason =
-        season;
+/* =========================================
+   LOAD ANIME
+========================================= */
 
+async function loadAnime(id){
 
-      currentEpisode =
-        1;
+  const loading =
+    document.getElementById("loading");
 
+  const error =
+    document.getElementById("error");
 
-      document
-        .querySelectorAll(".season")
-        .forEach(
-          btn =>
-            btn.classList.remove(
-              "active"
-            )
-        );
+  const section =
+    document.getElementById("animeSection");
 
+  loading.style.display = "block";
 
-      button.classList.add(
-        "active"
+  error.innerHTML = "";
+
+  section.style.display = "none";
+
+  try{
+
+    const response =
+      await fetch(
+        API + "/anime/" + id + "/full"
       );
 
+    if(!response.ok)
+      throw new Error();
 
-      createEpisodes();
+    const result =
+      await response.json();
+
+    currentAnime =
+      result.data;
+
+    document.getElementById("poster").src =
+      currentAnime.images.jpg.large_image_url ||
+      currentAnime.images.jpg.image_url;
+
+    document.getElementById("title").textContent =
+      currentAnime.title;
+
+    document.getElementById("japanese").textContent =
+      currentAnime.title_japanese || "";
+
+    document.getElementById("rating").textContent =
+      currentAnime.score || "N/A";
+
+    document.getElementById("votes").textContent =
+      currentAnime.scored_by
+      ? "(" + formatNumber(currentAnime.scored_by) + " votes)"
+      : "";
+
+    document.getElementById("episodes").textContent =
+      currentAnime.episodes || "—";
+
+    document.getElementById("rank").textContent =
+      currentAnime.rank
+      ? "#" + currentAnime.rank
+      : "—";
+
+    document.getElementById("members").textContent =
+      formatNumber(currentAnime.members || 0);
+
+    document.getElementById("status").textContent =
+      currentAnime.status || "—";
+
+    section.style.display = "block";
+
+    document.getElementById("results").innerHTML = "";
+
+    loading.style.display = "none";
+
+    await loadEpisodes(id);
+
+  }catch(e){
+
+    loading.style.display = "none";
+
+    error.innerHTML =
+      "<div class='error'>Unable to load anime information.</div>";
+
+  }
+
+}
 
 
-      updateEpisodeLabel();
+/* =========================================
+   LOAD EPISODES
+========================================= */
 
+async function loadEpisodes(id){
 
-      loadEpisode();
+  episodeData = [];
+
+  let page = 1;
+  let hasNext = true;
+
+  /*
+   * Jikan sends episodes in pages.
+   * We keep requesting until all available
+   * episode pages are collected.
+   */
+
+  while(hasNext){
+
+    try{
+
+      const response =
+        await fetch(
+          API +
+          "/anime/" +
+          id +
+          "/episodes?page=" +
+          page
+        );
+
+      if(!response.ok)
+        break;
+
+      const result =
+        await response.json();
+
+      if(!result.data)
+        break;
+
+      episodeData =
+        episodeData.concat(result.data);
+
+      hasNext =
+        result.pagination &&
+        result.pagination.has_next_page;
+
+      page++;
+
+      /*
+       * Small delay helps avoid API rate limits.
+       */
+
+      if(hasNext){
+
+        await new Promise(
+          resolve =>
+            setTimeout(resolve,350)
+        );
+
+      }
+
+    }catch(e){
+
+      break;
 
     }
 
+  }
 
-    /*
-     * ==================================================
-     * UPDATE LABEL
-     * ==================================================
-     */
+  renderEpisodes();
 
-    function updateEpisodeLabel() {
+}
 
 
+/* =========================================
+   RENDER EPISODES
+========================================= */
+
+function renderEpisodes(){
+
+  const grid =
+    document.getElementById("episodesGrid");
+
+  const table =
+    document.getElementById("episodeTable");
+
+  grid.innerHTML = "";
+
+  table.innerHTML = "";
+
+  if(!episodeData.length){
+
+    grid.innerHTML =
+      "<div class='loading'>Episode ratings unavailable.</div>";
+
+    return;
+
+  }
+
+  episodeData.forEach(ep => {
+
+    const score =
+      ep.score;
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "ep " +
+      getScoreClass(score);
+
+    card.innerHTML = `
+
+      <div class="ep-number">
+        E${ep.mal_id}
+      </div>
+
+      <div class="ep-score">
+        ${score || "N/A"}
+      </div>
+
+    `;
+
+    grid.appendChild(card);
+
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+
+      <td>E${ep.mal_id}</td>
+
+      <td>
+        ${ep.title || "Episode " + ep.mal_id}
+      </td>
+
+      <td class="score">
+        ${score || "N/A"}
+      </td>
+
+    `;
+
+    table.appendChild(row);
+
+  });
+
+  drawGraph();
+
+}
+
+
+/* =========================================
+   SCORE COLORS
+========================================= */
+
+function getScoreClass(score){
+
+  if(!score)
+    return "no-score";
+
+  if(score >= 9)
+    return "great";
+
+  if(score >= 8)
+    return "good";
+
+  if(score >= 7)
+    return "average";
+
+  return "low";
+
+}
+
+
+/* =========================================
+   GRAPH
+========================================= */
+
+function drawGraph(){
+
+  const canvas =
+    document.getElementById("chart");
+
+  const ctx =
+    canvas.getContext("2d");
+
+  const width =
+    canvas.clientWidth;
+
+  const height =
+    canvas.clientHeight;
+
+  const ratio =
+    window.devicePixelRatio || 1;
+
+  canvas.width =
+    width * ratio;
+
+  canvas.height =
+    height * ratio;
+
+  ctx.scale(ratio,ratio);
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+  const valid =
+    episodeData.filter(
+      ep => typeof ep.score === "number"
+    );
+
+  if(!valid.length){
+
+    ctx.fillStyle = "#6b7280";
+
+    ctx.font = "16px Arial";
+
+    ctx.fillText(
+      "Episode scores unavailable",
+      20,
+      40
+    );
+
+    return;
+
+  }
+
+  const padding = 40;
+
+  const chartWidth =
+    width - padding * 2;
+
+  const chartHeight =
+    height - padding * 2;
+
+  /* GRID */
+
+  ctx.strokeStyle = "#e5e7eb";
+
+  ctx.lineWidth = 1;
+
+  for(let i=0;i<=5;i++){
+
+    const y =
+      padding +
+      chartHeight -
+      (i/5)*chartHeight;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      padding,
+      y
+    );
+
+    ctx.lineTo(
+      width-padding,
+      y
+    );
+
+    ctx.stroke();
+
+    ctx.fillStyle = "#6b7280";
+
+    ctx.font = "11px Arial";
+
+    ctx.fillText(
+      (5+i).toString(),
+      10,
+      y+4
+    );
+
+  }
+
+  /* LINE */
+
+  ctx.beginPath();
+
+  valid.forEach((ep,index)=>{
+
+    const x =
+      padding +
+      (index /
+      Math.max(valid.length-1,1))
+      * chartWidth;
+
+    const y =
+      padding +
+      chartHeight -
+      ((ep.score-5)/5)
+      * chartHeight;
+
+    if(index === 0)
+      ctx.moveTo(x,y);
+    else
+      ctx.lineTo(x,y);
+
+  });
+
+  ctx.strokeStyle = "#2189df";
+
+  ctx.lineWidth = 3;
+
+  ctx.stroke();
+
+  /* POINTS */
+
+  valid.forEach((ep,index)=>{
+
+    const x =
+      padding +
+      (index /
+      Math.max(valid.length-1,1))
+      * chartWidth;
+
+    const y =
+      padding +
+      chartHeight -
+      ((ep.score-5)/5)
+      * chartHeight;
+
+    ctx.beginPath();
+
+    ctx.arc(
+      x,
+      y,
+      4,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fillStyle =
+      "#2189df";
+
+    ctx.fill();
+
+  });
+
+}
+
+
+/* =========================================
+   VIEWS
+========================================= */
+
+function showView(view,button){
+
+  document
+    .querySelectorAll(".tab")
+    .forEach(
+      b =>
+        b.classList.remove("active")
+    );
+
+  button.classList.add("active");
+
+  document.getElementById(
+    "cardsView"
+  ).style.display =
+    view === "cards"
+    ? "block"
+    : "none";
+
+  document.getElementById(
+    "graphView"
+  ).style.display =
+    view === "graph"
+    ? "block"
+    : "none";
+
+  document.getElementById(
+    "tableView"
+  ).style.display =
+    view === "table"
+    ? "block"
+    : "none";
+
+  if(view === "graph")
+    drawGraph();
+
+}
+
+
+/* =========================================
+   NUMBER FORMAT
+========================================= */
+
+function formatNumber(number){
+
+  if(!number)
+    return "0";
+
+  return new Intl.NumberFormat(
+    "en-US",
+    {
+      notation:"compact",
+      maximumFractionDigits:1
+    }
+  ).format(number);
+
+}
+
+
+/* =========================================
+   ENTER KEY SEARCH
+========================================= */
+
+document
+  .getElementById("searchInput")
+  .addEventListener(
+    "keydown",
+    function(e){
+
+      if(e.key === "Enter")
+        searchAnime();
+
+    }
+  );
+
+
+/* =========================================
+   RESIZE GRAPH
+========================================= */
+
+window.addEventListener(
+  "resize",
+  function(){
+
+    if(
       document.getElementById(
-        "episodeLabel"
-      ).textContent =
+        "graphView"
+      ).style.display !== "none"
+    ){
 
-        "Season " +
-        currentSeason +
-        " • Episode " +
-        currentEpisode;
+      drawGraph();
 
     }
 
+  }
+);
 
-    /*
-     * ==================================================
-     * PREVIOUS EPISODE
-     * ==================================================
-     */
-
-    function previousEpisode() {
-
-
-      if (
-        currentEpisode > 1
-      ) {
-
-        selectEpisode(
-          currentEpisode - 1
-        );
-
-      }
-
-    }
-
-
-    /*
-     * ==================================================
-     * NEXT EPISODE
-     * ==================================================
-     */
-
-    function nextEpisode() {
-
-
-      const total =
-        SEASON_EPISODES[currentSeason];
-
-
-      if (
-        currentEpisode < total
-      ) {
-
-        selectEpisode(
-          currentEpisode + 1
-        );
-
-      }
-
-    }
-
-
-    /*
-     * ==================================================
-     * INITIALIZE
-     * ==================================================
-     */
-
-    createEpisodes();
-
-    updateEpisodeLabel();
-
-    loadEpisode();
-
-
-  </script>
+</script>
 
 </body>
 </html>
