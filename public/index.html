@@ -3,43 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetQubo - Anime Discovery & API</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>NetQubo - Anime & News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0b0e;
-            --bg-secondary: #12141c;
-            --bg-card: #181b26;
-            --bg-card-hover: #1f2333;
-            --border: #262a3d;
-            --accent: #ff4757;
-            --accent-blue: #2e86de;
-            --accent-glow: rgba(255, 71, 87, 0.15);
-            --text-primary: #f1f2f6;
-            --text-secondary: #a4b0be;
-            --text-muted: #747d8c;
+            --bg-body: #08090c;
+            --bg-nav: #0f1117;
+            --bg-card: #141721;
+            --bg-section-head: #1a1e2b;
+            --border: #232838;
+            --accent: #6c5ce7;
+            --accent-glow: rgba(108, 92, 231, 0.2);
+            --text-main: #f1f2f6;
+            --text-sub: #a4b0be;
+            --text-muted: #57606f;
+            --badge-blue: #2e86de;
+            --badge-orange: #ff9f43;
             --font-main: 'Plus Jakarta Sans', sans-serif;
-            --font-code: 'Fira Code', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: var(--font-main);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding-bottom: 60px;
+            background: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding-bottom: 40px;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 800px; margin: 0 auto; }
 
-        /* Header & Search Bar */
+        /* Pro MAL Header */
         header {
+            background: var(--bg-nav);
             border-bottom: 1px solid var(--border);
-            padding: 18px 0;
-            background: rgba(10, 11, 14, 0.9);
-            backdrop-filter: blur(12px);
+            padding: 12px 16px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -47,154 +46,159 @@
 
         .header-content {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 20px;
-        }
-
-        .logo-group { display: flex; align-items: center; gap: 12px; }
-
-        .logo-icon {
-            width: 40px; height: 40px;
-            background: linear-gradient(135deg, var(--accent), #a55eea);
-            border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 20px; color: white;
-        }
-
-        .logo-text { font-size: 22px; font-weight: 800; color: #fff; }
-
-        .search-box {
-            flex-grow: 1;
-            max-width: 450px;
-            position: relative;
-        }
-
-        .search-box input {
-            width: 100%;
-            padding: 10px 16px;
-            border-radius: 20px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            color: #fff;
-            outline: none;
-            font-family: var(--font-main);
-        }
-
-        .search-box input:focus { border-color: var(--accent); }
-
-        /* Main Section Title */
-        .section-header {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin: 40px 0 20px;
         }
 
-        .section-title {
-            font-size: 22px;
-            font-weight: 700;
+        .brand {
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .section-title::before {
-            content: '';
-            width: 4px; height: 20px;
-            background: var(--accent);
-            border-radius: 2px;
+        .logo-box {
+            background: linear-gradient(135deg, var(--accent), #a55eea);
+            color: #fff;
+            font-weight: 800;
+            font-size: 16px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--accent-glow);
         }
 
-        /* MAL Style Anime Grid */
-        .anime-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
+        .logo-text { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .anime-card {
+        .btn-btn {
             background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.2s, border-color 0.2s;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .anime-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent);
-        }
-
-        .anime-poster {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            background: var(--bg-secondary);
-        }
-
-        .score-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.85);
-            color: #ffbe76;
-            padding: 2px 8px;
+            color: var(--text-main);
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            backdrop-filter: blur(4px);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
         }
 
-        .anime-info { padding: 12px; }
-
-        .anime-title {
-            font-size: 14px;
-            font-weight: 700;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 4px;
+        .btn-accent {
+            background: var(--badge-orange);
+            color: #fff;
+            border: none;
         }
 
-        .anime-meta {
-            font-size: 12px;
-            color: var(--text-muted);
+        /* Section Header Layout (MAL Style) */
+        .section-bar {
+            background: var(--bg-section-head);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 16px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
         }
 
-        /* Details Section Layout */
-        .details-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 24px;
-            margin-top: 40px;
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .detail-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-        }
-
-        .tag-list {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-
-        .tag {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 4px 10px;
-            border-radius: 6px;
+        .btn-more {
+            background: var(--accent);
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 4px;
             font-size: 12px;
-            color: var(--text-secondary);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* Announcement Text-Only Section */
+        .announcement-list {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .announcement-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .announcement-item:last-child { border-bottom: none; }
+
+        .announcement-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #70a1ff;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+
+        .announcement-meta {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* Feed List (Left Image + Right Content) */
+        .feed-list {
+            background: var(--bg-card);
+        }
+
+        .feed-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+        }
+
+        .feed-item:last-child { border-bottom: none; }
+
+        .feed-thumb {
+            width: 90px;
+            height: 65px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: var(--bg-body);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .feed-content {
+            flex-grow: 1;
+        }
+
+        .feed-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.4;
+            margin-bottom: 6px;
+            cursor: pointer;
+        }
+
+        .feed-title:hover {
+            color: var(--accent);
+        }
+
+        .feed-meta {
+            font-size: 12px;
+            color: var(--text-sub);
+            display: flex;
+            gap: 12px;
+        }
+
+        .badge-source {
+            color: var(--badge-blue);
+            font-weight: 600;
         }
     </style>
 </head>
@@ -202,96 +206,97 @@
 
     <header>
         <div class="container header-content">
-            <div class="logo-group">
-                <div class="logo-icon">NQ</div>
+            <div class="brand">
+                <div class="logo-box">NQ</div>
                 <div class="logo-text">NetQubo</div>
             </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search anime (e.g. Naruto, Jujutsu Kaisen)...">
+            <div class="header-actions">
+                <button class="btn-btn btn-accent">Hide Ads</button>
+                <button class="btn-btn">Sign Up</button>
             </div>
         </div>
     </header>
 
-    <main class="container">
-        
-        <!-- Trending Anime Section (MAL Style) -->
-        <div class="section-header">
-            <h2 class="section-title">Trending Anime</h2>
+    <div class="container">
+
+        <!-- Announcement Section -->
+        <div class="section-bar">
+            <span class="section-title">Announcement</span>
+            <a href="#" class="btn-more">More ></a>
         </div>
 
-        <div class="anime-grid">
-            <div class="anime-card">
-                <span class="score-badge">★ 8.7</span>
-                <img src="https://via.placeholder.com/200x300" class="anime-poster" alt="Anime Poster">
-                <div class="anime-info">
-                    <div class="anime-title">Chainsaw Man</div>
-                    <div class="anime-meta">
-                        <span>TV (12 eps)</span>
-                        <span>Action</span>
+        <div class="announcement-list">
+            <div class="announcement-item">
+                <div class="announcement-title">Planned 2hr Maintenance, Sunday August 23 @ 12am-2am PT</div>
+                <div class="announcement-meta">Aug 19, 2:12 PM by Kineta • 0 replies</div>
+            </div>
+            <div class="announcement-item">
+                <div class="announcement-title">Sparks of Tomorrow 💡 Profile Badge Event</div>
+                <div class="announcement-meta">Jul 22, 6:27 PM by Kineta • 45 replies</div>
+            </div>
+        </div>
+
+        <!-- Featured / NetQubo News Section -->
+        <div class="section-bar">
+            <span class="section-title">Featured Events</span>
+            <a href="#" class="btn-more">More ></a>
+        </div>
+
+        <div class="feed-list">
+            <div class="feed-item">
+                <img src="https://cdn.myanimelist.net/images/anime/1806/126216.jpg" class="feed-thumb" alt="Manga Project">
+                <div class="feed-content">
+                    <div class="feed-title">Manga Sampler Pilot Project 🙌 Help shape the future of manga + giveaway</div>
+                    <div class="feed-meta">
+                        <span class="badge-source">NetQubo Special</span>
+                        <span>Official Event</span>
                     </div>
                 </div>
             </div>
 
-            <div class="anime-card">
-                <span class="score-badge">★ 9.1</span>
-                <img src="https://via.placeholder.com/200x300" class="anime-poster" alt="Anime Poster">
-                <div class="anime-info">
-                    <div class="anime-title">Bleach: TYBW</div>
-                    <div class="anime-meta">
-                        <span>TV (13 eps)</span>
-                        <span>Action</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="anime-card">
-                <span class="score-badge">★ 8.5</span>
-                <img src="https://via.placeholder.com/200x300" class="anime-poster" alt="Anime Poster">
-                <div class="anime-info">
-                    <div class="anime-title">Jujutsu Kaisen</div>
-                    <div class="anime-meta">
-                        <span>TV (24 eps)</span>
-                        <span>Supernatural</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="anime-card">
-                <span class="score-badge">★ 8.9</span>
-                <img src="https://via.placeholder.com/200x300" class="anime-poster" alt="Anime Poster">
-                <div class="anime-info">
-                    <div class="anime-title">Demon Slayer</div>
-                    <div class="anime-meta">
-                        <span>TV (26 eps)</span>
-                        <span>Adventure</span>
+            <div class="feed-item">
+                <img src="https://cdn.myanimelist.net/images/anime/1171/109222.jpg" class="feed-thumb" alt="Writing Contest">
+                <div class="feed-content">
+                    <div class="feed-title">NetQubo x Honeyfeed Writing Contest 2026 - THE HEROIC FANTASY</div>
+                    <div class="feed-meta">
+                        <span class="badge-source">Contest</span>
+                        <span>Prize Pool $5,000</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Sidebar / Additional Info -->
-        <div class="details-grid">
-            <div class="detail-box">
-                <h3>Quick Information</h3>
-                <p style="color: var(--text-secondary); margin-top: 8px;">
-                    Select an anime from above to view episode details, rating summary, broadcast status, and direct news streams integrated via NetQubo API.
-                </p>
+        <!-- Latest News Section (Exact MAL Layout) -->
+        <div class="section-bar">
+            <span class="section-title">Latest News</span>
+            <a href="#" class="btn-more">More ></a>
+        </div>
+
+        <div class="feed-list">
+            <div class="feed-item">
+                <img src="https://cdn.myanimelist.net/images/anime/1908/120036.jpg" class="feed-thumb" alt="News Image">
+                <div class="feed-content">
+                    <div class="feed-title">Main Staff for 'Ikyou no Tsume Nuri Minarai' Anime Adaptation Announced</div>
+                    <div class="feed-meta">
+                        <span>Anime News Network</span>
+                        <span>2 hours ago</span>
+                    </div>
+                </div>
             </div>
-            
-            <div class="detail-box">
-                <h3>Popular Genres</h3>
-                <div class="tag-list">
-                    <span class="tag">Action</span>
-                    <span class="tag">Shounen</span>
-                    <span class="tag">Fantasy</span>
-                    <span class="tag">Romance</span>
-                    <span class="tag">Sci-Fi</span>
-                    <span class="tag">Slice of Life</span>
+
+            <div class="feed-item">
+                <img src="https://cdn.myanimelist.net/images/anime/1286/99889.jpg" class="feed-thumb" alt="News Image">
+                <div class="feed-content">
+                    <div class="feed-title">Chainsaw Man Movie Release Date Confirmed for Late Season Premieres</div>
+                    <div class="feed-meta">
+                        <span>Crunchyroll</span>
+                        <span>4 hours ago</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </main>
+    </div>
 
 </body>
 </html>
