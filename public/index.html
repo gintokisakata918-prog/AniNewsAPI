@@ -79,7 +79,11 @@
         }
 
         .section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; }
-        .btn-more { background: var(--accent); color: #fff; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; text-decoration: none; }
+        .btn-more { 
+            background: var(--accent); color: #fff; padding: 4px 12px; 
+            border-radius: 6px; font-size: 12px; font-weight: 700; 
+            border: none; cursor: pointer; 
+        }
 
         .feed-list, .announcement-list { background: var(--bg-card); }
         .feed-item, .announcement-item { display: flex; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--border); align-items: center; cursor: pointer; }
@@ -89,6 +93,7 @@
 
         .loading-state { padding: 20px; text-align: center; color: var(--text-sub); font-size: 13px; }
 
+        /* Full Page Internal Modal */
         .modal {
             display: none; position: fixed; top: 0; left: 0;
             width: 100%; height: 100%; background: rgba(0,0,0,0.85);
@@ -96,14 +101,15 @@
         }
 
         .modal-content {
-            background: var(--bg-nav); max-width: 550px; margin: 30px auto;
+            background: var(--bg-nav); max-width: 600px; margin: 20px auto;
             border-radius: 12px; border: 1px solid var(--border); padding: 20px; position: relative;
         }
 
         .close-btn { position: absolute; top: 15px; right: 15px; font-size: 22px; color: var(--text-sub); cursor: pointer; border: none; background: none; }
-        .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; padding-right: 25px; }
-        .modal-img { width: 100%; height: 260px; object-fit: cover; border-radius: 8px; margin: 12px 0; }
+        .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 12px; padding-right: 25px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .modal-img { width: 100%; height: 240px; object-fit: cover; border-radius: 8px; margin: 12px 0; }
         .modal-desc { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+        .modal-list-item { border-bottom: 1px solid var(--border); padding: 12px 0; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -122,13 +128,13 @@
     </header>
 
     <div class="container">
-        <!-- MAL Announcement Feed -->
+        <!-- Announcements -->
         <div class="section-bar">
             <span class="section-title">Announcement</span>
-            <a href="https://myanimelist.net/forum/?board=1" target="_blank" class="btn-more">More ></a>
+            <button class="btn-more" onclick="openMoreModal('announcements')">More ></button>
         </div>
-        <div class="announcement-list">
-            <div class="announcement-item" onclick="openDetails('Planned Maintenance', 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg', 'System maintenance updates and database optimizations.')">
+        <div class="announcement-list" id="announcementContainer">
+            <div class="announcement-item" onclick="openDetails('Planned 2hr Maintenance', '', 'System maintenance for database upgrades scheduled on Sunday August 23 @ 12am-2am PT.')">
                 <div>
                     <div class="feed-title" style="color: #70a1ff;">Planned 2hr Maintenance, Sunday August 23</div>
                     <div class="announcement-meta">Aug 19, 2:12 PM by Kineta • MAL Admin</div>
@@ -136,64 +142,76 @@
             </div>
         </div>
 
-        <!-- MAL Live Anime News Feed -->
+        <!-- Latest Anime News -->
         <div class="section-bar">
             <span class="section-title">Latest Anime News</span>
-            <a href="https://myanimelist.net/news" target="_blank" class="btn-more">More ></a>
+            <button class="btn-more" onclick="openMoreModal('news')">More ></button>
         </div>
         <div class="feed-list" id="newsContainer">
-            <div class="loading-state">Fetching latest news from MyAnimeList...</div>
+            <div class="loading-state">Fetching latest news...</div>
         </div>
     </div>
 
-    <!-- Info Modal -->
+    <!-- Multi-purpose In-App Modal -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeDetails()">&times;</button>
-            <h2 id="mTitle" class="modal-title"></h2>
-            <img id="mImg" class="modal-img" src="">
-            <div id="mDesc" class="modal-desc"></div>
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h2 id="mTitle" class="modal-title">Details</h2>
+            <div id="mBody"></div>
         </div>
     </div>
 
     <script>
         let searchTimer;
+        let globalNewsData = [];
 
-        // Auto-fetch Latest News on Page Load
         document.addEventListener('DOMContentLoaded', fetchAnimeNews);
 
+        // Fetch Global Anime News internally via top popular anime news feed
         function fetchAnimeNews() {
             const newsContainer = document.getElementById('newsContainer');
-            
-            // Fetching news from MAL top trending anime news
-            fetch('https://api.jikan.moe/v4/anime/21/news')
+            fetch('https://api.jikan.moe/v4/top/anime')
                 .then(res => res.json())
                 .then(data => {
-                    newsContainer.innerHTML = '';
-                    if (data.data && data.data.length > 0) {
-                        data.data.slice(0, 5).forEach(news => {
-                            const imgUrl = news.images?.jpg?.image_url || 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg';
-                            const newsItem = document.createElement('div');
-                            newsItem.className = 'feed-item';
-                            newsItem.onclick = () => openDetails(news.title, imgUrl, news.excerpt || 'Click link below to read full article on MyAnimeList.');
-                            newsItem.innerHTML = `
-                                <img src="${imgUrl}" class="feed-thumb">
-                                <div>
-                                    <div class="feed-title">${news.title}</div>
-                                    <div class="feed-meta">${news.author_username || 'MAL News'} • ${news.date ? new Date(news.date).toLocaleDateString() : 'Recent'}</div>
-                                </div>
-                            `;
-                            newsContainer.appendChild(newsItem);
-                        });
-                    } else {
-                        newsContainer.innerHTML = `<div class="loading-state">No news found right now.</div>`;
-                    }
+                    const topAnimeId = data.data[0].mal_id;
+                    return fetch(`https://api.jikan.moe/v4/anime/${topAnimeId}/news`);
+                })
+                .then(res => res.json())
+                .then(newsRes => {
+                    globalNewsData = newsRes.data || [];
+                    renderNewsFeed(globalNewsData.slice(0, 3));
                 })
                 .catch(() => {
-                    newsContainer.innerHTML = `<div class="loading-state">Failed to load live news. Showing cached content.</div>`;
+                    newsContainer.innerHTML = `<div class="loading-state">Failed to load news. Check network connection.</div>`;
                 });
         }
 
+        function renderNewsFeed(items) {
+            const newsContainer = document.getElementById('newsContainer');
+            newsContainer.innerHTML = '';
+            
+            if (items.length === 0) {
+                newsContainer.innerHTML = `<div class="loading-state">No news articles available right now.</div>`;
+                return;
+            }
+
+            items.forEach(news => {
+                const imgUrl = news.images?.jpg?.image_url || 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg';
+                const newsItem = document.createElement('div');
+                newsItem.className = 'feed-item';
+                newsItem.onclick = () => openDetails(news.title, imgUrl, news.excerpt || news.intro || 'No preview summary available.');
+                newsItem.innerHTML = `
+                    <img src="${imgUrl}" class="feed-thumb">
+                    <div>
+                        <div class="feed-title">${news.title}</div>
+                        <div class="feed-meta">${news.author_username || 'MAL News'} • ${news.date ? new Date(news.date).toLocaleDateString() : 'Recent'}</div>
+                    </div>
+                `;
+                newsContainer.appendChild(newsItem);
+            });
+        }
+
+        // Search Functionality
         function liveSearch() {
             clearTimeout(searchTimer);
             const query = document.getElementById('searchInput').value.trim();
@@ -235,15 +253,53 @@
             }, 300);
         }
 
+        // In-App Internal Modal Handlers
         function openDetails(title, img, desc) {
             document.getElementById('mTitle').innerText = title;
-            document.getElementById('mImg').src = img;
-            document.getElementById('mDesc').innerText = desc;
+            let content = '';
+            if (img) content += `<img src="${img}" class="modal-img">`;
+            content += `<div class="modal-desc">${desc}</div>`;
+            document.getElementById('mBody').innerHTML = content;
             document.getElementById('infoModal').style.display = 'block';
             document.getElementById('searchDropdown').style.display = 'none';
         }
 
-        function closeDetails() {
+        function openMoreModal(type) {
+            if (type === 'news') {
+                document.getElementById('mTitle').innerText = "All Anime News";
+                let content = '';
+                if (globalNewsData.length > 0) {
+                    globalNewsData.forEach(news => {
+                        content += `
+                            <div class="modal-list-item" onclick="openDetails('${news.title.replace(/'/g, "\\'")}', '${news.images?.jpg?.image_url || ''}', '${(news.excerpt || news.intro || '').replace(/'/g, "\\'")}')">
+                                <div class="feed-title">${news.title}</div>
+                                <div class="feed-meta">${news.author_username || 'MAL Staff'}</div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    content = '<div class="loading-state">No additional news found.</div>';
+                }
+                document.getElementById('mBody').innerHTML = content;
+            } else if (type === 'announcements') {
+                document.getElementById('mTitle').innerText = "System Announcements";
+                document.getElementById('mBody').innerHTML = `
+                    <div class="modal-list-item">
+                        <div class="feed-title" style="color: #70a1ff;">Planned 2hr Maintenance, Sunday August 23</div>
+                        <div class="feed-meta">Aug 19, 2:12 PM by Kineta</div>
+                        <div class="modal-desc" style="margin-top: 6px;">Server infrastructure upgrades and database indexing.</div>
+                    </div>
+                    <div class="modal-list-item">
+                        <div class="feed-title" style="color: #70a1ff;">NetQubo v2.0 Patch Notes</div>
+                        <div class="feed-meta">Aug 15, 10:00 AM by System</div>
+                        <div class="modal-desc" style="margin-top: 6px;">Integrated in-app modals and live Jikan API pipeline.</div>
+                    </div>
+                `;
+            }
+            document.getElementById('infoModal').style.display = 'block';
+        }
+
+        function closeModal() {
             document.getElementById('infoModal').style.display = 'none';
         }
     </script>
