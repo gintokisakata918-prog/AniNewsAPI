@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetQubo - Watch Hindi, Tamil, Telugu Anime Online</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>WatchAnimeWorld Clone - NetQubo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-body: #020209;
-            --bg-nav: #0f0f0f;
-            --bg-card: #141721;
-            --bg-section-head: #1a1e2b;
-            --border: #232838;
-            --primary: #6c5ce7;
-            --accent: #a55eea;
-            --text-main: #f1f2f6;
-            --text-sub: #c5c5c5;
-            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --bg-body: #05060b;
+            --bg-card: #0d0f17;
+            --bg-nav: #080a10;
+            --border: #181c28;
+            --primary: #00d2d3;
+            --text-main: #ffffff;
+            --text-sub: #a0a5b5;
+            --font-main: 'Poppins', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,411 +25,328 @@
             font-family: var(--font-main);
             background: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.5;
             padding-bottom: 75px;
+            overflow-x: hidden;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 12px; }
+        .container { max-width: 600px; margin: 0 auto; padding: 0 12px; }
 
-        /* Header Navigation */
-        header {
-            background: var(--bg-nav);
-            border-bottom: 1px solid var(--border);
-            padding: 12px 16px;
-            position: sticky; top: 0; z-index: 100;
-        }
-
-        .header-content { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-        .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-
-        .logo-box {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: #fff; font-weight: 800; font-size: 16px; padding: 6px 12px; border-radius: 8px;
-        }
-
-        .logo-text { font-size: 20px; font-weight: 800; }
-
-        .search-container { position: relative; flex-grow: 1; max-width: 350px; }
-
-        .search-input {
-            width: 100%; padding: 10px 16px; border-radius: 20px;
-            background: var(--bg-body); border: 1px solid var(--border);
-            color: #fff; outline: none; font-size: 13px;
-        }
-
-        .search-dropdown {
-            display: none; position: absolute; top: 46px; left: 0; right: 0;
-            background: var(--bg-nav); border: 1px solid var(--border);
-            border-radius: 10px; overflow: hidden; max-height: 350px;
-            overflow-y: auto; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.8);
-        }
-
-        .search-item {
-            display: flex; gap: 10px; padding: 10px 12px;
-            border-bottom: 1px solid var(--border); cursor: pointer; align-items: center;
-        }
-
-        .search-item:hover { background: var(--bg-card); }
-        .search-thumb { width: 40px; height: 55px; border-radius: 4px; object-fit: cover; }
-        .search-name { font-size: 13px; font-weight: 700; color: var(--text-main); }
-        .search-meta { font-size: 11px; color: var(--text-sub); }
-
-        /* Section Header */
-        .section-bar {
-            background: var(--bg-section-head); border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border); padding: 10px 16px;
-            display: flex; justify-content: space-between; align-items: center; margin-top: 16px;
-            border-radius: 6px;
-        }
-
-        .section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; color: var(--text-main); }
-
-        /* AWI Style Anime Streaming Cards Grid */
-        .anime-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        .anime-card {
-            background: var(--bg-card);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border);
+        /* Telegram Floating Banner */
+        .telegram-banner {
+            background: linear-gradient(135deg, #0e1c2e, #142842);
+            border: 1px solid #1d3b63;
+            border-radius: 20px;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 12px auto;
+            max-width: 340px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             position: relative;
-            cursor: pointer;
-            transition: transform 0.2s ease;
+            z-index: 10;
+        }
+        .tg-info { display: flex; align-items: center; gap: 10px; }
+        .tg-icon {
+            background: #229ed9; color: #fff; width: 32px; height: 32px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+        }
+        .tg-text h4 { font-size: 11px; font-weight: 700; color: #fff; }
+        .tg-text p { font-size: 9px; color: #a0b2c6; }
+        .tg-close { color: #fff; opacity: 0.7; cursor: pointer; font-size: 14px; }
+
+        /* Search Bar Overlay */
+        .search-box {
+            position: relative; margin: 10px 0;
+        }
+        .search-input {
+            width: 100%; background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 25px; padding: 10px 45px 10px 20px;
+            color: #fff; font-size: 14px; outline: none;
+        }
+        .search-btn {
+            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+            color: #fff; background: none; border: none; font-size: 14px;
         }
 
-        .anime-card:hover { transform: translateY(-4px); }
+        /* Hero Banner Thumbnails */
+        .hero-categories {
+            display: flex; gap: 10px; justify-content: center; margin: 15px 0;
+        }
+        .hero-cat-card {
+            width: 90px; height: 110px; border-radius: 12px; overflow: hidden;
+            position: relative; background: #151824; text-align: center;
+        }
+        .hero-cat-card img { width: 100%; height: 80px; object-fit: cover; }
+        .hero-cat-card span { font-size: 8px; font-weight: 800; text-transform: uppercase; display: block; margin-top: 4px; color: #fff; }
 
-        .card-thumb-wrap { position: relative; width: 100%; height: 185px; }
-        .card-thumb { width: 100%; height: 100%; object-fit: cover; }
-
-        /* AWI Quality Badge Overlay */
-        .post-ql { position: absolute; top: 6px; left: 6px; z-index: 2; }
-        .Qlty {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff; font-size: 9px; font-weight: 700;
-            padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2);
-            text-transform: uppercase;
+        /* Section Title Header */
+        .section-header {
+            font-size: 18px; font-weight: 800; margin: 20px 0 10px 0; color: #fff;
         }
 
-        .ep-badge {
-            position: absolute; bottom: 6px; right: 6px;
-            background: var(--primary); color: #fff;
-            font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px;
+        /* Horizontal Scroll Container */
+        .scroll-row {
+            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;
+            scrollbar-width: none;
+        }
+        .scroll-row::-webkit-scrollbar { display: none; }
+
+        /* WatchAnimeWorld Poster Card */
+        .post-card {
+            min-width: 110px; width: 110px; background: var(--bg-card);
+            border-radius: 8px; overflow: hidden; flex-shrink: 0; cursor: pointer;
+        }
+        .post-thumb {
+            height: 145px; position: relative; background: #202433;
+        }
+        .post-thumb img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .badge-season {
+            position: absolute; top: 5px; left: 5px;
+            background: rgba(0,0,0,0.6); color: #fff;
+            font-size: 8px; padding: 2px 6px; border-radius: 4px; backdrop-filter: blur(4px);
+        }
+        .badge-ep {
+            position: absolute; bottom: 5px; left: 5px;
+            background: rgba(0,0,0,0.7); color: #fff;
+            font-size: 8px; padding: 2px 6px; border-radius: 4px; font-weight: 700;
+        }
+        .post-title {
+            font-size: 11px; font-weight: 600; padding: 6px 2px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #d0d5e2;
         }
 
-        .card-details { padding: 8px; }
-        .card-title { font-size: 12px; font-weight: 700; line-height: 1.3; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .card-sub { font-size: 10px; color: var(--text-sub); margin-top: 4px; }
+        /* Network Channels Grid */
+        .network-row {
+            display: flex; gap: 12px; margin-top: 10px;
+        }
+        .network-box {
+            width: 50px; height: 50px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 10px; text-transform: uppercase;
+        }
+        .net-disney { background: #00a8ff; color: #fff; }
+        .net-hungama { background: #fbc531; color: #000; }
+        .net-sony { background: linear-gradient(45deg, #0097e6, #44bd32); color: #fff; }
+        .net-cn { background: #000; color: #fff; border: 1px solid #333; }
 
-        /* AWI Video Player Modal / Page Screen */
-        .player-modal {
-            display: none; position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%; background: #000;
-            z-index: 1000; overflow-y: auto; padding-bottom: 80px;
+        /* Video Streaming Page Screen */
+        .stream-view {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-body); z-index: 500; overflow-y: auto; padding-bottom: 80px;
+        }
+        .player-box { width: 100%; aspect-ratio: 16/9; background: #000; }
+        .player-box iframe { width: 100%; height: 100%; border: none; }
+
+        .season-bar {
+            background: #111422; padding: 12px; display: flex;
+            justify-content: space-between; align-items: center; margin-top: 5px;
+        }
+        .season-bar span { font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+
+        .server-section { padding: 15px 12px; }
+        .server-title { font-size: 12px; font-weight: 600; color: var(--text-sub); text-align: center; margin-bottom: 10px; }
+        .server-card {
+            background: #121626; border-bottom: 2px solid var(--primary);
+            width: 100px; padding: 10px; border-radius: 6px; text-align: left; cursor: pointer;
+        }
+        .server-card h5 { font-size: 9px; color: var(--text-sub); }
+        .server-card h4 { font-size: 11px; font-weight: 800; color: #fff; margin-top: 2px; }
+
+        .season-select-btn {
+            background: #0d101d; border: 1px solid var(--border);
+            padding: 10px; border-radius: 6px; display: flex; justify-content: space-between;
+            align-items: center; margin: 15px 12px; font-size: 13px; font-weight: 700;
         }
 
-        .player-header {
-            background: var(--bg-nav); padding: 14px;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--border);
+        /* Bottom Fixed Navigation Bar */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: #04050a; border-top: 1px solid #121624;
+            display: flex; justify-content: space-around; align-items: center;
+            padding: 6px 0; z-index: 1000;
         }
-
-        .video-container {
-            width: 100%; max-width: 900px; margin: 0 auto;
-            aspect-ratio: 16 / 9; background: #000;
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 2px; color: #5a627a; text-decoration: none; font-size: 8px; font-weight: 700;
         }
+        .nav-item i { font-size: 15px; }
+        .nav-item.active { color: var(--primary); }
 
-        iframe.video-player { width: 100%; height: 100%; border: none; }
-
-        .stream-controls {
-            padding: 16px; max-width: 900px; margin: 0 auto;
-        }
-
-        .server-btn-group {
-            display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap;
-        }
-
-        .server-btn {
-            background: var(--bg-card); color: var(--text-main);
-            border: 1px solid var(--border); padding: 8px 14px;
-            border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;
-        }
-
-        .server-btn.active { background: var(--primary); border-color: var(--primary); }
-
-        .episode-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-            gap: 8px; margin-top: 12px;
-        }
-
-        .ep-btn {
-            background: var(--bg-card); border: 1px solid var(--border);
-            color: #fff; padding: 8px; border-radius: 6px;
-            text-align: center; font-size: 12px; font-weight: 700; cursor: pointer;
-        }
-
-        .ep-btn.active { background: var(--accent); }
-
-        /* Anime World India Bottom Menu */
-        #mainMenu { display: block; }
-
-        ul.ulbotoes {
-            margin: 0; z-index: 100; box-sizing: border-box;
-            list-style-type: none; padding: 8px 0; position: fixed;
-            text-align: center; background: #020209; border-top: 1px solid var(--border);
-            width: 100%; bottom: 0; right: 0; display: flex;
-            justify-content: space-around; align-items: center;
-        }
-
-        li.li { display: inline-block; text-align: center; flex: 1; }
-
-        a.botao {
-            text-decoration: none !important; color: var(--text-sub);
-            font-family: var(--font-main); display: flex; flex-direction: column;
-            align-items: center; gap: 3px;
-        }
-
-        a.botao i { font-size: 18px; }
-        .textomenu { font-weight: 600; font-size: 9px; text-transform: uppercase; }
-
-        a.botao.active { color: var(--primary); position: relative; }
-        a.botao.active::after {
-            content: ''; position: absolute; bottom: -8px; width: 20px; height: 3px;
-            background-color: var(--primary); border-radius: 2px;
-        }
-
-        /* FAB Button */
-        .li-fab { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); z-index: 101; }
-        a.botao-fab {
-            border-radius: 50%; width: 48px; height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex; justify-content: center; align-items: center;
-            color: #fff; font-size: 20px; box-shadow: 0px 4px 12px rgba(108, 92, 231, 0.5);
-            text-decoration: none;
-        }
-
-        @media (min-width: 768px) {
-            #mainMenu, .li-fab { display: none !important; }
-            body { padding-bottom: 20px; }
-            .anime-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-            .card-thumb-wrap { height: 230px; }
+        /* Floating Center Logo (AW) */
+        .nav-center-logo {
+            width: 42px; height: 42px; background: #080b14;
+            border: 2px solid var(--primary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-weight: 900; font-size: 14px;
+            box-shadow: 0 0 10px rgba(0,210,211,0.3); margin-top: -15px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header>
-        <div class="container header-content">
-            <div class="brand" onclick="location.reload()">
-                <div class="logo-box">NQ</div>
-                <div class="logo-text">NetQubo</div>
-            </div>
-            <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search Anime or Cartoon..." oninput="liveSearch()">
-                <div class="search-dropdown" id="searchDropdown"></div>
-            </div>
-        </div>
-    </header>
-
-    <div class="container">
+    <!-- Main Home Screen -->
+    <div id="homeScreen" class="container">
         
-        <!-- Stream Feed Sections -->
-        <div class="section-bar">
-            <span class="section-title"><i class="fa-solid fa-play" style="color: #ff7675; margin-right: 6px;"></i> Latest Anime Releases</span>
+        <!-- Telegram Banner -->
+        <div class="telegram-banner" id="tgBanner">
+            <div class="tg-info">
+                <div class="tg-icon"><i class="fa-paper-plane"></i></div>
+                <div class="tg-text">
+                    <h4>Join our Telegram Group</h4>
+                    <p>Stay updated - no spam!</p>
+                </div>
+            </div>
+            <i class="fa-solid fa-xmark tg-close" onclick="document.getElementById('tgBanner').style.display='none'"></i>
         </div>
 
-        <div class="anime-grid" id="animeContainer">
-            <!-- Dynamic Anime Streaming Cards -->
+        <!-- Search Bar -->
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search">
+            <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <!-- Category Headers -->
+        <div class="hero-categories">
+            <div class="hero-cat-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BZDA3NDExZTAtMDlhOC00M2UwLTljYTAtMDg0NWJiM2E5ZGE2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Transformers">
+                <span>TRANSFORMERS</span>
+            </div>
+            <div class="hero-cat-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BODI2NWJiYTMtN2I0NS00Yzc2LTk4NWUtMjg4MDBjOTBiMDRlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Shinchan">
+                <span>SHINCHAN</span>
+            </div>
+            <div class="hero-cat-card">
+                <img src="https://m.media-amazon.com/images/M/MV5BMz3VNmI5YTctYTA2Ni00MWEyLTlhMmItY2E1MTIxM2I2Zjg3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Dragon Ball">
+                <span>DRAGON BALL</span>
+            </div>
+        </div>
+
+        <!-- Newest Drops Section -->
+        <h3 class="section-header">Newest Drops</h3>
+        <div class="scroll-row">
+            <div class="post-card" onclick="openPlayer('Arifureta: From Commonplace to World\'s Strongest')">
+                <div class="post-thumb">
+                    <span class="badge-season">Season 3</span>
+                    <img src="https://cdn.myanimelist.net/images/anime/1162/141384.jpg" alt="Anime">
+                    <span class="badge-ep">EP:1-16</span>
+                </div>
+                <div class="post-title">Arifureta: From Commonplace</div>
+            </div>
+
+            <div class="post-card" onclick="openPlayer('Fullmetal Alchemist: Brotherhood')">
+                <div class="post-thumb">
+                    <span class="badge-season">Season 1</span>
+                    <img src="https://cdn.myanimelist.net/images/anime/1208/94745.jpg" alt="Anime">
+                    <span class="badge-ep">EP:19-39</span>
+                </div>
+                <div class="post-title">Fullmetal Alchemist</div>
+            </div>
+
+            <div class="post-card" onclick="openPlayer('The Exiled Heavy Knight')">
+                <div class="post-thumb">
+                    <span class="badge-season">Season 1</span>
+                    <img src="https://cdn.myanimelist.net/images/anime/1015/138006.jpg" alt="Anime">
+                    <span class="badge-ep">EP:1-5</span>
+                </div>
+                <div class="post-title">The Exiled Heavy Knight</div>
+            </div>
+        </div>
+
+        <!-- Network Section -->
+        <h3 class="section-header">Network</h3>
+        <div class="network-row">
+            <div class="network-box net-disney">Disney</div>
+            <div class="network-box net-hungama">Hungama</div>
+            <div class="network-box net-sony">Sony</div>
+            <div class="network-box net-cn">CN</div>
         </div>
 
     </div>
 
-    <!-- AWI Fullscreen Streaming Player -->
-    <div id="playerModal" class="player-modal">
-        <div class="player-header">
-            <h3 id="pTitle" style="font-size: 15px;">Watching Anime</h3>
-            <button onclick="closePlayer()" style="background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Video Player Screen View -->
+    <div id="streamScreen" class="stream-view">
+        <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
+            <button onclick="closePlayer()" style="background:none; border:none; color:#fff; font-size:16px;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+            <span style="font-size: 11px; color: var(--text-sub);">3x2</span>
         </div>
 
-        <div class="video-container">
-            <iframe id="videoPlayer" class="video-player" src="" allowfullscreen></iframe>
+        <div class="player-box">
+            <iframe id="vidIframe" src="" allowfullscreen></iframe>
         </div>
 
-        <div class="stream-controls">
-            <h2 id="pMainTitle" style="font-size: 18px; font-weight: 800;">Anime Title</h2>
-            <p id="pMeta" style="font-size: 12px; color: var(--text-sub); margin-top: 4px;">Hindi Dubbed • Episode 1</p>
-
-            <div style="margin-top: 16px;">
-                <span style="font-size: 12px; font-weight: 700; color: var(--text-sub);">SELECT SERVER:</span>
-                <div class="server-btn-group">
-                    <button class="server-btn active"><i class="fa-solid fa-server"></i> Server 1 (HD)</button>
-                    <button class="server-btn"><i class="fa-solid fa-server"></i> Server 2 (Fast)</button>
-                </div>
+        <div class="season-bar">
+            <span><i class="fa-solid fa-bars-staggered"></i> Seasons</span>
+            <div>
+                <i class="fa-solid fa-backward-step" style="margin-right: 15px;"></i>
+                <i class="fa-solid fa-forward-step"></i>
             </div>
+        </div>
 
-            <div style="margin-top: 16px;">
-                <span style="font-size: 12px; font-weight: 700; color: var(--text-sub);">EPISODES:</span>
-                <div class="episode-grid" id="episodesGrid">
-                    <div class="ep-btn active">Ep 1</div>
-                    <div class="ep-btn">Ep 2</div>
-                    <div class="ep-btn">Ep 3</div>
-                    <div class="ep-btn">Ep 4</div>
-                    <div class="ep-btn">Ep 5</div>
-                    <div class="ep-btn">Ep 6</div>
-                </div>
+        <div class="server-section">
+            <div class="server-title">Select Server</div>
+            <div class="server-card">
+                <h5>SERVER 1</h5>
+                <h4>PLAY</h4>
+            </div>
+        </div>
+
+        <div style="padding: 0 12px;">
+            <span style="font-size: 10px; color: var(--text-sub);">CHOOSE SEASON</span>
+        </div>
+        <div class="season-select-btn">
+            <span id="pSeasonTitle">Seasons 3</span>
+            <i class="fa-solid fa-chevron-down" style="color: var(--primary);"></i>
+        </div>
+
+        <div style="padding: 0 12px;">
+            <div class="scroll-row">
+                <div class="post-card"><div class="post-thumb"><span class="badge-ep">3x1</span></div></div>
+                <div class="post-card"><div class="post-thumb"><span class="badge-ep">3x2</span></div></div>
+                <div class="post-card"><div class="post-thumb"><span class="badge-ep">3x3</span></div></div>
             </div>
         </div>
     </div>
 
-    <!-- Floating Action Button -->
-    <div class="li-fab">
-        <a href="#" class="botao-fab" onclick="openRandomStream(); return false;">
-            <i class="fa-solid fa-shuffle"></i>
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-film"></i>
+            <span>MOVIES</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>SERIES</span>
+        </a>
+        <a href="#" class="nav-center-logo" onclick="closePlayer(); return false;">
+            AW
+        </a>
+        <a href="#" class="nav-item active">
+            <i class="fa-solid fa-user-ninja"></i>
+            <span>ANIME</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-solid fa-hat-wizard"></i>
+            <span>CARTOON</span>
         </a>
     </div>
 
-    <!-- Anime World Mobile Bottom Menu Bar -->
-    <div id="mainMenu">
-        <ul class="ulbotoes">
-            <li class="li">
-                <a href="#" class="botao active">
-                    <i class="fa-solid fa-house"></i>
-                    <span class="textomenu">Home</span>
-                </a>
-            </li>
-            <li class="li">
-                <a href="#" class="botao" onclick="alert('Hindi Dubbed Anime Section'); return false;">
-                    <i class="fa-solid fa-closed-captioning"></i>
-                    <span class="textomenu">Hindi Dub</span>
-                </a>
-            </li>
-            <li class="li"></li>
-            <li class="li">
-                <a href="#" class="botao" onclick="alert('Cartoons Section'); return false;">
-                    <i class="fa-solid fa-tv"></i>
-                    <span class="textomenu">Cartoons</span>
-                </a>
-            </li>
-            <li class="li">
-                <a href="#" class="botao" onclick="alert('Bookmark list'); return false;">
-                    <i class="fa-solid fa-bookmark"></i>
-                    <span class="textomenu">Saved</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
     <script>
-        let searchTimer;
-        let globalStreams = [];
-
-        document.addEventListener('DOMContentLoaded', fetchStreamingAnime);
-
-        function fetchStreamingAnime() {
-            const container = document.getElementById('animeContainer');
-            fetch('https://api.jikan.moe/v4/top/anime?limit=12')
-                .then(res => res.json())
-                .then(data => {
-                    globalStreams = data.data || [];
-                    renderStreamingGrid(globalStreams);
-                })
-                .catch(() => {
-                    container.innerHTML = `<p style="padding: 20px; text-align: center; color: var(--text-sub);">Failed to load anime stream list.</p>`;
-                });
-        }
-
-        function renderStreamingGrid(items) {
-            const container = document.getElementById('animeContainer');
-            container.innerHTML = '';
-
-            items.forEach((anime, idx) => {
-                const card = document.createElement('div');
-                card.className = 'anime-card';
-                card.onclick = () => openStreamPlayer(anime.title, anime.trailer?.embed_url || 'https://www.youtube.com/embed/dQw4w9WgXcQ');
-                
-                card.innerHTML = `
-                    <div class="card-thumb-wrap">
-                        <div class="post-ql"><span class="Qlty">HD • HINDI</span></div>
-                        <img src="${anime.images.jpg.image_url}" class="card-thumb" alt="${anime.title}">
-                        <div class="ep-badge">EP ${anime.episodes || '12'}</div>
-                    </div>
-                    <div class="card-details">
-                        <div class="card-title">${anime.title}</div>
-                        <div class="card-sub">Score: ${anime.score || 'N/A'} • ${anime.type || 'TV'}</div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Live Search Handler
-        function liveSearch() {
-            clearTimeout(searchTimer);
-            const query = document.getElementById('searchInput').value.trim();
-            const dropdown = document.getElementById('searchDropdown');
-
-            if (query.length < 3) {
-                dropdown.style.display = 'none';
-                return;
-            }
-
-            searchTimer = setTimeout(() => {
-                fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=5`)
-                    .then(res => res.json())
-                    .then(data => {
-                        dropdown.innerHTML = '';
-                        if (!data.data || data.data.length === 0) {
-                            dropdown.innerHTML = `<div class="search-item"><div class="search-name">No results found</div></div>`;
-                        } else {
-                            data.data.forEach(anime => {
-                                const item = document.createElement('div');
-                                item.className = 'search-item';
-                                item.onclick = () => openStreamPlayer(anime.title, anime.trailer?.embed_url || 'https://www.youtube.com/embed/dQw4w9WgXcQ');
-                                item.innerHTML = `
-                                    <img src="${anime.images.jpg.image_url}" class="search-thumb">
-                                    <div>
-                                        <div class="search-name">${anime.title}</div>
-                                        <div class="search-meta">Episodes: ${anime.episodes || 'N/A'}</div>
-                                    </div>
-                                `;
-                                dropdown.appendChild(item);
-                            });
-                        }
-                        dropdown.style.display = 'block';
-                    })
-                    .catch(() => {
-                        dropdown.innerHTML = `<div class="search-item"><div class="search-name">Error fetching data</div></div>`;
-                        dropdown.style.display = 'block';
-                    });
-            }, 300);
-        }
-
-        // Launch Stream Player
-        function openStreamPlayer(title, videoUrl) {
-            document.getElementById('pTitle').innerText = title;
-            document.getElementById('pMainTitle').innerText = title;
-            document.getElementById('videoPlayer').src = videoUrl + "?autoplay=1";
-            document.getElementById('playerModal').style.display = 'block';
-            document.getElementById('searchDropdown').style.display = 'none';
+        function openPlayer(title) {
+            document.getElementById('pSeasonTitle').innerText = title;
+            document.getElementById('vidIframe').src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
+            document.getElementById('streamScreen').style.display = 'block';
         }
 
         function closePlayer() {
-            document.getElementById('playerModal').style.display = 'none';
-            document.getElementById('videoPlayer').src = '';
-        }
-
-        function openRandomStream() {
-            if (globalStreams.length > 0) {
-                const random = globalStreams[Math.floor(Math.random() * globalStreams.length)];
-                openStreamPlayer(random.title, random.trailer?.embed_url || 'https://www.youtube.com/embed/dQw4w9WgXcQ');
-            }
+            document.getElementById('streamScreen').style.display = 'none';
+            document.getElementById('vidIframe').src = "";
         }
     </script>
 </body>
-</html>
+    </html>
+    
