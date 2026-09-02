@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetQubo - Best Anime Source</title>
+    <title>NetQubo - Watch Hindi, Tamil, Telugu Anime Online</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -28,12 +28,12 @@
             background: var(--bg-body);
             color: var(--text-main);
             line-height: 1.5;
-            padding-bottom: 70px; /* Spacing for bottom navbar on mobile */
+            padding-bottom: 75px;
         }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 12px; }
 
-        /* Top Header Navigation */
+        /* Header Navigation */
         header {
             background: var(--bg-nav);
             border-bottom: 1px solid var(--border);
@@ -49,7 +49,7 @@
             color: #fff; font-weight: 800; font-size: 16px; padding: 6px 12px; border-radius: 8px;
         }
 
-        .logo-text { font-size: 20px; font-weight: 800; letter-spacing: 0.5px; }
+        .logo-text { font-size: 20px; font-weight: 800; }
 
         .search-container { position: relative; flex-grow: 1; max-width: 350px; }
 
@@ -63,7 +63,7 @@
             display: none; position: absolute; top: 46px; left: 0; right: 0;
             background: var(--bg-nav); border: 1px solid var(--border);
             border-radius: 10px; overflow: hidden; max-height: 350px;
-            overflow-y: auto; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            overflow-y: auto; z-index: 200; box-shadow: 0 8px 24px rgba(0,0,0,0.8);
         }
 
         .search-item {
@@ -76,7 +76,7 @@
         .search-name { font-size: 13px; font-weight: 700; color: var(--text-main); }
         .search-meta { font-size: 11px; color: var(--text-sub); }
 
-        /* Anime Cards & Layout Section */
+        /* Section Header */
         .section-bar {
             background: var(--bg-section-head); border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border); padding: 10px 16px;
@@ -85,14 +85,8 @@
         }
 
         .section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; color: var(--text-main); }
-        .btn-more { 
-            background: var(--primary); color: #fff; padding: 4px 12px; 
-            border-radius: 6px; font-size: 12px; font-weight: 700; 
-            border: none; cursor: pointer; transition: 0.2s;
-        }
-        .btn-more:hover { background: var(--accent); }
 
-        /* Anime World Style Grid */
+        /* AWI Style Anime Streaming Cards Grid */
         .anime-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -112,134 +106,121 @@
 
         .anime-card:hover { transform: translateY(-4px); }
 
-        .card-thumb-wrap { position: relative; width: 100%; height: 180px; }
+        .card-thumb-wrap { position: relative; width: 100%; height: 185px; }
         .card-thumb { width: 100%; height: 100%; object-fit: cover; }
 
-        /* AWI Style Quality Overlay Badge */
-        .post-ql {
-            position: absolute; top: 6px; left: 6px;
-            z-index: 2;
-        }
+        /* AWI Quality Badge Overlay */
+        .post-ql { position: absolute; top: 6px; left: 6px; z-index: 2; }
         .Qlty {
-            background-color: rgba(0, 0, 0, 0.75);
-            color: #fff; font-size: 10px; font-weight: 700;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff; font-size: 9px; font-weight: 700;
             padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.2);
             text-transform: uppercase;
+        }
+
+        .ep-badge {
+            position: absolute; bottom: 6px; right: 6px;
+            background: var(--primary); color: #fff;
+            font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px;
         }
 
         .card-details { padding: 8px; }
         .card-title { font-size: 12px; font-weight: 700; line-height: 1.3; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .card-sub { font-size: 10px; color: var(--text-sub); margin-top: 4px; }
 
-        /* Anime World India Style Mobile Bottom Navigation Bar */
-        #mainMenu {
-            display: block;
+        /* AWI Video Player Modal / Page Screen */
+        .player-modal {
+            display: none; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; background: #000;
+            z-index: 1000; overflow-y: auto; padding-bottom: 80px;
         }
+
+        .player-header {
+            background: var(--bg-nav); padding: 14px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .video-container {
+            width: 100%; max-width: 900px; margin: 0 auto;
+            aspect-ratio: 16 / 9; background: #000;
+        }
+
+        iframe.video-player { width: 100%; height: 100%; border: none; }
+
+        .stream-controls {
+            padding: 16px; max-width: 900px; margin: 0 auto;
+        }
+
+        .server-btn-group {
+            display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap;
+        }
+
+        .server-btn {
+            background: var(--bg-card); color: var(--text-main);
+            border: 1px solid var(--border); padding: 8px 14px;
+            border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer;
+        }
+
+        .server-btn.active { background: var(--primary); border-color: var(--primary); }
+
+        .episode-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            gap: 8px; margin-top: 12px;
+        }
+
+        .ep-btn {
+            background: var(--bg-card); border: 1px solid var(--border);
+            color: #fff; padding: 8px; border-radius: 6px;
+            text-align: center; font-size: 12px; font-weight: 700; cursor: pointer;
+        }
+
+        .ep-btn.active { background: var(--accent); }
+
+        /* Anime World India Bottom Menu */
+        #mainMenu { display: block; }
 
         ul.ulbotoes {
-            margin: 0;
-            z-index: 100;
-            box-sizing: border-box;
-            list-style-type: none;
-            padding: 8px 0;
-            position: fixed;
-            text-align: center;
-            background: #020209;
-            border-top: 1px solid var(--border);
-            width: 100%;
-            bottom: 0; right: 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+            margin: 0; z-index: 100; box-sizing: border-box;
+            list-style-type: none; padding: 8px 0; position: fixed;
+            text-align: center; background: #020209; border-top: 1px solid var(--border);
+            width: 100%; bottom: 0; right: 0; display: flex;
+            justify-content: space-around; align-items: center;
         }
 
-        li.li {
-            display: inline-block;
-            text-align: center;
-            flex: 1;
-        }
+        li.li { display: inline-block; text-align: center; flex: 1; }
 
         a.botao {
-            text-decoration: none !important;
-            color: var(--text-sub);
-            font-family: var(--font-main);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            transition: color 0.3s ease;
+            text-decoration: none !important; color: var(--text-sub);
+            font-family: var(--font-main); display: flex; flex-direction: column;
+            align-items: center; gap: 3px;
         }
 
         a.botao i { font-size: 18px; }
+        .textomenu { font-weight: 600; font-size: 9px; text-transform: uppercase; }
 
-        .textomenu {
-            font-weight: 600;
-            font-size: 9px;
-            text-transform: uppercase;
-        }
-
-        a.botao.active {
-            color: var(--primary);
-            position: relative;
-        }
-
+        a.botao.active { color: var(--primary); position: relative; }
         a.botao.active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            width: 20px;
-            height: 3px;
-            background-color: var(--primary);
-            border-radius: 2px;
+            content: ''; position: absolute; bottom: -8px; width: 20px; height: 3px;
+            background-color: var(--primary); border-radius: 2px;
         }
 
-        /* Floating Action Button (FAB) */
-        .li-fab {
-            position: fixed;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 101;
-        }
-
+        /* FAB Button */
+        .li-fab { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); z-index: 101; }
         a.botao-fab {
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
+            border-radius: 50%; width: 48px; height: 48px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-size: 20px;
-            box-shadow: 0px 4px 12px rgba(108, 92, 231, 0.5);
+            display: flex; justify-content: center; align-items: center;
+            color: #fff; font-size: 20px; box-shadow: 0px 4px 12px rgba(108, 92, 231, 0.5);
             text-decoration: none;
         }
 
-        /* Hide Mobile Bar on PC Screens */
         @media (min-width: 768px) {
             #mainMenu, .li-fab { display: none !important; }
             body { padding-bottom: 20px; }
             .anime-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-            .card-thumb-wrap { height: 220px; }
+            .card-thumb-wrap { height: 230px; }
         }
-
-        /* Modal Styles */
-        .modal {
-            display: none; position: fixed; top: 0; left: 0;
-            width: 100%; height: 100%; background: rgba(0,0,0,0.85);
-            z-index: 1000; overflow-y: auto; padding: 20px; backdrop-filter: blur(8px);
-        }
-
-        .modal-content {
-            background: var(--bg-nav); max-width: 550px; margin: 30px auto;
-            border-radius: 12px; border: 1px solid var(--border); padding: 20px; position: relative;
-        }
-
-        .close-btn { position: absolute; top: 15px; right: 15px; font-size: 22px; color: var(--text-sub); cursor: pointer; border: none; background: none; }
-        .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 8px; }
-        .modal-img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin: 12px 0; }
-        .modal-desc { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -252,35 +233,70 @@
                 <div class="logo-text">NetQubo</div>
             </div>
             <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search Anime (e.g. Solo Leveling)..." oninput="liveSearch()">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search Anime or Cartoon..." oninput="liveSearch()">
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <div class="container">
         
-        <!-- Trending Anime Section -->
+        <!-- Stream Feed Sections -->
         <div class="section-bar">
-            <span class="section-title"><i class="fa-solid fa-fire" style="color: #ff7675; margin-right: 6px;"></i> Trending Anime</span>
-            <button class="btn-more" onclick="openMoreModal('trending')">More ></button>
+            <span class="section-title"><i class="fa-solid fa-play" style="color: #ff7675; margin-right: 6px;"></i> Latest Anime Releases</span>
         </div>
 
         <div class="anime-grid" id="animeContainer">
-            <!-- Dynamic Content Injected Here -->
+            <!-- Dynamic Anime Streaming Cards -->
         </div>
 
     </div>
 
-    <!-- Floating Action Button (FAB) -->
+    <!-- AWI Fullscreen Streaming Player -->
+    <div id="playerModal" class="player-modal">
+        <div class="player-header">
+            <h3 id="pTitle" style="font-size: 15px;">Watching Anime</h3>
+            <button onclick="closePlayer()" style="background: none; border: none; color: #fff; font-size: 20px; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="video-container">
+            <iframe id="videoPlayer" class="video-player" src="" allowfullscreen></iframe>
+        </div>
+
+        <div class="stream-controls">
+            <h2 id="pMainTitle" style="font-size: 18px; font-weight: 800;">Anime Title</h2>
+            <p id="pMeta" style="font-size: 12px; color: var(--text-sub); margin-top: 4px;">Hindi Dubbed • Episode 1</p>
+
+            <div style="margin-top: 16px;">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-sub);">SELECT SERVER:</span>
+                <div class="server-btn-group">
+                    <button class="server-btn active"><i class="fa-solid fa-server"></i> Server 1 (HD)</button>
+                    <button class="server-btn"><i class="fa-solid fa-server"></i> Server 2 (Fast)</button>
+                </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-sub);">EPISODES:</span>
+                <div class="episode-grid" id="episodesGrid">
+                    <div class="ep-btn active">Ep 1</div>
+                    <div class="ep-btn">Ep 2</div>
+                    <div class="ep-btn">Ep 3</div>
+                    <div class="ep-btn">Ep 4</div>
+                    <div class="ep-btn">Ep 5</div>
+                    <div class="ep-btn">Ep 6</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
     <div class="li-fab">
-        <a href="#" class="botao-fab" onclick="openRandomAnime(); return false;">
+        <a href="#" class="botao-fab" onclick="openRandomStream(); return false;">
             <i class="fa-solid fa-shuffle"></i>
         </a>
     </div>
 
-    <!-- Anime World India Style Bottom Navigation Menu -->
+    <!-- Anime World Mobile Bottom Menu Bar -->
     <div id="mainMenu">
         <ul class="ulbotoes">
             <li class="li">
@@ -290,71 +306,60 @@
                 </a>
             </li>
             <li class="li">
-                <a href="#" class="botao" onclick="openMoreModal('trending'); return false;">
-                    <i class="fa-solid fa-bolt"></i>
-                    <span class="textomenu">Popular</span>
+                <a href="#" class="botao" onclick="alert('Hindi Dubbed Anime Section'); return false;">
+                    <i class="fa-solid fa-closed-captioning"></i>
+                    <span class="textomenu">Hindi Dub</span>
+                </a>
+            </li>
+            <li class="li"></li>
+            <li class="li">
+                <a href="#" class="botao" onclick="alert('Cartoons Section'); return false;">
+                    <i class="fa-solid fa-tv"></i>
+                    <span class="textomenu">Cartoons</span>
                 </a>
             </li>
             <li class="li">
-                <!-- Empty Space for FAB button in middle -->
-            </li>
-            <li class="li">
-                <a href="#" class="botao" onclick="alert('Bookmarks feature coming soon!'); return false;">
+                <a href="#" class="botao" onclick="alert('Bookmark list'); return false;">
                     <i class="fa-solid fa-bookmark"></i>
                     <span class="textomenu">Saved</span>
-                </a>
-            </li>
-            <li class="li">
-                <a href="#" class="botao" onclick="alert('Settings menu'); return false;">
-                    <i class="fa-solid fa-gear"></i>
-                    <span class="textomenu">Settings</span>
                 </a>
             </li>
         </ul>
     </div>
 
-    <!-- Multi-purpose In-App Modal -->
-    <div id="infoModal" class="modal">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal()">&times;</button>
-            <h2 id="mTitle" class="modal-title">Details</h2>
-            <div id="mBody"></div>
-        </div>
-    </div>
-
     <script>
         let searchTimer;
-        let globalAnimeList = [];
+        let globalStreams = [];
 
-        document.addEventListener('DOMContentLoaded', fetchTrendingAnime);
+        document.addEventListener('DOMContentLoaded', fetchStreamingAnime);
 
-        // Fetch Top Trending Anime
-        function fetchTrendingAnime() {
+        function fetchStreamingAnime() {
             const container = document.getElementById('animeContainer');
             fetch('https://api.jikan.moe/v4/top/anime?limit=12')
                 .then(res => res.json())
                 .then(data => {
-                    globalAnimeList = data.data || [];
-                    renderAnimeGrid(globalAnimeList);
+                    globalStreams = data.data || [];
+                    renderStreamingGrid(globalStreams);
                 })
                 .catch(() => {
-                    container.innerHTML = `<p style="padding: 20px; text-align: center; color: var(--text-sub);">Failed to load anime list.</p>`;
+                    container.innerHTML = `<p style="padding: 20px; text-align: center; color: var(--text-sub);">Failed to load anime stream list.</p>`;
                 });
         }
 
-        function renderAnimeGrid(items) {
+        function renderStreamingGrid(items) {
             const container = document.getElementById('animeContainer');
             container.innerHTML = '';
 
-            items.forEach(anime => {
+            items.forEach((anime, idx) => {
                 const card = document.createElement('div');
                 card.className = 'anime-card';
-                card.onclick = () => openDetails(anime.title, anime.images.jpg.large_image_url, anime.synopsis || 'No description available.');
+                card.onclick = () => openStreamPlayer(anime.title, anime.trailer?.embed_url || 'https://www.youtube.com/embed/dQw4w9WgXcQ');
                 
                 card.innerHTML = `
                     <div class="card-thumb-wrap">
-                        <div class="post-ql"><span class="Qlty">HD • SUB/DUB</span></div>
+                        <div class="post-ql"><span class="Qlty">HD • HINDI</span></div>
                         <img src="${anime.images.jpg.image_url}" class="card-thumb" alt="${anime.title}">
+                        <div class="ep-badge">EP ${anime.episodes || '12'}</div>
                     </div>
                     <div class="card-details">
                         <div class="card-title">${anime.title}</div>
@@ -387,12 +392,12 @@
                             data.data.forEach(anime => {
                                 const item = document.createElement('div');
                                 item.className = 'search-item';
-                                item.onclick = () => openDetails(anime.title, anime.images.jpg.large_image_url, anime.synopsis || 'No description available.');
+                                item.onclick = () => openStreamPlayer(anime.title, anime.trailer?.embed_url || 'https://www.youtube.com/embed/dQw4w9WgXcQ');
                                 item.innerHTML = `
                                     <img src="${anime.images.jpg.image_url}" class="search-thumb">
                                     <div>
                                         <div class="search-name">${anime.title}</div>
-                                        <div class="search-meta">${anime.type || 'Anime'} • Score: ${anime.score || 'N/A'}</div>
+                                        <div class="search-meta">Episodes: ${anime.episodes || 'N/A'}</div>
                                     </div>
                                 `;
                                 dropdown.appendChild(item);
@@ -407,49 +412,25 @@
             }, 300);
         }
 
-        // In-App Modal Functions
-        function openDetails(title, img, desc) {
-            document.getElementById('mTitle').innerText = title;
-            let content = '';
-            if (img) content += `<img src="${img}" class="modal-img">`;
-            content += `<div class="modal-desc">${desc}</div>`;
-            document.getElementById('mBody').innerHTML = content;
-            document.getElementById('infoModal').style.display = 'block';
+        // Launch Stream Player
+        function openStreamPlayer(title, videoUrl) {
+            document.getElementById('pTitle').innerText = title;
+            document.getElementById('pMainTitle').innerText = title;
+            document.getElementById('videoPlayer').src = videoUrl + "?autoplay=1";
+            document.getElementById('playerModal').style.display = 'block';
             document.getElementById('searchDropdown').style.display = 'none';
         }
 
-        function openMoreModal(type) {
-            if (type === 'trending') {
-                document.getElementById('mTitle').innerText = "All Trending Anime";
-                let content = '<div class="anime-grid">';
-                globalAnimeList.forEach(anime => {
-                    content += `
-                        <div class="anime-card" onclick="openDetails('${anime.title.replace(/'/g, "\\'")}', '${anime.images.jpg.large_image_url}', '${(anime.synopsis || '').replace(/'/g, "\\'")}')">
-                            <div class="card-thumb-wrap">
-                                <div class="post-ql"><span class="Qlty">HD</span></div>
-                                <img src="${anime.images.jpg.image_url}" class="card-thumb">
-                            </div>
-                            <div class="card-details">
-                                <div class="card-title">${anime.title}</div>
-                            </div>
-                        </div>
-                    `;
-                });
-                content += '</div>';
-                document.getElementById('mBody').innerHTML = content;
-            }
-            document.getElementById('infoModal').style.display = 'block';
+        function closePlayer() {
+            document.getElementById('playerModal').style.display = 'none';
+            document.getElementById('videoPlayer').src = '';
         }
 
-        function openRandomAnime() {
-            if (globalAnimeList.length > 0) {
-                const random = globalAnimeList[Math.floor(Math.random() * globalAnimeList.length)];
-                openDetails(random.title, random.images.jpg.large_image_url, random.synopsis);
+        function openRandomStream() {
+            if (globalStreams.length > 0) {
+                const random = globalStreams[Math.floor(Math.random() * globalStreams.length)];
+                openStreamPlayer(random.title, random.trailer?.embed_url || 'https://www.youtube.com/embed/dQw4w9WgXcQ');
             }
-        }
-
-        function closeModal() {
-            document.getElementById('infoModal').style.display = 'none';
         }
     </script>
 </body>
