@@ -43,98 +43,41 @@
             margin: 12px auto;
             max-width: 340px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            position: relative;
-            z-index: 10;
         }
         .tg-info { display: flex; align-items: center; gap: 10px; }
         .tg-icon {
             background: #229ed9; color: #fff; width: 32px; height: 32px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 16px;
         }
-        .tg-text h4 { font-size: 11px; font-weight: 700; color: #fff; }
+        .tg-text h4 { font-size: 11px; font-weight: 700; }
         .tg-text p { font-size: 9px; color: #a0b2c6; }
-        .tg-close { color: #fff; opacity: 0.7; cursor: pointer; font-size: 14px; }
 
-        /* Search Bar Overlay */
-        .search-box {
-            position: relative; margin: 10px 0;
-        }
+        /* Search Bar */
+        .search-box { position: relative; margin: 10px 0; }
         .search-input {
             width: 100%; background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
             border-radius: 25px; padding: 10px 45px 10px 20px;
             color: #fff; font-size: 14px; outline: none;
         }
-        .search-btn {
-            position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
-            color: #fff; background: none; border: none; font-size: 14px;
-        }
-
-        /* Hero Banner Thumbnails */
-        .hero-categories {
-            display: flex; gap: 10px; justify-content: center; margin: 15px 0;
-        }
-        .hero-cat-card {
-            width: 90px; height: 110px; border-radius: 12px; overflow: hidden;
-            position: relative; background: #151824; text-align: center;
-        }
-        .hero-cat-card img { width: 100%; height: 80px; object-fit: cover; }
-        .hero-cat-card span { font-size: 8px; font-weight: 800; text-transform: uppercase; display: block; margin-top: 4px; color: #fff; }
+        .search-btn { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #fff; background: none; border: none; }
 
         /* Section Title Header */
-        .section-header {
-            font-size: 18px; font-weight: 800; margin: 20px 0 10px 0; color: #fff;
-        }
+        .section-header { font-size: 18px; font-weight: 800; margin: 20px 0 10px 0; }
 
         /* Horizontal Scroll Container */
-        .scroll-row {
-            display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px;
-            scrollbar-width: none;
-        }
+        .scroll-row { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
         .scroll-row::-webkit-scrollbar { display: none; }
 
-        /* WatchAnimeWorld Poster Card */
-        .post-card {
-            min-width: 110px; width: 110px; background: var(--bg-card);
-            border-radius: 8px; overflow: hidden; flex-shrink: 0; cursor: pointer;
-        }
-        .post-thumb {
-            height: 145px; position: relative; background: #202433;
-        }
+        /* Poster Cards */
+        .post-card { min-width: 110px; width: 110px; background: var(--bg-card); border-radius: 8px; overflow: hidden; flex-shrink: 0; cursor: pointer; }
+        .post-thumb { height: 145px; position: relative; background: #202433; }
         .post-thumb img { width: 100%; height: 100%; object-fit: cover; }
-        
-        .badge-season {
-            position: absolute; top: 5px; left: 5px;
-            background: rgba(0,0,0,0.6); color: #fff;
-            font-size: 8px; padding: 2px 6px; border-radius: 4px; backdrop-filter: blur(4px);
-        }
-        .badge-ep {
-            position: absolute; bottom: 5px; left: 5px;
-            background: rgba(0,0,0,0.7); color: #fff;
-            font-size: 8px; padding: 2px 6px; border-radius: 4px; font-weight: 700;
-        }
-        .post-title {
-            font-size: 11px; font-weight: 600; padding: 6px 2px;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #d0d5e2;
-        }
+        .badge-season { position: absolute; top: 5px; left: 5px; background: rgba(0,0,0,0.6); color: #fff; font-size: 8px; padding: 2px 6px; border-radius: 4px; }
+        .badge-ep { position: absolute; bottom: 5px; left: 5px; background: rgba(0,0,0,0.7); color: #fff; font-size: 8px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+        .post-title { font-size: 11px; font-weight: 600; padding: 6px 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #d0d5e2; }
 
-        /* Network Channels Grid */
-        .network-row {
-            display: flex; gap: 12px; margin-top: 10px;
-        }
-        .network-box {
-            width: 50px; height: 50px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 10px; text-transform: uppercase;
-        }
-        .net-disney { background: #00a8ff; color: #fff; }
-        .net-hungama { background: #fbc531; color: #000; }
-        .net-sony { background: linear-gradient(45deg, #0097e6, #44bd32); color: #fff; }
-        .net-cn { background: #000; color: #fff; border: 1px solid #333; }
-
-        /* Video Streaming Page Screen */
+        /* Streaming View Box Modal */
         .stream-view {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-body); z-index: 500; overflow-y: auto; padding-bottom: 80px;
@@ -142,56 +85,24 @@
         .player-box { width: 100%; aspect-ratio: 16/9; background: #000; }
         .player-box iframe { width: 100%; height: 100%; border: none; }
 
-        .season-bar {
-            background: #111422; padding: 12px; display: flex;
-            justify-content: space-between; align-items: center; margin-top: 5px;
-        }
-        .season-bar span { font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-
-        .server-section { padding: 15px 12px; }
-        .server-title { font-size: 12px; font-weight: 600; color: var(--text-sub); text-align: center; margin-bottom: 10px; }
-        .server-card {
-            background: #121626; border-bottom: 2px solid var(--primary);
-            width: 100px; padding: 10px; border-radius: 6px; text-align: left; cursor: pointer;
-        }
-        .server-card h5 { font-size: 9px; color: var(--text-sub); }
-        .server-card h4 { font-size: 11px; font-weight: 800; color: #fff; margin-top: 2px; }
-
-        .season-select-btn {
-            background: #0d101d; border: 1px solid var(--border);
-            padding: 10px; border-radius: 6px; display: flex; justify-content: space-between;
-            align-items: center; margin: 15px 12px; font-size: 13px; font-weight: 700;
+        .loader {
+            display: none; color: var(--primary); text-align: center; padding: 20px; font-weight: bold;
         }
 
         /* Bottom Fixed Navigation Bar */
         .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: #04050a; border-top: 1px solid #121624;
-            display: flex; justify-content: space-around; align-items: center;
-            padding: 6px 0; z-index: 1000;
+            position: fixed; bottom: 0; left: 0; width: 100%; background: #04050a;
+            border-top: 1px solid #121624; display: flex; justify-content: space-around;
+            align-items: center; padding: 6px 0; z-index: 1000;
         }
-        .nav-item {
-            display: flex; flex-direction: column; align-items: center;
-            gap: 2px; color: #5a627a; text-decoration: none; font-size: 8px; font-weight: 700;
-        }
-        .nav-item i { font-size: 15px; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #5a627a; text-decoration: none; font-size: 8px; font-weight: 700; }
         .nav-item.active { color: var(--primary); }
-
-        /* Floating Center Logo (AW) */
-        .nav-center-logo {
-            width: 42px; height: 42px; background: #080b14;
-            border: 2px solid var(--primary); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--primary); font-weight: 900; font-size: 14px;
-            box-shadow: 0 0 10px rgba(0,210,211,0.3); margin-top: -15px;
-        }
+        .nav-center-logo { width: 42px; height: 42px; background: #080b14; border: 2px solid var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); font-weight: 900; font-size: 14px; margin-top: -15px; }
     </style>
 </head>
 <body>
 
-    <!-- Main Home Screen -->
     <div id="homeScreen" class="container">
-        
         <!-- Telegram Banner -->
         <div class="telegram-banner" id="tgBanner">
             <div class="tg-info">
@@ -201,7 +112,7 @@
                     <p>Stay updated - no spam!</p>
                 </div>
             </div>
-            <i class="fa-solid fa-xmark tg-close" onclick="document.getElementById('tgBanner').style.display='none'"></i>
+            <i class="fa-solid fa-xmark" onclick="document.getElementById('tgBanner').style.display='none'"></i>
         </div>
 
         <!-- Search Bar -->
@@ -210,136 +121,88 @@
             <button class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
 
-        <!-- Category Headers -->
-        <div class="hero-categories">
-            <div class="hero-cat-card">
-                <img src="https://m.media-amazon.com/images/M/MV5BZDA3NDExZTAtMDlhOC00M2UwLTljYTAtMDg0NWJiM2E5ZGE2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Transformers">
-                <span>TRANSFORMERS</span>
-            </div>
-            <div class="hero-cat-card">
-                <img src="https://m.media-amazon.com/images/M/MV5BODI2NWJiYTMtN2I0NS00Yzc2LTk4NWUtMjg4MDBjOTBiMDRlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Shinchan">
-                <span>SHINCHAN</span>
-            </div>
-            <div class="hero-cat-card">
-                <img src="https://m.media-amazon.com/images/M/MV5BMz3VNmI5YTctYTA2Ni00MWEyLTlhMmItY2E1MTIxM2I2Zjg3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Dragon Ball">
-                <span>DRAGON BALL</span>
-            </div>
-        </div>
-
-        <!-- Newest Drops Section -->
+        <!-- Episodes List Section -->
         <h3 class="section-header">Newest Drops</h3>
         <div class="scroll-row">
-            <div class="post-card" onclick="openPlayer('Arifureta: From Commonplace to World\'s Strongest')">
+            
+            <!-- Episode 1 Card -->
+            <div class="post-card" onclick="playEpisode('https://watchanimeworld.one/episode/arifureta-from-commonplace-to-worlds-strongest-3x1/')">
                 <div class="post-thumb">
                     <span class="badge-season">Season 3</span>
                     <img src="https://cdn.myanimelist.net/images/anime/1162/141384.jpg" alt="Anime">
-                    <span class="badge-ep">EP:1-16</span>
+                    <span class="badge-ep">EP 1</span>
                 </div>
-                <div class="post-title">Arifureta: From Commonplace</div>
+                <div class="post-title">Arifureta S3 EP 1</div>
             </div>
 
-            <div class="post-card" onclick="openPlayer('Fullmetal Alchemist: Brotherhood')">
+            <!-- Episode 2 Card -->
+            <div class="post-card" onclick="playEpisode('https://watchanimeworld.one/episode/arifureta-from-commonplace-to-worlds-strongest-3x2/')">
                 <div class="post-thumb">
-                    <span class="badge-season">Season 1</span>
-                    <img src="https://cdn.myanimelist.net/images/anime/1208/94745.jpg" alt="Anime">
-                    <span class="badge-ep">EP:19-39</span>
+                    <span class="badge-season">Season 3</span>
+                    <img src="https://cdn.myanimelist.net/images/anime/1162/141384.jpg" alt="Anime">
+                    <span class="badge-ep">EP 2</span>
                 </div>
-                <div class="post-title">Fullmetal Alchemist</div>
+                <div class="post-title">Arifureta S3 EP 2</div>
             </div>
 
-            <div class="post-card" onclick="openPlayer('The Exiled Heavy Knight')">
-                <div class="post-thumb">
-                    <span class="badge-season">Season 1</span>
-                    <img src="https://cdn.myanimelist.net/images/anime/1015/138006.jpg" alt="Anime">
-                    <span class="badge-ep">EP:1-5</span>
-                </div>
-                <div class="post-title">The Exiled Heavy Knight</div>
-            </div>
         </div>
-
-        <!-- Network Section -->
-        <h3 class="section-header">Network</h3>
-        <div class="network-row">
-            <div class="network-box net-disney">Disney</div>
-            <div class="network-box net-hungama">Hungama</div>
-            <div class="network-box net-sony">Sony</div>
-            <div class="network-box net-cn">CN</div>
-        </div>
-
     </div>
 
-    <!-- Video Player Screen View -->
+    <!-- Video Player Screen -->
     <div id="streamScreen" class="stream-view">
         <div style="padding: 10px 12px; display: flex; justify-content: space-between; align-items: center;">
-            <button onclick="closePlayer()" style="background:none; border:none; color:#fff; font-size:16px;"><i class="fa-solid fa-arrow-left"></i> Back</button>
-            <span style="font-size: 11px; color: var(--text-sub);">3x2</span>
+            <button onclick="closePlayer()" style="background:none; border:none; color:#fff; font-size:16px; cursor:pointer;">
+                <i class="fa-solid fa-arrow-left"></i> Back
+            </button>
+            <span style="font-size: 11px; color: var(--text-sub);">Playing via Render Backend</span>
         </div>
+
+        <div id="loadingText" class="loader">Extracting Stream... Please wait...</div>
 
         <div class="player-box">
-            <iframe id="vidIframe" src="" allowfullscreen></iframe>
-        </div>
-
-        <div class="season-bar">
-            <span><i class="fa-solid fa-bars-staggered"></i> Seasons</span>
-            <div>
-                <i class="fa-solid fa-backward-step" style="margin-right: 15px;"></i>
-                <i class="fa-solid fa-forward-step"></i>
-            </div>
-        </div>
-
-        <div class="server-section">
-            <div class="server-title">Select Server</div>
-            <div class="server-card">
-                <h5>SERVER 1</h5>
-                <h4>PLAY</h4>
-            </div>
-        </div>
-
-        <div style="padding: 0 12px;">
-            <span style="font-size: 10px; color: var(--text-sub);">CHOOSE SEASON</span>
-        </div>
-        <div class="season-select-btn">
-            <span id="pSeasonTitle">Seasons 3</span>
-            <i class="fa-solid fa-chevron-down" style="color: var(--primary);"></i>
-        </div>
-
-        <div style="padding: 0 12px;">
-            <div class="scroll-row">
-                <div class="post-card"><div class="post-thumb"><span class="badge-ep">3x1</span></div></div>
-                <div class="post-card"><div class="post-thumb"><span class="badge-ep">3x2</span></div></div>
-                <div class="post-card"><div class="post-thumb"><span class="badge-ep">3x3</span></div></div>
-            </div>
+            <!-- Iframe player with referrerpolicy fix -->
+            <iframe id="vidIframe" src="" allowfullscreen referrerpolicy="no-referrer"></iframe>
         </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Bottom Navigation -->
     <div class="bottom-nav">
-        <a href="#" class="nav-item">
-            <i class="fa-solid fa-film"></i>
-            <span>MOVIES</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fa-solid fa-layer-group"></i>
-            <span>SERIES</span>
-        </a>
-        <a href="#" class="nav-center-logo" onclick="closePlayer(); return false;">
-            AW
-        </a>
-        <a href="#" class="nav-item active">
-            <i class="fa-solid fa-user-ninja"></i>
-            <span>ANIME</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fa-solid fa-hat-wizard"></i>
-            <span>CARTOON</span>
-        </a>
+        <a href="#" class="nav-item"><i class="fa-solid fa-film"></i><span>MOVIES</span></a>
+        <a href="#" class="nav-item"><i class="fa-solid fa-layer-group"></i><span>SERIES</span></a>
+        <a href="#" class="nav-center-logo" onclick="closePlayer(); return false;">AW</a>
+        <a href="#" class="nav-item active"><i class="fa-solid fa-user-ninja"></i><span>ANIME</span></a>
+        <a href="#" class="nav-item"><i class="fa-solid fa-hat-wizard"></i><span>CARTOON</span></a>
     </div>
 
     <script>
-        function openPlayer(title) {
-            document.getElementById('pSeasonTitle').innerText = title;
-            document.getElementById('vidIframe').src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1";
-            document.getElementById('streamScreen').style.display = 'block';
+        // Directly using your deployed Render backend API
+        const BACKEND_URL = "https://anime-backend-47cq.onrender.com";
+
+        async function playEpisode(targetUrl) {
+            const streamScreen = document.getElementById('streamScreen');
+            const iframe = document.getElementById('vidIframe');
+            const loader = document.getElementById('loadingText');
+
+            streamScreen.style.display = 'block';
+            loader.style.display = 'block';
+            iframe.src = ""; // Reset iframe
+
+            try {
+                // Fetch direct iframe embed from Render backend
+                const response = await fetch(`${BACKEND_URL}/api/scrape?url=${encodeURIComponent(targetUrl)}`);
+                const data = await response.json();
+
+                if (data.success && data.embedUrl) {
+                    iframe.src = data.embedUrl;
+                } else {
+                    alert("Stream source extract nahi ho saka!");
+                }
+            } catch (err) {
+                alert("Backend Connection Fail! Check Render Service.");
+                console.error(err);
+            } finally {
+                loader.style.display = 'none';
+            }
         }
 
         function closePlayer() {
@@ -348,5 +211,4 @@
         }
     </script>
 </body>
-    </html>
-    
+</html>
