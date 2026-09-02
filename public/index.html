@@ -4,10 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>NetQubo — Watch Anime</title>
-  <meta name="description" content="NetQubo anime streaming">
+  <title>NetQubo | Watch Anime</title>
+
+  <meta
+    name="description"
+    content="Watch anime on NetQubo"
+  >
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,32 +21,40 @@
 
     body {
       background: #080b12;
-      color: #fff;
+      color: #ffffff;
       font-family: Arial, Helvetica, sans-serif;
     }
+
+    /* HEADER */
 
     header {
       height: 64px;
       background: #0d111a;
       border-bottom: 1px solid #202633;
+
       display: flex;
       align-items: center;
+
       padding: 0 20px;
+
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     .logo {
+      color: #ffffff;
+      text-decoration: none;
+
       font-size: 24px;
       font-weight: 800;
-      color: #fff;
-      text-decoration: none;
     }
 
     .logo span {
       color: #4da3ff;
     }
+
+    /* MAIN */
 
     .container {
       width: min(1200px, 94%);
@@ -65,59 +78,88 @@
     /* PLAYER */
 
     .player-wrap {
-      background: #000;
+      background: #000000;
+
       border: 1px solid #202633;
       border-radius: 10px;
+
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+
+      box-shadow:
+        0 10px 40px rgba(0,0,0,.35);
     }
 
-    video {
+    .player-wrap iframe {
       display: block;
+
       width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
+      height: 650px;
+
+      border: 0;
+
+      background: #000000;
     }
 
     .player-message {
       padding: 10px 14px;
+
       background: #10151f;
+
       color: #8f9aac;
+
       font-size: 13px;
     }
 
-    /* SERVERS */
+    /* SECTION */
 
     .section {
       background: #0d121b;
+
       border: 1px solid #202633;
       border-radius: 10px;
+
       margin-top: 16px;
+
       padding: 16px;
     }
 
     .section-title {
       font-size: 14px;
+
       color: #aeb8c9;
+
       margin-bottom: 12px;
+
       font-weight: 700;
     }
 
+    /* BUTTONS */
+
     .buttons {
       display: flex;
+
       gap: 8px;
+
       flex-wrap: wrap;
     }
 
     button {
       border: 0;
+
       cursor: pointer;
-      color: #fff;
+
+      color: #ffffff;
+
       background: #1a2230;
+
       border: 1px solid #2a3445;
+
       padding: 9px 14px;
+
       border-radius: 7px;
+
       font-size: 13px;
+
       transition: .2s;
     }
 
@@ -127,33 +169,42 @@
 
     button.active {
       background: #1976d2;
+
       border-color: #1976d2;
     }
 
-    /* INFO */
+    /* ANIME INFO */
 
     .anime-info {
       display: flex;
+
       gap: 15px;
+
       align-items: center;
     }
 
     .poster {
       width: 75px;
       height: 105px;
+
       object-fit: cover;
+
       border-radius: 7px;
+
       background: #161d28;
     }
 
     .anime-info h2 {
       font-size: 18px;
+
       margin-bottom: 7px;
     }
 
     .anime-info p {
       color: #8f9aac;
+
       font-size: 13px;
+
       line-height: 1.5;
     }
 
@@ -161,17 +212,22 @@
 
     .episode-grid {
       display: grid;
-      grid-template-columns: repeat(8, 1fr);
+
+      grid-template-columns:
+        repeat(8, 1fr);
+
       gap: 8px;
     }
 
     .episode {
       text-align: center;
+
       padding: 10px 5px;
     }
 
     .episode.current {
       background: #1976d2;
+
       border-color: #1976d2;
     }
 
@@ -179,14 +235,19 @@
 
     .episode-nav {
       display: flex;
+
       justify-content: space-between;
+
       gap: 10px;
+
       margin-top: 16px;
     }
 
     .nav-btn {
       flex: 1;
+
       text-align: center;
+
       padding: 12px;
     }
 
@@ -194,9 +255,13 @@
 
     footer {
       text-align: center;
+
       color: #667083;
+
       font-size: 12px;
+
       padding: 30px 10px;
+
       border-top: 1px solid #202633;
     }
 
@@ -206,6 +271,7 @@
 
       header {
         height: 58px;
+
         padding: 0 14px;
       }
 
@@ -215,6 +281,7 @@
 
       .container {
         width: 96%;
+
         margin-top: 15px;
       }
 
@@ -222,8 +289,13 @@
         font-size: 19px;
       }
 
+      .player-wrap iframe {
+        height: 250px;
+      }
+
       .episode-grid {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns:
+          repeat(5, 1fr);
       }
 
       .anime-info {
@@ -241,364 +313,716 @@
     }
 
     @media (max-width: 400px) {
+
       .episode-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns:
+          repeat(4, 1fr);
+      }
+
+      .player-wrap iframe {
+        height: 220px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-<header>
-  <a href="#" class="logo">Net<span>Qubo</span></a>
-</header>
 
-<main class="container">
+  <!-- HEADER -->
 
-  <div class="watch-title">
-    <h1 id="pageTitle">Arifureta: From Commonplace to World's Strongest</h1>
-    <p id="episodeLabel">Season 3 • Episode 2</p>
-  </div>
+  <header>
 
-  <!-- VIDEO PLAYER -->
+    <a href="#" class="logo">
+      Net<span>Qubo</span>
+    </a>
 
-  <div class="player-wrap">
+  </header>
 
-    <video
-      id="videoPlayer"
-      controls
-      playsinline
-      preload="metadata"
-      poster="https://via.placeholder.com/1280x720/080b12/ffffff?text=NetQubo"
-    >
-      Your browser does not support HTML5 video.
-    </video>
 
-    <div class="player-message" id="playerMessage">
-      Select a server below to start watching.
-    </div>
+  <!-- MAIN -->
 
-  </div>
+  <main class="container">
 
-  <!-- SERVERS -->
 
-  <div class="section">
+    <!-- TITLE -->
 
-    <div class="section-title">
-      Streaming Servers
-    </div>
+    <div class="watch-title">
 
-    <div class="buttons">
+      <h1 id="pageTitle">
+        Arifureta: From Commonplace to World's Strongest
+      </h1>
 
-      <button
-        class="server active"
-        data-server="server1"
-        onclick="changeServer('server1', this)">
-        Server 1
-      </button>
-
-      <button
-        class="server"
-        data-server="server2"
-        onclick="changeServer('server2', this)">
-        Server 2
-      </button>
-
-      <button
-        class="server"
-        data-server="server3"
-        onclick="changeServer('server3', this)">
-        Server 3
-      </button>
+      <p id="episodeLabel">
+        Season 3 • Episode 2
+      </p>
 
     </div>
 
-  </div>
 
-  <!-- ANIME INFO -->
+    <!-- PLAYER -->
 
-  <div class="section">
+    <div class="player-wrap">
 
-    <div class="anime-info">
+      <iframe
+        id="animePlayer"
 
-      <img
-        class="poster"
-        src="https://via.placeholder.com/300x450/151b26/ffffff?text=Anime"
-        alt="Anime poster"
-      >
+        src="https://watchanimeworld.one/episode/arifureta-from-commonplace-to-worlds-strongest-3x2/"
 
-      <div>
-        <h2>Arifureta: From Commonplace to World's Strongest</h2>
+        title="Anime Player"
 
-        <p>
-          You are watching Season 3, Episode 2.
-          Choose a streaming server or another episode below.
-        </p>
+        scrolling="no"
+
+        allow="autoplay; fullscreen; picture-in-picture"
+
+        allowfullscreen>
+      </iframe>
+
+      <div
+        class="player-message"
+        id="playerMessage">
+
+        Arifureta — Season 3 Episode 2
+
       </div>
 
     </div>
 
-  </div>
 
-  <!-- SEASON -->
+    <!-- SERVERS -->
 
-  <div class="section">
+    <div class="section">
 
-    <div class="section-title">
-      Season
-    </div>
+      <div class="section-title">
+        Streaming Servers
+      </div>
 
-    <div class="buttons">
+      <div class="buttons">
 
-      <button class="active">
-        Season 3
-      </button>
+        <button
+          class="server active"
+          onclick="changeServer('server1', this)">
 
-      <button>
-        Season 2
-      </button>
+          Server 1
 
-      <button>
-        Season 1
-      </button>
+        </button>
 
-    </div>
+        <button
+          class="server"
+          onclick="changeServer('server2', this)">
 
-  </div>
+          Server 2
 
-  <!-- EPISODES -->
+        </button>
 
-  <div class="section">
+        <button
+          class="server"
+          onclick="changeServer('server3', this)">
 
-    <div class="section-title">
-      Episodes
-    </div>
+          Server 3
 
-    <div class="episode-grid" id="episodeGrid"></div>
+        </button>
 
-    <div class="episode-nav">
-
-      <button
-        class="nav-btn"
-        onclick="previousEpisode()">
-        ← Previous Episode
-      </button>
-
-      <button
-        class="nav-btn"
-        onclick="nextEpisode()">
-        Next Episode →
-      </button>
+      </div>
 
     </div>
 
-  </div>
 
-</main>
+    <!-- ANIME INFO -->
 
-<footer>
-  © 2026 NetQubo
-</footer>
+    <div class="section">
 
-
-<script>
-
-  /*
-   * =====================================================
-   * VIDEO SOURCES
-   * =====================================================
-   *
-   * Put YOUR authorized/self-hosted video URLs here.
-   *
-   * Example:
-   *
-   * server1:
-   * "https://your-domain.com/videos/arifureta-s3-e2.mp4"
-   *
-   * server2:
-   * "https://your-other-domain.com/videos/e2.mp4"
-   *
-   */
-
-  const VIDEO_SOURCES = {
-
-    server1: "",
-    server2: "",
-    server3: ""
-
-  };
+      <div class="anime-info">
 
 
-  /*
-   * =====================================================
-   * CURRENT EPISODE
-   * =====================================================
-   */
+        <img
+          class="poster"
 
-  let currentEpisode = 2;
-  const totalEpisodes = 16;
+          src="https://via.placeholder.com/300x450/151b26/ffffff?text=Arifureta"
 
-  let currentServer = "server1";
+          alt="Arifureta poster"
+        >
 
 
-  /*
-   * =====================================================
-   * EPISODE BUTTONS
-   * =====================================================
-   */
+        <div>
 
-  function createEpisodes() {
+          <h2>
+            Arifureta: From Commonplace to World's Strongest
+          </h2>
 
-    const grid = document.getElementById("episodeGrid");
+          <p>
 
-    grid.innerHTML = "";
+            You are watching Season 3, Episode 2.
+            Select another episode below to continue watching.
 
-    for (let i = 1; i <= totalEpisodes; i++) {
+          </p>
 
-      const button = document.createElement("button");
+        </div>
 
-      button.className = "episode";
+      </div>
 
-      button.textContent = String(i).padStart(2, "0");
+    </div>
 
-      if (i === currentEpisode) {
-        button.classList.add("current");
+
+    <!-- SEASON -->
+
+    <div class="section">
+
+      <div class="section-title">
+        Season
+      </div>
+
+      <div class="buttons">
+
+        <button
+          class="season"
+          onclick="selectSeason(1, this)">
+
+          Season 1
+
+        </button>
+
+        <button
+          class="season"
+          onclick="selectSeason(2, this)">
+
+          Season 2
+
+        </button>
+
+        <button
+          class="season active"
+          onclick="selectSeason(3, this)">
+
+          Season 3
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- EPISODES -->
+
+    <div class="section">
+
+      <div class="section-title">
+        Episodes
+      </div>
+
+
+      <div
+        class="episode-grid"
+        id="episodeGrid">
+      </div>
+
+
+      <div class="episode-nav">
+
+        <button
+          class="nav-btn"
+          onclick="previousEpisode()">
+
+          ← Previous Episode
+
+        </button>
+
+
+        <button
+          class="nav-btn"
+          onclick="nextEpisode()">
+
+          Next Episode →
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    © 2026 NetQubo
+
+  </footer>
+
+
+  <script>
+
+
+    /*
+     * ==================================================
+     * CURRENT SETTINGS
+     * ==================================================
+     */
+
+    let currentSeason = 3;
+
+    let currentEpisode = 2;
+
+    let currentServer = "server1";
+
+
+    /*
+     * ==================================================
+     * EPISODE COUNT
+     * ==================================================
+     */
+
+    const SEASON_EPISODES = {
+
+      1: 13,
+
+      2: 12,
+
+      3: 16
+
+    };
+
+
+    /*
+     * ==================================================
+     * EPISODE URLS
+     * ==================================================
+     *
+     * IMPORTANT:
+     *
+     * These are page URLs, not direct video files.
+     *
+     * Replace them only with pages/sources you are
+     * authorized to embed.
+     *
+     */
+
+
+    const EPISODE_URLS = {
+
+      3: {
+
+        1:
+        "https://watchanimeworld.one/episode/arifureta-from-commonplace-to-worlds-strongest-3x1/",
+
+        2:
+        "https://watchanimeworld.one/episode/arifureta-from-commonplace-to-worlds-strongest-3x2/",
+
+        3: "",
+
+        4: "",
+
+        5: "",
+
+        6: "",
+
+        7: "",
+
+        8: "",
+
+        9: "",
+
+        10: "",
+
+        11: "",
+
+        12: "",
+
+        13: "",
+
+        14: "",
+
+        15: "",
+
+        16: ""
+
       }
 
-      button.onclick = function () {
-        selectEpisode(i);
-      };
+    };
 
-      grid.appendChild(button);
+
+    /*
+     * ==================================================
+     * SERVER URLS
+     * ==================================================
+     *
+     * Put authorized embed/page URLs here if you have
+     * them.
+     *
+     */
+
+
+    const SERVER_URLS = {
+
+      server1: "",
+
+      server2: "",
+
+      server3: ""
+
+    };
+
+
+    /*
+     * ==================================================
+     * CREATE EPISODES
+     * ==================================================
+     */
+
+    function createEpisodes() {
+
+
+      const grid =
+        document.getElementById("episodeGrid");
+
+
+      grid.innerHTML = "";
+
+
+      const total =
+        SEASON_EPISODES[currentSeason] || 0;
+
+
+      for (
+        let i = 1;
+        i <= total;
+        i++
+      ) {
+
+
+        const button =
+          document.createElement("button");
+
+
+        button.className =
+          "episode";
+
+
+        button.textContent =
+          String(i).padStart(2, "0");
+
+
+        if (
+          i === currentEpisode
+        ) {
+
+          button.classList.add(
+            "current"
+          );
+
+        }
+
+
+        button.onclick =
+          function () {
+
+            selectEpisode(i);
+
+          };
+
+
+        grid.appendChild(button);
+
+      }
 
     }
 
-  }
+
+    /*
+     * ==================================================
+     * SELECT EPISODE
+     * ==================================================
+     */
+
+    function selectEpisode(number) {
 
 
-  /*
-   * =====================================================
-   * SELECT EPISODE
-   * =====================================================
-   */
+      currentEpisode =
+        number;
 
-  function selectEpisode(number) {
 
-    currentEpisode = number;
+      updateEpisodeLabel();
 
-    document.getElementById("episodeLabel").textContent =
-      "Season 3 • Episode " + number;
+
+      createEpisodes();
+
+
+      loadEpisode();
+
+
+      window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+      });
+
+    }
+
+
+    /*
+     * ==================================================
+     * LOAD EPISODE
+     * ==================================================
+     */
+
+    function loadEpisode() {
+
+
+      const iframe =
+        document.getElementById(
+          "animePlayer"
+        );
+
+
+      const message =
+        document.getElementById(
+          "playerMessage"
+        );
+
+
+      let url = "";
+
+
+      /*
+       * If a server URL is selected,
+       * use it first.
+       */
+
+
+      if (
+        SERVER_URLS[currentServer]
+      ) {
+
+        url =
+          SERVER_URLS[currentServer];
+
+      }
+
+
+      /*
+       * Otherwise use the episode page.
+       */
+
+
+      else if (
+        EPISODE_URLS[currentSeason] &&
+        EPISODE_URLS[currentSeason][currentEpisode]
+      ) {
+
+        url =
+          EPISODE_URLS[currentSeason][currentEpisode];
+
+      }
+
+
+      /*
+       * Load URL
+       */
+
+
+      if (url) {
+
+
+        iframe.src =
+          url;
+
+
+        message.textContent =
+          "Season " +
+          currentSeason +
+          " • Episode " +
+          currentEpisode;
+
+
+      }
+
+      else {
+
+
+        iframe.src =
+          "about:blank";
+
+
+        message.textContent =
+          "This episode does not have a configured source yet.";
+
+      }
+
+    }
+
+
+    /*
+     * ==================================================
+     * SERVER SWITCH
+     * ==================================================
+     */
+
+    function changeServer(
+      server,
+      button
+    ) {
+
+
+      currentServer =
+        server;
+
+
+      document
+        .querySelectorAll(".server")
+        .forEach(
+          btn =>
+            btn.classList.remove(
+              "active"
+            )
+        );
+
+
+      button.classList.add(
+        "active"
+      );
+
+
+      loadEpisode();
+
+    }
+
+
+    /*
+     * ==================================================
+     * SEASON SWITCH
+     * ==================================================
+     */
+
+    function selectSeason(
+      season,
+      button
+    ) {
+
+
+      currentSeason =
+        season;
+
+
+      currentEpisode =
+        1;
+
+
+      document
+        .querySelectorAll(".season")
+        .forEach(
+          btn =>
+            btn.classList.remove(
+              "active"
+            )
+        );
+
+
+      button.classList.add(
+        "active"
+      );
+
+
+      createEpisodes();
+
+
+      updateEpisodeLabel();
+
+
+      loadEpisode();
+
+    }
+
+
+    /*
+     * ==================================================
+     * UPDATE LABEL
+     * ==================================================
+     */
+
+    function updateEpisodeLabel() {
+
+
+      document.getElementById(
+        "episodeLabel"
+      ).textContent =
+
+        "Season " +
+        currentSeason +
+        " • Episode " +
+        currentEpisode;
+
+    }
+
+
+    /*
+     * ==================================================
+     * PREVIOUS EPISODE
+     * ==================================================
+     */
+
+    function previousEpisode() {
+
+
+      if (
+        currentEpisode > 1
+      ) {
+
+        selectEpisode(
+          currentEpisode - 1
+        );
+
+      }
+
+    }
+
+
+    /*
+     * ==================================================
+     * NEXT EPISODE
+     * ==================================================
+     */
+
+    function nextEpisode() {
+
+
+      const total =
+        SEASON_EPISODES[currentSeason];
+
+
+      if (
+        currentEpisode < total
+      ) {
+
+        selectEpisode(
+          currentEpisode + 1
+        );
+
+      }
+
+    }
+
+
+    /*
+     * ==================================================
+     * INITIALIZE
+     * ==================================================
+     */
 
     createEpisodes();
 
-    loadVideo();
+    updateEpisodeLabel();
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
+    loadEpisode();
 
 
-  /*
-   * =====================================================
-   * SERVER SWITCH
-   * =====================================================
-   */
-
-  function changeServer(server, button) {
-
-    currentServer = server;
-
-    document.querySelectorAll(".server").forEach(btn => {
-      btn.classList.remove("active");
-    });
-
-    button.classList.add("active");
-
-    loadVideo();
-
-  }
-
-
-  /*
-   * =====================================================
-   * LOAD VIDEO
-   * =====================================================
-   */
-
-  function loadVideo() {
-
-    const player = document.getElementById("videoPlayer");
-    const message = document.getElementById("playerMessage");
-
-    const source = VIDEO_SOURCES[currentServer];
-
-    if (!source) {
-
-      player.removeAttribute("src");
-      player.load();
-
-      message.textContent =
-        "No video source configured for this server.";
-
-      return;
-    }
-
-    player.src = source;
-
-    player.load();
-
-    message.textContent =
-      "Playing Season 3 • Episode " +
-      currentEpisode +
-      " • " +
-      currentServer;
-
-  }
-
-
-  /*
-   * =====================================================
-   * PREVIOUS
-   * =====================================================
-   */
-
-  function previousEpisode() {
-
-    if (currentEpisode > 1) {
-      selectEpisode(currentEpisode - 1);
-    }
-
-  }
-
-
-  /*
-   * =====================================================
-   * NEXT
-   * =====================================================
-   */
-
-  function nextEpisode() {
-
-    if (currentEpisode < totalEpisodes) {
-      selectEpisode(currentEpisode + 1);
-    }
-
-  }
-
-
-  /*
-   * INITIALIZE
-   */
-
-  createEpisodes();
-
-  loadVideo();
-
-</script>
+  </script>
 
 </body>
 </html>
