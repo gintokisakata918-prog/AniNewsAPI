@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetQubo - MAL Integrated Anime Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>NetQubo - Anime Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-body: #08090c;
@@ -13,11 +13,8 @@
             --bg-section-head: #1a1e2b;
             --border: #232838;
             --accent: #6c5ce7;
-            --accent-glow: rgba(108, 92, 231, 0.25);
             --text-main: #f1f2f6;
             --text-sub: #a4b0be;
-            --text-muted: #57606f;
-            --badge-orange: #ff9f43;
             --font-main: 'Plus Jakarta Sans', sans-serif;
         }
 
@@ -33,14 +30,11 @@
 
         .container { max-width: 800px; margin: 0 auto; }
 
-        /* Navigation Header */
         header {
             background: var(--bg-nav);
             border-bottom: 1px solid var(--border);
             padding: 12px 16px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
         }
 
         .header-content { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -48,89 +42,51 @@
 
         .logo-box {
             background: linear-gradient(135deg, var(--accent), #a55eea);
-            color: #fff; font-weight: 800; font-size: 16px;
-            padding: 6px 12px; border-radius: 8px;
-            box-shadow: 0 4px 12px var(--accent-glow);
+            color: #fff; font-weight: 800; font-size: 16px; padding: 6px 12px; border-radius: 8px;
         }
 
         .logo-text { font-size: 20px; font-weight: 800; }
 
-        /* Interactive MAL Search Box */
-        .search-container {
-            position: relative;
-            flex-grow: 1;
-            max-width: 320px;
-        }
+        .search-container { position: relative; flex-grow: 1; max-width: 320px; }
 
         .search-input {
-            width: 100%;
-            padding: 7px 14px;
-            border-radius: 20px;
-            background: var(--bg-body);
-            border: 1px solid var(--border);
-            color: #fff;
-            outline: none;
-            font-size: 13px;
+            width: 100%; padding: 8px 14px; border-radius: 20px;
+            background: var(--bg-body); border: 1px solid var(--border);
+            color: #fff; outline: none; font-size: 13px;
         }
 
-        .search-input:focus { border-color: var(--accent); }
-
-        /* MAL Incremental Results Dropdown */
         .search-dropdown {
-            display: none;
-            position: absolute;
-            top: 38px; left: 0; right: 0;
-            background: var(--bg-nav);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-            z-index: 200;
-            max-height: 400px;
-            overflow-y: auto;
+            display: none; position: absolute; top: 42px; left: 0; right: 0;
+            background: var(--bg-nav); border: 1px solid var(--border);
+            border-radius: 10px; overflow: hidden; max-height: 350px;
+            overflow-y: auto; z-index: 200;
         }
 
         .search-item {
-            display: flex; gap: 10px; padding: 8px 12px;
-            border-bottom: 1px solid var(--border);
-            cursor: pointer; align-items: center;
+            display: flex; gap: 10px; padding: 10px 12px;
+            border-bottom: 1px solid var(--border); cursor: pointer; align-items: center;
         }
 
-        .search-item:last-child { border-bottom: none; }
         .search-item:hover { background: var(--bg-card); }
-        .search-thumb { width: 35px; height: 50px; border-radius: 4px; object-fit: cover; flex-shrink: 0; }
+        .search-thumb { width: 40px; height: 55px; border-radius: 4px; object-fit: cover; }
         .search-name { font-size: 13px; font-weight: 700; color: var(--text-main); }
         .search-meta { font-size: 11px; color: var(--text-sub); }
 
-        /* Section Bars */
         .section-bar {
-            background: var(--bg-section-head);
-            border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-            padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; margin-top: 16px;
+            background: var(--bg-section-head); border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border); padding: 10px 16px;
+            display: flex; justify-content: space-between; align-items: center; margin-top: 16px;
         }
 
-        .section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
-        .btn-more {
-            background: var(--accent); color: #fff; padding: 3px 10px;
-            border-radius: 4px; font-size: 12px; font-weight: 700; text-decoration: none;
-        }
+        .section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; }
+        .btn-more { background: var(--accent); color: #fff; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; text-decoration: none; }
 
-        /* Feeds */
         .feed-list, .announcement-list { background: var(--bg-card); }
-
-        .announcement-item { padding: 12px 16px; border-bottom: 1px solid var(--border); cursor: pointer; }
-        .announcement-title { font-size: 14px; font-weight: 700; color: #70a1ff; margin-bottom: 4px; }
-
-        .feed-item {
-            display: flex; gap: 14px; padding: 14px 16px;
-            border-bottom: 1px solid var(--border); align-items: center; cursor: pointer;
-        }
-
+        .feed-item, .announcement-item { display: flex; gap: 14px; padding: 14px 16px; border-bottom: 1px solid var(--border); align-items: center; cursor: pointer; }
         .feed-thumb { width: 85px; height: 60px; border-radius: 8px; object-fit: cover; }
-        .feed-title { font-size: 14px; font-weight: 700; line-height: 1.4; margin-bottom: 6px; }
+        .feed-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
         .feed-meta, .announcement-meta { font-size: 12px; color: var(--text-sub); }
 
-        /* Modal Overlay */
         .modal {
             display: none; position: fixed; top: 0; left: 0;
             width: 100%; height: 100%; background: rgba(0,0,0,0.85);
@@ -142,15 +98,10 @@
             border-radius: 12px; border: 1px solid var(--border); padding: 20px; position: relative;
         }
 
-        .close-btn {
-            position: absolute; top: 15px; right: 15px; font-size: 22px;
-            color: var(--text-sub); cursor: pointer; border: none; background: none;
-        }
-
+        .close-btn { position: absolute; top: 15px; right: 15px; font-size: 22px; color: var(--text-sub); cursor: pointer; border: none; background: none; }
         .modal-title { font-size: 18px; font-weight: 800; margin-bottom: 6px; padding-right: 25px; }
-        .modal-author { font-size: 12px; color: var(--text-sub); margin-bottom: 14px; }
-        .modal-img { width: 100%; height: 240px; object-fit: cover; border-radius: 8px; margin-bottom: 14px; }
-        .modal-desc { font-size: 13px; color: var(--text-sub); line-height: 1.6; margin-bottom: 16px; }
+        .modal-img { width: 100%; height: 260px; object-fit: cover; border-radius: 8px; margin: 12px 0; }
+        .modal-desc { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -161,130 +112,97 @@
                 <div class="logo-box">NQ</div>
                 <div class="logo-text">NetQubo</div>
             </div>
-
-            <!-- Real-time Dropdown Search -->
             <div class="search-container">
-                <input type="text" class="search-input" id="searchInput" placeholder="Search Anime, Manga..." oninput="handleSearch()">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search Anime (e.g. Naruto)..." oninput="liveSearch()">
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
         </div>
     </header>
 
     <div class="container">
-        <!-- MAL Announcement Feed -->
         <div class="section-bar">
             <span class="section-title">Announcement</span>
             <a href="#" class="btn-more">More ></a>
         </div>
         <div class="announcement-list">
-            <div class="announcement-item" onclick="openDetails('Planned 2hr Maintenance', 'Kineta', 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg', 'System', 'Planned maintenance for infrastructure optimization.')">
-                <div class="announcement-title">Planned 2hr Maintenance, Sunday August 23 @ 12am-2am PT</div>
-                <div class="announcement-meta">Aug 19, 2:12 PM by Kineta • 0 replies</div>
+            <div class="announcement-item" onclick="openDetails('Planned Maintenance', 'https://cdn.myanimelist.net/images/anime/1806/126216.jpg', 'System maintenance updates.')">
+                <div>
+                    <div class="feed-title" style="color: #70a1ff;">Planned 2hr Maintenance, Sunday August 23</div>
+                    <div class="announcement-meta">Aug 19, 2:12 PM by Kineta</div>
+                </div>
             </div>
         </div>
 
-        <!-- MAL News Feed -->
         <div class="section-bar">
             <span class="section-title">Latest Anime News</span>
             <a href="#" class="btn-more">More ></a>
         </div>
-        <div class="feed-list">
-            <div class="feed-item" onclick="openDetails('Conqueror Is Secretly a Hero Back from Another World', 'Yoichi Sakaki', 'https://cdn.myanimelist.net/images/anime/1908/120036.jpg', 'Action, Fantasy', 'Rento Yuuki defeats the demon lord in another world and returns home safely.')">
+        <div class="feed-list" id="newsList">
+            <div class="feed-item" onclick="openDetails('Conqueror Is Secretly a Hero', 'https://cdn.myanimelist.net/images/anime/1908/120036.jpg', 'Hero returning from another world.')">
                 <img src="https://cdn.myanimelist.net/images/anime/1908/120036.jpg" class="feed-thumb">
-                <div class="feed-content">
+                <div>
                     <div class="feed-title">Conqueror Is Secretly a Hero Back from Another World</div>
-                    <div class="feed-meta"><span>Anime News Network</span> • <span>2 hours ago</span></div>
+                    <div class="feed-meta">Anime News Network • 2 hours ago</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Click Popup Modal -->
     <div id="infoModal" class="modal">
         <div class="modal-content">
             <button class="close-btn" onclick="closeDetails()">&times;</button>
             <h2 id="mTitle" class="modal-title"></h2>
-            <div id="mAuthor" class="modal-author"></div>
             <img id="mImg" class="modal-img" src="">
             <div id="mDesc" class="modal-desc"></div>
         </div>
     </div>
 
     <script>
-        let searchTimeout;
+        let searchTimer;
 
-        function handleSearch() {
-            clearTimeout(searchTimeout);
-            let input = document.getElementById('searchInput').value.trim();
-            let dropdown = document.getElementById('searchDropdown');
+        function liveSearch() {
+            clearTimeout(searchTimer);
+            const query = document.getElementById('searchInput').value.trim();
+            const dropdown = document.getElementById('searchDropdown');
 
-            if (input.length === 0) {
+            if (query.length < 3) {
                 dropdown.style.display = 'none';
-                dropdown.innerHTML = '';
                 return;
             }
 
-            // Debounce so we don't spam the API on every keystroke
-            searchTimeout = setTimeout(() => fetchResults(input), 400);
+            searchTimer = setTimeout(() => {
+                fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=5`)
+                    .then(res => res.json())
+                    .then(data => {
+                        dropdown.innerHTML = '';
+                        if (!data.data || data.data.length === 0) {
+                            dropdown.innerHTML = `<div class="search-item"><div class="search-name">No results found</div></div>`;
+                        } else {
+                            data.data.forEach(anime => {
+                                const item = document.createElement('div');
+                                item.className = 'search-item';
+                                item.onclick = () => openDetails(anime.title, anime.images.jpg.large_image_url, anime.synopsis || 'No description available.');
+                                item.innerHTML = `
+                                    <img src="${anime.images.jpg.image_url}" class="search-thumb">
+                                    <div>
+                                        <div class="search-name">${anime.title}</div>
+                                        <div class="search-meta">${anime.type || 'Anime'} • Score: ${anime.score || 'N/A'}</div>
+                                    </div>
+                                `;
+                                dropdown.appendChild(item);
+                            });
+                        }
+                        dropdown.style.display = 'block';
+                    })
+                    .catch(() => {
+                        dropdown.innerHTML = `<div class="search-item"><div class="search-name">Error fetching results</div></div>`;
+                        dropdown.style.display = 'block';
+                    });
+            }, 300);
         }
 
-        async function fetchResults(query) {
-            let dropdown = document.getElementById('searchDropdown');
-            dropdown.innerHTML = '<div class="search-item"><div class="search-name">Searching...</div></div>';
-            dropdown.style.display = 'block';
-
-            try {
-                const res = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=6`);
-                const data = await res.json();
-
-                if (!data.data || data.data.length === 0) {
-                    dropdown.innerHTML = '<div class="search-item"><div class="search-name">No results found</div></div>';
-                    return;
-                }
-
-                dropdown.innerHTML = data.data.map(anime => {
-                    const title = escapeForAttr(anime.title || 'Unknown');
-                    const author = escapeForAttr(anime.studios?.[0]?.name || 'Unknown Studio');
-                    const img = anime.images?.jpg?.image_url || '';
-                    const genres = escapeForAttr((anime.genres || []).map(g => g.name).join(', '));
-                    const desc = escapeForAttr((anime.synopsis || 'No description available.').replace(/\n/g, ' '));
-                    const score = anime.score || 'N/A';
-                    const type = anime.type || 'TV';
-
-                    return `
-                        <div class="search-item" onclick="openDetails('${title}', '${author}', '${img}', '${genres}', '${desc}')">
-                            <img src="${img}" class="search-thumb">
-                            <div>
-                                <div class="search-name">${escapeHtml(anime.title || 'Unknown')}</div>
-                                <div class="search-meta">${type} • Score: ${score}</div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            } catch (err) {
-                dropdown.innerHTML = '<div class="search-item"><div class="search-name">Error loading results</div></div>';
-                console.error(err);
-            }
-        }
-
-        // Escapes text for safe use inside single-quoted onclick="..." attributes
-        function escapeForAttr(str) {
-            return String(str)
-                .replace(/\\/g, '\\\\')
-                .replace(/'/g, "\\'")
-                .replace(/"/g, '&quot;');
-        }
-
-        // Escapes text for safe use as HTML content
-        function escapeHtml(str) {
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        function openDetails(title, author, img, genres, desc) {
+        function openDetails(title, img, desc) {
             document.getElementById('mTitle').innerText = title;
-            document.getElementById('mAuthor').innerText = "Author/Publisher: " + author;
             document.getElementById('mImg').src = img;
             document.getElementById('mDesc').innerText = desc;
             document.getElementById('infoModal').style.display = 'block';
@@ -294,14 +212,7 @@
         function closeDetails() {
             document.getElementById('infoModal').style.display = 'none';
         }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            const container = document.querySelector('.search-container');
-            if (!container.contains(e.target)) {
-                document.getElementById('searchDropdown').style.display = 'none';
-            }
-        });
     </script>
 </body>
 </html>
+
