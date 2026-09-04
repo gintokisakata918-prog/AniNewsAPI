@@ -248,13 +248,13 @@ const STATUS_META = {
 /* ---------- PERSISTENCE ---------- */
 async function loadLibrary(){
   try{
-    const res = await window.storage.get('library');
-    if(res && res.value) library = JSON.parse(res.value);
+    const raw = localStorage.getItem('zuraflix_library');
+    if(raw) library = JSON.parse(raw);
   }catch(e){ library = {}; }
   render();
 }
 async function saveLibrary(){
-  try{ await window.storage.set('library', JSON.stringify(library)); }catch(e){}
+  try{ localStorage.setItem('zuraflix_library', JSON.stringify(library)); }catch(e){}
 }
 
 /* ---------- HELPERS ---------- */
@@ -370,4 +370,4 @@ function cardHTML(a){
   </div>`;
 }
 function starSVGsmall(){
-  return `<svg width="10" height="10" viewB
+  return `<svg width="10" height="10" viewBox="0 0 2
