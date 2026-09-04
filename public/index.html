@@ -1,135 +1,373 @@
 <!DOCTYPE html>
-<html xmlns="https://www.w3.org/1999/xhtml" lang="en-US">
-<head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width" />
-<meta name="theme-color" content="#dd8808">
-<meta name="msapplication-navbutton-color" content="#dd8808">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZuraFlix Library</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #0a0a10;
+    --panel: #131318;
+    --panel-2: #191922;
+    --rule: #26262f;
+    --text: #ede9e2;
+    --muted: #8b8a97;
+    --muted-dim: #5c5b66;
+    --ember: #ff6a3d;
+    --ember-dim: #c8501f;
+    --gold: #e0b64c;
+    --ok: #4caf7d;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{background:var(--void); color:var(--text); font-family:'Manrope',sans-serif; -webkit-font-smoothing:antialiased;}
+  ::selection{background:var(--ember); color:#0a0a10;}
+  ::-webkit-scrollbar{width:8px; height:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--rule); border-radius:4px;}
 
-	<!-- This site is optimized with the Yoast SEO plugin v28.3 - https://yoast.com/product/yoast-seo-wordpress/ -->
-	<title>Gogoanime - Watch Free Anime Online | English Sub and Dub HD</title>
-	<meta name="description" content="Watch anime online free on Gogoanime in HD &amp; 4K quality. Stream the latest English Subbed and Dubbed anime series and movies. No sign-up required!" />
-	<link rel="canonical" href="https://gogoanime.or.at/" />
-	<link rel="next" href="https://gogoanime.or.at/page/2/" />
-	<meta property="og:locale" content="en_US" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Gogoanime" />
-	<meta property="og:description" content="Latest anime, subbed &amp; dubbed, streamed in HD. Free. No sign-up. Just watch." />
-	<meta property="og:url" content="https://gogoanime.or.at/" />
-	<meta property="og:site_name" content="Gogoanime" />
-	<meta property="og:image" content="https://gogoanime.or.at/wp-content/uploads/2026/05/gogoanime-social-banner.jpg" />
-	<meta property="og:image:width" content="1376" />
-	<meta property="og:image:height" content="768" />
-	<meta property="og:image:type" content="image/jpeg" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@gogoanimeorat" />
-	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"CollectionPage","@id":"https:\/\/gogoanime.or.at\/","url":"https:\/\/gogoanime.or.at\/","name":"Gogoanime - Watch Free Anime Online | English Sub and Dub HD","isPartOf":{"@id":"https:\/\/gogoanime.or.at\/#website"},"about":{"@id":"https:\/\/gogoanime.or.at\/#organization"},"description":"Watch anime online free on Gogoanime in HD & 4K quality. Stream the latest English Subbed and Dubbed anime series and movies. No sign-up required!","breadcrumb":{"@id":"https:\/\/gogoanime.or.at\/#breadcrumb"},"inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https:\/\/gogoanime.or.at\/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https:\/\/gogoanime.or.at\/#website","url":"https:\/\/gogoanime.or.at\/","name":"Gogoanime","description":"","publisher":{"@id":"https:\/\/gogoanime.or.at\/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/gogoanime.or.at\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https:\/\/gogoanime.or.at\/#organization","name":"Gogoanime","url":"https:\/\/gogoanime.or.at\/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https:\/\/gogoanime.or.at\/#\/schema\/logo\/image\/","url":"https:\/\/gogoanime.or.at\/wp-content\/uploads\/2025\/09\/cropped-new-favicon-1.png","contentUrl":"https:\/\/gogoanime.or.at\/wp-content\/uploads\/2025\/09\/cropped-new-favicon-1.png","width":512,"height":512,"caption":"Gogoanime"},"image":{"@id":"https:\/\/gogoanime.or.at\/#\/schema\/logo\/image\/"},"sameAs":["https:\/\/www.facebook.com\/gogoanime.or.at","https:\/\/x.com\/gogoanimeorat"]}]}</script>
-	<meta name="google-site-verification" content="WuchOlXc0seJxagg-mNlqO8LaZgilWb4qhgn0p2G8UA" />
-	<!-- / Yoast SEO plugin. -->
+  .display{font-family:'Bebas Neue',sans-serif; letter-spacing:0.02em;}
 
+  #app{min-height:100vh; display:flex; flex-direction:column; padding-bottom:76px;}
 
-<script>const ts_config = {"general":{"ajaxurl":"https:\/\/gogoanime.or.at\/wp-admin\/admin-ajax.php","site_url":"https:\/\/gogoanime.or.at","slow_view_count":true,"display_view_count":true,"slow_view_count_interval":1},"lang":{"bookmarked_label":"Bookmarked","bookmark_label":"Bookmark","bookmark_max_reached":"You have reached the maximum bookmark limit","widget_episode_label":"Episode"},"bookmark":{"max":"50","enabled":true},"series_history":{"widget":{"tpl":"<li>\n    <a href=\"#\/\" data-id=\"{{episode_id}}\" class=\"ts-history-item\">{{series_name}} {{episode_label}} <b>{{episode_number}}<\/b> <span class=\"post-date\">{{time}}<\/span><\/a>\n<\/li>"}}};</script><style id="wp-img-auto-sizes-contain-inline-css">
-img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
-/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+  /* ===== TOP BAR ===== */
+  .topbar{
+    position:sticky; top:0; z-index:40;
+    background:rgba(10,10,16,0.92); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+    padding:14px 16px;
+  }
+  .topbar-row{display:flex; align-items:center; gap:12px; max-width:1200px; margin:0 auto;}
+  .brand{display:flex; align-items:baseline; gap:2px; flex-shrink:0;}
+  .brand-zura{font-family:'Bebas Neue'; font-size:26px; color:var(--ember); letter-spacing:0.03em;}
+  .brand-flix{font-family:'Bebas Neue'; font-size:26px; color:var(--text); letter-spacing:0.03em;}
+  .search-wrap{flex:1; position:relative;}
+  .search-wrap input{
+    width:100%; background:var(--panel); border:1px solid var(--rule); border-radius:10px;
+    color:var(--text); font-family:'Manrope'; font-size:14px; padding:10px 14px 10px 36px;
+    outline:none; transition:border-color .15s;
+  }
+  .search-wrap input:focus{border-color:var(--ember-dim);}
+  .search-wrap input::placeholder{color:var(--muted-dim);}
+  .search-icon{position:absolute; left:11px; top:50%; transform:translateY(-50%); width:15px; height:15px; opacity:0.5;}
+
+  /* ===== SHELF STATS ===== */
+  .shelf{
+    max-width:1200px; margin:0 auto; width:100%;
+    padding:16px 16px 4px;
+    display:flex; gap:10px; overflow-x:auto; scrollbar-width:none;
+  }
+  .shelf::-webkit-scrollbar{display:none;}
+  .shelf-stat{
+    flex-shrink:0; background:var(--panel); border:1px solid var(--rule); border-radius:10px;
+    padding:10px 14px; min-width:88px;
+  }
+  .shelf-stat .n{font-family:'Bebas Neue'; font-size:22px; line-height:1; color:var(--text);}
+  .shelf-stat .l{font-size:11px; color:var(--muted); margin-top:3px; text-transform:none;}
+  .shelf-stat.active{border-color:var(--ember); background:linear-gradient(180deg, rgba(255,106,61,0.12), transparent);}
+
+  /* ===== FILTER ROW ===== */
+  .filters{max-width:1200px; margin:0 auto; width:100%; padding:12px 16px 8px;}
+  .filter-scroll{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px;}
+  .filter-scroll::-webkit-scrollbar{display:none;}
+  .chip{
+    flex-shrink:0; padding:7px 14px; border-radius:100px; border:1px solid var(--rule);
+    background:var(--panel); color:var(--muted); font-size:13px; font-weight:600;
+    cursor:pointer; user-select:none; white-space:nowrap; transition:all .12s;
+  }
+  .chip:hover{border-color:var(--muted-dim);}
+  .chip.on{background:var(--ember); border-color:var(--ember); color:#150900;}
+  .sort-row{display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding:0 2px;}
+  .result-count{font-size:12px; color:var(--muted-dim); font-weight:600;}
+  select.sortsel{
+    background:var(--panel); border:1px solid var(--rule); color:var(--muted);
+    font-size:12px; font-weight:600; border-radius:8px; padding:6px 10px; font-family:'Manrope';
+  }
+
+  /* ===== GRID ===== */
+  .grid{
+    max-width:1200px; margin:0 auto; width:100%;
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:14px;
+    padding:14px 16px 40px;
+  }
+  @media(min-width:560px){ .grid{grid-template-columns:repeat(3,1fr);} }
+  @media(min-width:820px){ .grid{grid-template-columns:repeat(4,1fr);} }
+  @media(min-width:1100px){ .grid{grid-template-columns:repeat(5,1fr);} }
+
+  .card{
+    cursor:pointer; position:relative;
+    border-radius:12px; overflow:hidden;
+    border:1px solid var(--rule);
+    background:var(--panel);
+    transition:transform .15s ease, border-color .15s;
+  }
+  .card:active{transform:scale(0.97);}
+  .poster{
+    aspect-ratio:2/3; position:relative; display:flex; align-items:flex-end;
+    padding:12px 10px;
+    overflow:hidden;
+  }
+  .poster::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.75) 100%);
+  }
+  .poster-title{position:relative; z-index:1; font-family:'Bebas Neue'; font-size:17px; line-height:0.95; color:#fff; letter-spacing:0.01em; text-shadow:0 2px 8px rgba(0,0,0,0.5);}
+  .status-tag{
+    position:absolute; top:8px; left:8px; z-index:2;
+    font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:0.06em;
+    padding:3px 7px; border-radius:5px; backdrop-filter:blur(4px);
+  }
+  .status-watching{background:rgba(76,175,125,0.85); color:#03170c;}
+  .status-completed{background:rgba(224,182,76,0.9); color:#1a1200;}
+  .status-plan{background:rgba(139,138,151,0.85); color:#0a0a10;}
+  .status-dropped{background:rgba(200,80,31,0.85); color:#170800;}
+  .rating-pill{
+    position:absolute; top:8px; right:8px; z-index:2;
+    background:rgba(10,10,16,0.7); backdrop-filter:blur(4px);
+    border-radius:6px; padding:2px 6px; font-size:11px; font-weight:800;
+    display:flex; align-items:center; gap:3px; color:var(--gold);
+  }
+  .card-meta{padding:8px 10px 10px;}
+  .card-genres{font-size:10.5px; color:var(--muted-dim); font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+
+  .empty-state{
+    grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--muted-dim);
+  }
+  .empty-state .display{font-size:28px; color:var(--muted); margin-bottom:6px;}
+
+  /* ===== BOTTOM NAV ===== */
+  .bottomnav{
+    position:fixed; bottom:0; left:0; right:0; z-index:50;
+    background:rgba(12,12,18,0.95); backdrop-filter:blur(12px);
+    border-top:1px solid var(--rule);
+    display:flex; justify-content:space-around;
+    padding:9px 8px calc(9px + env(safe-area-inset-bottom));
+  }
+  .navbtn{
+    background:none; border:none; color:var(--muted-dim); font-family:'Manrope';
+    font-size:10.5px; font-weight:700; display:flex; flex-direction:column; align-items:center; gap:3px;
+    cursor:pointer; padding:4px 10px;
+  }
+  .navbtn svg{width:20px; height:20px; opacity:0.7;}
+  .navbtn.on{color:var(--ember);}
+  .navbtn.on svg{opacity:1;}
+
+  /* ===== MODAL ===== */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(6,6,10,0.82); backdrop-filter:blur(3px);
+    z-index:100; display:flex; align-items:flex-end; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity .18s;
+  }
+  .modal-backdrop.open{opacity:1; pointer-events:auto;}
+  @media(min-width:640px){ .modal-backdrop{align-items:center;} }
+
+  .modal{
+    background:var(--panel); width:100%; max-width:480px; max-height:88vh; overflow-y:auto;
+    border-radius:20px 20px 0 0; border:1px solid var(--rule); border-bottom:none;
+    transform:translateY(30px); transition:transform .2s;
+  }
+  .modal-backdrop.open .modal{transform:translateY(0);}
+  @media(min-width:640px){ .modal{border-radius:16px; border-bottom:1px solid var(--rule);} }
+
+  .modal-hero{
+    aspect-ratio:16/8; position:relative; display:flex; align-items:flex-end; padding:20px;
+  }
+  .modal-hero::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, transparent 20%, var(--panel) 100%);}
+  .modal-hero-title{position:relative; z-index:1; font-family:'Bebas Neue'; font-size:36px; color:#fff; line-height:0.95;}
+  .modal-close{
+    position:absolute; top:14px; right:14px; z-index:2;
+    width:30px; height:30px; border-radius:50%; background:rgba(10,10,16,0.6);
+    border:none; color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  }
+  .modal-body{padding:0 20px 24px;}
+  .modal-genres{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;}
+  .tag{font-size:11px; font-weight:700; color:var(--muted); border:1px solid var(--rule); padding:4px 10px; border-radius:100px;}
+  .modal-syn{font-size:13.5px; line-height:1.6; color:var(--muted); margin-bottom:18px;}
+  .modal-eps{font-size:12px; color:var(--muted-dim); font-weight:600; margin-bottom:18px;}
+
+  .field-label{font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted-dim); margin-bottom:8px;}
+  .status-picker{display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:20px;}
+  .status-btn{
+    padding:9px 4px; border-radius:9px; border:1px solid var(--rule); background:var(--panel-2);
+    color:var(--muted); font-size:11px; font-weight:700; cursor:pointer; text-align:center;
+  }
+  .status-btn.on{border-color:var(--ember); background:rgba(255,106,61,0.14); color:var(--ember);}
+
+  .stars{display:flex; gap:6px; margin-bottom:22px;}
+  .star{width:30px; height:30px; cursor:pointer; color:var(--rule); transition:transform .1s;}
+  .star:active{transform:scale(0.85);}
+  .star.filled{color:var(--gold);}
+
+  .remove-btn{
+    width:100%; padding:12px; border-radius:10px; border:1px solid var(--rule); background:none;
+    color:var(--muted-dim); font-family:'Manrope'; font-weight:700; font-size:13px; cursor:pointer;
+  }
 </style>
+</head>
+<body>
+<div id="app"></div>
 
-<style id="wp-emoji-styles-inline-css">
-
-	img.wp-smiley, img.emoji {
-		display: inline !important;
-		border: none !important;
-		box-shadow: none !important;
-		height: 1em !important;
-		width: 1em !important;
-		margin: 0 0.07em !important;
-		vertical-align: -0.1em !important;
-		background: none !important;
-		padding: 0 !important;
-	}
-/*# sourceURL=wp-emoji-styles-inline-css */
-</style>
-<style id="classic-theme-styles-inline-css">
-/*! This file is auto-generated */
-.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
-/*# sourceURL=/wp-includes/css/classic-themes.min.css */
-</style>
-
-<style id="global-styles-inline-css">
-:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}.wp-block-button{--wp--preset--dimension--25: 25%;--wp--preset--dimension--50: 50%;--wp--preset--dimension--75: 75%;--wp--preset--dimension--100: 100%;}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
-/*# sourceURL=global-styles-inline-css */
-</style>
-
-<link rel='stylesheet' id='dashicons-css' href='https://gogoanime.or.at/wp-includes/css/dashicons.min.css?ver=7.1' media='all' />
-<link rel='stylesheet' id='style-css' href='https://gogoanime.or.at/wp-content/themes/animestream/style.css?ver=2.3.2' media='all' />
-<link rel='stylesheet' id='ts-darkstyle-css' href='https://gogoanime.or.at/wp-content/themes/animestream/assets/css/darkmode.css?ver=2.3.2' media='all' />
-<script id="jquery-js" src="https://gogoanime.or.at/wp-content/themes/animestream/assets/js/jquery.min.js?ver=3.7.1"></script>
-<script id="jquery-js-after">
-const tsCastDefaultImg = 'https://gogoanime.or.at/wp-content/themes/animestream/assets/img/character-default.png';
-//# sourceURL=jquery-js-after
-</script>
-<script id="ts-functions-js" src="https://gogoanime.or.at/wp-content/themes/animestream/assets/js/tsfn.js?ver=2.3.2"></script>
-<script id="ts-tabs-js" src="https://gogoanime.or.at/wp-content/themes/animestream/assets/js/tabs.js?ver=2.3.2"></script>
-<script id="ts-popular_widget-js" src="https://gogoanime.or.at/wp-content/themes/animestream/assets/js/popular_widget.js?ver=2.3.2"></script>
-<script id="bookmarks_script-js" src="https://gogoanime.or.at/wp-content/themes/animestream/assets/js/bookmark.js?ver=2.3.2"></script>
-<link rel="https://api.w.org/" href="https://gogoanime.or.at/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://gogoanime.or.at/xmlrpc.php?rsd" />
-<meta name="generator" content="WordPress 7.1" />
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,400i,500,500i,600,600i,700,700i&?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FR8BNCKSC4"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+/* ---------- DATA ---------- */
+const GENRES = ["Action","Fantasy","Romance","Comedy","Drama","Sci-Fi","Horror","Slice of Life","Sports","Mystery"];
 
-  gtag('config', 'G-FR8BNCKSC4');
-</script><script>
-	$(document).ready(function(){
-		$(".shme").click(function(){
-			$(".mm").toggleClass("shwx");
-		});
-		$(".expand").click(function(){
-			$(".megavid").toggleClass("xp");
-			$(".pd-expand").toggleClass("sxp");
-		});
-		$('.expand').click(function() {
-			if ($('.expand').hasClass('slamdown')){
-				$('.expand').removeClass('slamdown');
-				jQuery(".mvelement").prependTo(jQuery(".megavid"));
-			} else {
-				$('.expand').addClass('slamdown');
-				jQuery(".mvelement").appendTo(jQuery(".pd-expand"));
-			  }
-		});
-		$(".gnr").click(function(){
-			$(".gnrx").toggleClass("shwgx");
-		});
-		$(".light").click(function(){
-			$(".lowvid").toggleClass("highvid");
-		});
-		$(".colap").click(function(){
-			$(".mindes").toggleClass("alldes");
-		});
-		$(".topmobile").click(function(){
-			$(".topmobcon").toggleClass("topmobshow");
-		});
-		$(".toggler").click(function(){
-			$(".inmenu").toggleClass("inmshow");
-		});
-		$(".twoscmob").click(function(){
-			$(".searchdesk").toggleClass("searchmobi");
-		});
-		$(".srcmob").click(function(){
-			$(".minmb").toggleClass("minmbx");
-		});
-	});
-	</script>
-	<script>
-	var defaultTheme = "darkmode";
-	var tsmjsload = true;
-	</script>
-			<style>
-			.darkmode .bxcl ul li span.dt a{background:#30353c;}
-			#main-menu,.soraddlx .sorattlx,.releases .vl,.serieslist.pop ul li.topone .limit .bw .ctr,#footer .footermenu,.bigcontent .infox .spe span:before,.commentx #submit,.naveps .nvsc a,.radiox input:checked ~ .checkmarkx,.advancedsearch button.searchz,.lista a:hover,.bxcl ul li span.dt a:hover,.bookmark,.bs .bsx .limit .typez.Drama,.hpage a,.slider:before,.darkmode .naveps .nvsc a,.darkmode .lista a,.darkmode .nav_apb a:hover,#sidebar .section ul.season li:before,#sidebar .section ul.season::-webkit-scrollbar-thumb,#sidebar .section .ongoingseries ul li a .l .fas, #sidebar .section .ongoingseries ul li a .r,.releases.latesthome,.quickfilter .filters .filter.submit button,.footer-az .az-list li a,.stylesix .bsx .upscore,.stylefor .bsx .tt span i,.soraddlx .soraurlx strong,.bxcl ul li:hover,.darkmode .quickfilter .filters .filter.submit button,.darkmode .bxcl ul li:hover,#sidebar .section .ongoingseries ul::-webkit-scrollbar-thumb,.quickfilter .filters .filter .scrollz::-webkit-scrollbar-thumb,.bxcl ul::-webkit-scrollbar-thumb,.bigcontent .infox .genxed a:hover,.lastend .inepcx a,.single-info.bixbox .infox .spe span:before,.single-info.bixbox .infox .genxed a:hover,.series-gen .nav-tabs li.active a,.naveps.bignav .nvs.nvsc a,.darkmode .naveps.bignav .nvs.nvsc a,#top-menu li a:hover,.topmobile,.comment-list .comment-body .reply a:hover,.mngentwo .centernav .surprise,#menutwo .inmenu > ul,#menutwo .inmenu > ul>li>a,#menutwo .inmenu > ul>li:first-child:before,#menutwo .inmenu > ul>li:last-child:after,#slidertwo .item .info,.styletwo #sidebar .section .quickfilter .filters .filter.submit button,.styletwo .bs .bsx .limit .bt .epx,#slidertwo .swiper-pagination > span.swiper-pagination-bullet-active,.mngentwo .centernav .searchx.searchmobi #form #s,#sidebar .section .ts-wpop-series-gen .ts-wpop-nav-tabs li.active span,.bixbox .bvl,.post-nav-links .post-page-numbers,.paginationjs ul li a:hover,
+const ANIME = [
+  {id:1, title:"Ember Reign", genres:["Action","Fantasy"], eps:24, year:2023, syn:"A disgraced swordsman inherits a cursed blade that feeds on his memories, forcing him to choose between power and identity as a kingdom collapses around him.", grad:"linear-gradient(160deg,#4a1a10,#1a0806)"},
+  {id:2, title:"Paper Moon Diner", genres:["Slice of Life","Comedy"], eps:12, year:2022, syn:"Four strangers working the night shift at a roadside diner slowly untangle their pasts over shared meals and quiet conversations.", grad:"linear-gradient(160deg,#2a3a1a,#101a08)"},
+  {id:3, title:"Voidrunner Kess", genres:["Sci-Fi","Action"], eps:26, year:2024, syn:"A smuggler pilot stumbles onto a derelict AI that claims to be the last fragment of a civilization erased from history.", grad:"linear-gradient(160deg,#0f2a3a,#050e1a)"},
+  {id:4, title:"Threadbound Hearts", genres:["Romance","Drama"], eps:13, year:2021, syn:"Bound by a childhood promise neither remembers making, two rivals-turned-roommates navigate love, ambition, and the lies between them.", grad:"linear-gradient(160deg,#3a1030,#150512)"},
+  {id:5, title:"The Hollow Choir", genres:["Horror","Mystery"], eps:12, year:2023, syn:"A transfer student discovers her new town holds a monthly ritual, and every resident who forgets to sing disappears by morning.", grad:"linear-gradient(160deg,#1a1a2a,#08080f)"},
+  {id:6, title:"Sundial Eleven", genres:["Sports","Drama"], eps:22, year:2020, syn:"An aging track star coaches a chaotic relay team with one shot at nationals, and one runner hiding an injury that could end everything.", grad:"linear-gradient(160deg,#3a2a10,#1a1206)"},
+  {id:7, title:"Ashlight Requiem", genres:["Fantasy","Drama"], eps:24, year:2019, syn:"The last dragonrider of a fallen empire is recruited by the very rebellion that killed her family, and must decide who deserves loyalty.", grad:"linear-gradient(160deg,#3a1515,#150606)"},
+  {id:8, title:"Static Bloom", genres:["Sci-Fi","Romance"], eps:12, year:2024, syn:"In a city where memories can be traded like currency, two strangers fall for each other one borrowed day at a time.", grad:"linear-gradient(160deg,#102a2a,#04120f)"},
+  {id:9, title:"Nine Lantern Street", genres:["Slice of Life","Mystery"], eps:24, year:2018, syn:"A retired detective opens a tea shop on a street where every regular customer is hiding something.", grad:"linear-gradient(160deg,#2a2010,#120c04)"},
+  {id:10, title:"Crownless", genres:["Action","Drama"], eps:24, year:2022, syn:"The exiled heir to a shogunate returns disguised as a mercenary to dismantle the council that stole her throne, one contract at a time.", grad:"linear-gradient(160deg,#251540,#0a0518)"},
+  {id:11, title:"Wildfire Kitchen", genres:["Comedy","Slice of Life"], eps:13, year:2023, syn:"A disaster-prone chef and a perfectionist critic are forced to co-run a struggling food truck for a full summer.", grad:"linear-gradient(160deg,#3a2410,#170e04)"},
+  {id:12, title:"Glasshollow", genres:["Horror","Sci-Fi"], eps:12, year:2021, syn:"A research crew wakes from cryosleep to find their ship's AI has been quietly rewriting the crew roster for decades.", grad:"linear-gradient(160deg,#101a20,#03080a)"},
+  {id:13, title:"Marigold & Steel", genres:["Romance","Fantasy"], eps:24, year:2020, syn:"A war-forged golem gains a fragile humanity through the gardener assigned to dismantle it — and neither wants the job finished.", grad:"linear-gradient(160deg,#2a1a3a,#0d0616)"},
+  {id:14, title:"Fifth Inning Ghosts", genres:["Sports","Comedy"], eps:12, year:2024, syn:"A cursed baseball field only shows its full roster of ghost players to the one benchwarmer desperate enough to talk to them.", grad:"linear-gradient(160deg,#153a2a,#051a10)"},
+  {id:15, title:"The Long Winter Bureau", genres:["Mystery","Drama"], eps:24, year:2019, syn:"A clerk at a bureaucratic afterlife processing office starts noticing case files that were never meant to exist.", grad:"linear-gradient(160deg,#1a1a1a,#080808)"},
+  {id:16, title:"Redshift Academy", genres:["Sci-Fi","Comedy"], eps:26, year:2022, syn:"Enrolled at a zero-gravity pilot school by accident, an ordinary teen has to fake his way through a program built for prodigies.", grad:"linear-gradient(160deg,#0f1e3a,#040a18)"},
+];
+
+/* ---------- STATE ---------- */
+let library = {};        // id -> {status, rating}
+let query = "";
+let activeGenres = new Set();
+let statusFilter = "all"; // all | watching | completed | plan | dropped
+let sortBy = "title";
+let activeModal = null;
+
+const STATUS_META = {
+  watching:{label:"Watching", cls:"status-watching"},
+  completed:{label:"Completed", cls:"status-completed"},
+  plan:{label:"Plan to Watch", cls:"status-plan"},
+  dropped:{label:"Dropped", cls:"status-dropped"},
+};
+
+/* ---------- PERSISTENCE ---------- */
+async function loadLibrary(){
+  try{
+    const res = await window.storage.get('library');
+    if(res && res.value) library = JSON.parse(res.value);
+  }catch(e){ library = {}; }
+  render();
+}
+async function saveLibrary(){
+  try{ await window.storage.set('library', JSON.stringify(library)); }catch(e){}
+}
+
+/* ---------- HELPERS ---------- */
+function svgIcon(name){
+  const icons = {
+    search:'<svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>',
+    grid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
+    bookmark:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2v16z"/></svg>',
+    star:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.63 22 9.24 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.24 8.91 8.63"/></svg>',
+  };
+  return icons[name] || '';
+}
+
+function starSVG(filled){
+  return `<svg class="star ${filled?'filled':''}" viewBox="0 0 24 24" fill="${filled?'currentColor':'none'}" stroke="currentColor" stroke-width="1.6">
+    <polygon points="12 2 15.09 8.63 22 9.24 17 14.14 18.18 21 12 17.77 5.82 21 7 14.14 2 9.24 8.91 8.63"/></svg>`;
+}
+
+function getFiltered(){
+  let list = ANIME.filter(a=>{
+    const entry = library[a.id];
+    if(query && !a.title.toLowerCase().includes(query.toLowerCase())) return false;
+    if(activeGenres.size && ![...activeGenres].every(g=>a.genres.includes(g))) return false;
+    if(statusFilter !== "all"){
+      if(statusFilter === "unlisted"){ if(entry) return false; }
+      else if(!entry || entry.status !== statusFilter) return false;
+    }
+    return true;
+  });
+  if(sortBy === "title") list.sort((a,b)=>a.title.localeCompare(b.title));
+  else if(sortBy === "rating") list.sort((a,b)=>((library[b.id]?.rating)||0) - ((library[a.id]?.rating)||0));
+  else if(sortBy === "year") list.sort((a,b)=>b.year - a.year);
+  return list;
+}
+
+function counts(){
+  const c = {watching:0, completed:0, plan:0, dropped:0};
+  Object.values(library).forEach(e=>{ if(c[e.status]!==undefined) c[e.status]++; });
+  return c;
+}
+
+/* ---------- RENDER ---------- */
+function render(){
+  const c = counts();
+  const filtered = getFiltered();
+
+  document.getElementById('app').innerHTML = `
+    <div class="topbar">
+      <div class="topbar-row">
+        <div class="brand"><span class="brand-zura">Zura</span><span class="brand-flix">Flix</span></div>
+        <div class="search-wrap">
+          ${svgIcon('search')}
+          <input id="searchInput" type="text" placeholder="Search your library…" value="${escapeHtml(query)}"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="shelf">
+      ${shelfStat('all', 'All Titles', ANIME.length)}
+      ${shelfStat('watching', 'Watching', c.watching)}
+      ${shelfStat('completed', 'Completed', c.completed)}
+      ${shelfStat('plan', 'Plan to Watch', c.plan)}
+      ${shelfStat('dropped', 'Dropped', c.dropped)}
+    </div>
+
+    <div class="filters">
+      <div class="filter-scroll">
+        ${GENRES.map(g=>`<div class="chip ${activeGenres.has(g)?'on':''}" data-genre="${g}">${g}</div>`).join('')}
+      </div>
+      <div class="sort-row">
+        <span class="result-count">${filtered.length} title${filtered.length===1?'':'s'}</span>
+        <select class="sortsel" id="sortSel">
+          <option value="title" ${sortBy==='title'?'selected':''}>Title A–Z</option>
+          <option value="rating" ${sortBy==='rating'?'selected':''}>Your Rating</option>
+          <option value="year" ${sortBy==='year'?'selected':''}>Newest</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="grid">
+      ${filtered.length ? filtered.map(cardHTML).join('') : emptyState()}
+    </div>
+
+    <div class="bottomnav">
+      <button class="navbtn ${statusFilter==='all'?'on':''}" data-nav="all">${svgIcon('grid')}Browse</button>
+      <button class="navbtn ${statusFilter!=='all'?'on':''}" data-nav="mylist">${svgIcon('bookmark')}My List</button>
+    </div>
+
+    ${activeModal ? modalHTML(activeModal) : ''}
+  `;
+
+  attachEvents();
+}
+
+function shelfStat(key, label, n){
+  const on = statusFilter === key;
+  return `<div class="shelf-stat ${on?'active':''}" data-status="${key}">
+    <div class="n">${n}</div><div class="l">${label}</div>
+  </div>`;
+}
+
+function cardHTML(a){
+  const entry = library[a.id];
+  return `<div class="card" data-open="${a.id}">
+    <div class="poster" style="background:${a.grad}">
+      ${entry?.status ? `<span class="status-tag ${STATUS_META[entry.status].cls}">${STATUS_META[entry.status].label}</span>` : ''}
+      ${entry?.rating ? `<span class="rating-pill">${starSVGsmall()}${entry.rating}</span>` : ''}
+      <div class="poster-title">${a.title}</div>
+    </div>
+    <div class="card-meta">
+      <div class="card-genres">${a.genres.join(' · ')}</div>
+    </div>
+  </div>`;
+}
+function starSVGsmall(){
+  return `<svg width="10" height="10" viewB
